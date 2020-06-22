@@ -39,11 +39,15 @@ app.post('/register', (req, res) => {
     let email = req.body.email;
     let pass = req.body.password;
     //console.log('req.session.userId :', req.session.userId)
-    res.json({ success: true });
+    //res.json({ success: true });
     hash(pass).then(hashedPass => {
         db.addUser(first, last, email, hashedPass).then(results => {
             req.session.userId = results.rows[0].id;
             console.log('cookie after register addUser: ', req.session.userId);
+            //console.log('hashedPass: ', hashedPass);
+            results.rows[0].success = true;
+            console.log('results: ', results.rows[0]);
+            res.json(results.rows[0]);
         }).catch(err => console.log('error in registration', err));
     }).catch(err => console.log('error with password', err));
 });

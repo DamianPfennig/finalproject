@@ -20,7 +20,7 @@ class Registration extends Component {
         console.log('about to submit!!!!')
         //get this.state info and send it to server with axios
         axios.post('/register', this.state).then(({ data }) => {
-            console.log('data from server: ', data.success)
+            console.log('data from server: ', data)
             if (data.success) {
                 //log user into app
                 location.replace('/')
