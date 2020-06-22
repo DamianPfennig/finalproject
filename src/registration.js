@@ -20,7 +20,7 @@ class Registration extends Component {
         console.log('about to submit!!!!')
         //get this.state info and send it to server with axios
         axios.post('/register', this.state).then(({ data }) => {
-            console.log('data from server: ', data)
+            console.log('data from server: ', data.success)
             if (data.success) {
                 //log user into app
                 location.replace('/')
@@ -37,7 +37,7 @@ class Registration extends Component {
     render() {
         return (
             <div className="registration">
-                <h1>I am Registration!!!</h1>
+                <h1>Please fill out the registration form</h1>
                 {this.state.error && <div>Oops something went wrong!</div>}
                 <input name="first" placeholder="first" onChange={e => this.handleChange(e)} />
                 <input name="last" placeholder="last" onChange={e => this.handleChange(e)} />

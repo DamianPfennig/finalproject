@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Welcome from './welcome';
+import Logo from './logo';
 
 let element;
 const userIsLoggedIn = location.pathname != '/welcome';
@@ -9,7 +10,7 @@ const userIsLoggedIn = location.pathname != '/welcome';
 if (!userIsLoggedIn) {
     element = <Welcome />;
 } else {
-    element = <h1>I will be the Main Page!!!</h1>;
+    element = <Logo />;
 }
 
 ReactDOM.render(
