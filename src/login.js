@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from './axios';
 import { Link } from 'react-router-dom';
 
-class Registration extends Component {
+class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {}
@@ -20,13 +20,16 @@ class Registration extends Component {
     submit() {
         console.log('about to submit!!!!')
         //get this.state info and send it to server with axios
-        axios.post('/register', this.state).then(({ data }) => {
-            console.log('data from server: ', data.success)
+        axios.post('/login', this.state).then(({ data }) => {
+            console.log('data from server: ', data.success);
             if (data.success) {
                 //log user into app
-                location.replace('/')
+                //location.replace('/logo')
+                console.log('data from server: ', data);
+                console.log('login succeed!!');
             } else {
                 //div pop-up 'something went wrong'
+                console.log('login went wrong');
                 this.setState({
                     error: true
                 });
@@ -37,23 +40,20 @@ class Registration extends Component {
 
     render() {
         return (
-            <div className="registration">
-                <h1>Please fill out the registration form</h1>
-                {this.state.error && <div>Oops something went wrong!</div>}
-                <input name="first" placeholder="first" onChange={e => this.handleChange(e)} />
-                <input name="last" placeholder="last" onChange={e => this.handleChange(e)} />
+            <div>
+                <h1>
+                    Login please
+                </h1>
+
+                {this.state.error && <div>Oops something went wrong! Are you registered?</div>}
                 <input name="email" placeholder="email" type="email" onChange={e => this.handleChange(e)} />
                 <input name="password" placeholder="password" type="password" onChange={e => this.handleChange(e)} />
-                <button onClick={() => this.submit()}>Register</button>
-                <Link to="/login">Login</Link>
-            </div>
+                <button onClick={() => this.submit()}>Login</button>
+                <Link to="/reset">Reset your password</Link>
 
-            //short for Fragments---doesn't add another div
-            // <>
-            //     <h1>I am Registration!!!</h1>
-            // </>
+            </div>
         );
     }
 }
 
-export default Registration;
+export default Login;
