@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Welcome from './welcome';
-import Logo from './logo';
+
+import App from './App'
 
 let element;
 const userIsLoggedIn = location.pathname != '/welcome';
@@ -10,7 +11,8 @@ const userIsLoggedIn = location.pathname != '/welcome';
 if (!userIsLoggedIn) {
     element = <Welcome />;
 } else {
-    element = <Logo />;
+    //element = <Logo />;
+    element = <App />;
 }
 
 ReactDOM.render(

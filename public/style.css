@@ -7,3 +7,27 @@ body{
     color: crimson;
     font-family: 'Sriracha', cursive;
 }
+
+.profileImage{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.modal{
+    width: 600px;
+    height: 500px;
+    border: black solid 2px;
+    left: -50%;
+    transform: translateX(50%);
+}
+
+.modal p {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+
+.modal h2{
+    text-align: center;
+}

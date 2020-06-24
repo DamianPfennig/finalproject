@@ -36,6 +36,8 @@ module.exports.getCode = (email, code) => {
         FROM reset_codes
         WHERE email = '${email}'
         AND CURRENT_TIMESTAMP - created_at < INTERVAL '10 minutes'
+        ORDER BY created_at DESC
+        LIMIT 1
     `)
 }
 
@@ -47,6 +49,14 @@ module.exports.updatePass = (email, password) => {
         RETURNING *`,
         [password]
     );
+}
+
+module.exports.getUserInfo = (userId) => {
+    return db.query(`
+        SELECT id, first, last, image
+        FROM users
+        WHERE id = '${userId}'
+    `)
 }
 
 // AND CURRENT_TIMESTAMP - created_at < INTERVAL '10 minutes'

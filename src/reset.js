@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from './axios';
+import { Link } from 'react-router-dom';
 
 
 class Reset extends Component {
@@ -83,7 +84,8 @@ class Reset extends Component {
         } else if (step === 3) {
             return (
                 <div>
-                    <h1>Step 3</h1>
+                    <h3>Password changed</h3>
+                    <Link to="/login">Login</Link>
                 </div>
             )
 

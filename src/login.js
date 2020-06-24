@@ -13,8 +13,9 @@ class Login extends Component {
         //console.log('e.target.name: ', e.target.name);
         this.setState({
             [e.target.name]: e.target.value
+
             //is asynchronous, thats why the callback function bellow
-        }, () => console.log('this.state: ', this.state));
+        }, () => console.log('this.state in loggedIn: ', this.state));
     }
 
     submit() {
@@ -27,6 +28,7 @@ class Login extends Component {
                 //location.replace('/logo')
                 console.log('data from server: ', data);
                 console.log('login succeed!!');
+                location.replace('/App')
             } else {
                 //div pop-up 'something went wrong'
                 console.log('login went wrong');

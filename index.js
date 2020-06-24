@@ -173,6 +173,15 @@ app.post('/reset/verify', (req, res) => {
     });
 })
 
+app.get('/user', (req, res) => {
+    console.log('req.session.userId:: ', req.session.userId)
+    let userId = req.session.userId;
+    db.getUserInfo(userId).then(results => {
+        console.log('results from getUserInfo: ', results.rows[0]);
+        res.json(results.rows[0]);
+    }).catch(err => console.log('error inserting secretCode', err));
+})
+
 
 app.get('/welcome', (req, res) => {
     if (req.session.userId) {
