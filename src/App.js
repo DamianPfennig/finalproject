@@ -18,6 +18,7 @@ class App extends Component {
         }
         this.closeModal = this.closeModal.bind(this);
         this.methodGetUrl = this.methodGetUrl.bind(this);
+        this.toggleModal = this.toggleModal.bind(this);
     }
 
     componentDidMount() {
@@ -79,18 +80,18 @@ class App extends Component {
                         imageUrl={this.state.imageUrl}
                         first={this.state.first}
                         last={this.state.last}
-
-                        clickHandler={img => this.setState({ img })}
                     />
                 </div>
-                {/* <Profile
+
+                <Profile
                     first={this.state.first}
                     last={this.state.last}
-                    image={this.state.image}
+                    imageUrl={this.state.imageUrl}
                     bio={this.state.bio}
-                    clickHandler={img => this.setState({ img })}
-                    changeBio={bio => this.setState({ bio })}
-                /> */}
+                    toggleModal={this.toggleModal}
+                //clickHandler={img => this.setState({ img })}
+                //changeBio={bio => this.setState({ bio })}
+                />
 
                 {/*<h2 onClick={() => this.toggleModal()}>Make visible</h2>*/}
 

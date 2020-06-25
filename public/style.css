@@ -38,3 +38,18 @@ body{
 .modal h2{
     text-align: center;
 }
+
+.bigPicture{
+    position: absolute;
+    left: 10px;
+    height: 400px;
+    width: 400px;
+}
+
+.bigPicture img{
+    border: black solid 2px;
+    position: absolute;
+    left: 0;
+    height: 400px;
+    width: 400px;
+}

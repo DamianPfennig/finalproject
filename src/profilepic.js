@@ -6,11 +6,11 @@ export default function ProfilePic(props) {
     const imageUrl = props.imageUrl || 'default.png';
 
     return (
-        <div>
-            <div className="profileImage">
-                <img src={imageUrl} ></img>
-                <p>{props.first} {props.last}</p>
-            </div>
+        <div className="profileImage">
+
+            <img src={imageUrl} alt={props.first} alt={props.last} ></img>
+            <p>{props.first} {props.last}</p>
+
         </div>
 
     )
