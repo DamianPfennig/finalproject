@@ -39,6 +39,10 @@ body{
     text-align: center;
 }
 
+/* .mainProfile{
+    display: block;
+} */
+
 .bigPicture{
     position: absolute;
     left: 10px;
@@ -52,4 +56,11 @@ body{
     left: 0;
     height: 400px;
     width: 400px;
+}
+
+.bioEditor{
+    position: absolute;
+    right: 50px;
+
+
 }

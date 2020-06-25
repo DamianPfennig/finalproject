@@ -26,12 +26,13 @@ class App extends Component {
         //axios to get info about log in user(first, last, pic)...axios /user...and add to component setState...so we can pass info to another component in App
 
         axios.get('/user', this.state).then(({ data }) => {
-            //console.log('getting data from user', data)
+            console.log('getting data from user:::', data)
             this.setState({
                 first: data.first,
                 last: data.last,
                 id: data.id,
-                imageUrl: data.image
+                imageUrl: data.image,
+                bio: data.bio
             });
             //console.log(' this.state: ', this.state)
         })

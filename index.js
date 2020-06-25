@@ -226,24 +226,22 @@ app.post('/upload', uploader.single('file'), ses.upload, (req, res) => {
     }
 })
 
-// app.post('/upload', uploader.single('file'), ses.upload, (req, res) => {
-//     console.log('all worked well');
-//     //console.log('file:', req.file);
-//     console.log('req.body', req.body);
-//     let filename = req.file.filename;
-//     let url = `https://s3.amazonaws.com/spicedling/${filename}`;
-//     console.log('title:::', title);
-//     if (req.file) {
-//         db.addImages(url).then(results => {
-//             //console.log('results from addImages: ', results.rows[0])
-//             res.json(results.rows[0]);
-//         }).catch(err => {
-//             console.log('err: ', err);
-//         });
-//     } else {
-//         res.json({ success: false });
-//     }
-// })
+app.post('/bioediting', (req, res) => {
+    //console.log('req.body in bioediting::', req.body);
+    let text = req.body.biotext;
+    let userId = req.session.userId;
+    //console.log('in bioediting::', text, userId)
+    db.addBio(userId, text).then(results => {
+        console.log('results from addBio: ', results.rows[0]);
+        res.json(results.rows[0]);
+    }).catch(err => console.log('error in bioediting', err));
+
+
+})
+
+app.get('/isBio', (req, res) => {
+    ('axios getting bio')
+})
 
 
 app.get('/welcome', (req, res) => {
@@ -266,3 +264,23 @@ app.get('*', function (req, res) {
 app.listen(3000, function () {
     console.log("I'm listening.");
 });
+
+
+// app.post('/upload', uploader.single('file'), ses.upload, (req, res) => {
+//     console.log('all worked well');
+//     //console.log('file:', req.file);
+//     console.log('req.body', req.body);
+//     let filename = req.file.filename;
+//     let url = `https://s3.amazonaws.com/spicedling/${filename}`;
+//     console.log('title:::', title);
+//     if (req.file) {
+//         db.addImages(url).then(results => {
+//             //console.log('results from addImages: ', results.rows[0])
+//             res.json(results.rows[0]);
+//         }).catch(err => {
+//             console.log('err: ', err);
+//         });
+//     } else {
+//         res.json({ success: false });
+//     }
+// })

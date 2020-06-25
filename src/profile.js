@@ -2,13 +2,10 @@ import React from 'react';
 import ProfilePic from './profilepic';
 import BioEditor from './bioeditor';
 
-export default function Profile({ first, last, imageUrl, toggleModal }) {
+export default function Profile({ first, last, imageUrl, bio, toggleModal }) {
     return (
 
-        <div>
-            <h1>Profile Component</h1>
-            <h3>{first} {last}</h3>
-
+        <div className="mainProfile">
 
             {/* <div onClick={toggleModal}>
                 <ProfilePic
@@ -24,16 +21,16 @@ export default function Profile({ first, last, imageUrl, toggleModal }) {
                 <ProfilePic
                     imageUrl={imageUrl}
                 />
-                {/* <img src={imageUrl} alt={first} alt={last} > */}
-
             </div>
 
 
 
-            {/* <BioEditor
-                bio={props.bio}
-                changeBio={props.changeBio}
-            /> */}
+            <BioEditor
+                first={first}
+                last={last}
+                bio={bio}
+            // changeBio={props.changeBio}
+            />
 
         </div >
     )

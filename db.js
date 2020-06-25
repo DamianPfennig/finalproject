@@ -53,7 +53,7 @@ module.exports.updatePass = (email, password) => {
 
 module.exports.getUserInfo = (userId) => {
     return db.query(`
-        SELECT id, first, last, image
+        SELECT id, first, last, image, bio
         FROM users
         WHERE id = '${userId}'
     `)
@@ -68,3 +68,24 @@ module.exports.addImage = (id, url) => {
         [url]
     )
 }
+
+module.exports.addBio = (id, bio) => {
+    return db.query(`
+    UPDATE users
+    SET bio = $1
+    WHERE id = '${id}'
+    RETURNING bio`,
+        [bio]
+    )
+}
+
+// module.exports.addBio = (id, bio) => {
+//     return db.query(`
+//     INSERT INTO users (bio)
+//     VALUES ($1)
+//     WHERE id = '${id}'
+//     RETURNING *`,
+//         [bio]
+//     )
+// }
+
