@@ -13,6 +13,7 @@ class App extends Component {
             // defaultImage: 
             uploaderIsVisible: false
         }
+        this.closeModal = this.closeModal.bind(this);
     }
 
     componentDidMount() {
@@ -46,7 +47,7 @@ class App extends Component {
     }
 
     methodInApp(arg) {
-        console.log('method in app...argument', arg)
+        console.log('uploaded image in App', arg)
 
     }
 
@@ -69,7 +70,7 @@ class App extends Component {
 
                 {this.state.uploaderIsVisible && <Uploader
                     methodInApp={this.methodInApp}
-                    closeModal={() => this.closeModal}
+                    closeModal={this.closeModal}
                 />}
             </div>
 

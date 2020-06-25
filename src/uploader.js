@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import axios from './axios';
 
+
+
 class Uploader extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            name: '',
+            file: null
 
         }
 
+        this.selectedImage = this.selectedImage.bind(this);
         console.log('props in Uploader', props)
     }
 
@@ -15,21 +20,42 @@ class Uploader extends Component {
         console.log('Uploader mounted')
     }
 
-    methodInUploader() {
-        //axios getting pic form user
-        console.log('running method in uploader');
-        this.props.methodInApp('yeah');
-    }
-
     closeModalInUploader() {
         this.props.closeModal();
-        console.log('close the modal!!')
+        console.log('close the modal in uploader')
+    }
+
+    selectedImage(event) {
+        console.log('event:::::.', event.target.files[0])
+        this.setState({
+            //[event.target.name]: event.target.value
+            file: event.target.files[0],
+            name: event.target.files[0].name
+        }, () => console.log('this.state uploading image: ', this.state));
+        //console.log('upload image running')
+        // console.log('event:::::.', event.target.files[0])
+        // var file = event.target.files[0];
+        // this.setState({ file });
+        // console.log('this.state: ', this.state);
     }
 
     uploadImage() {
-        console.log('upload image running')
+
+        //axios getting pic form user
+        // console.log('running method in uploader');
+        // this.props.methodInApp(this.state.file);
+
         var formData = new FormData();
-        formData.append('file', this.file);
+        formData.append('file', this.state.file);
+        formData.append('name', this.state.name);
+        console.log('---------->', this.state)
+
+        axios.post('/upload', formData).then(({ data }) => {
+            console.log('resp from Post/upload:', data)
+        }).catch(function (err) {
+            console.log('err in POST', err)
+        })
+
     }
 
     render() {
@@ -40,10 +66,11 @@ class Uploader extends Component {
                     <h2>
                         Want to change or upload your image?
                     </h2>
-                    <input type="file" id="image" name="image" accept="image/*" onClick={() => this.uploadImage()}></input>
-                    <h2 onClick={() => this.methodInUploader()}>
+                    <input type="file" id="file" name="file" accept="image/*" onChange={this.selectedImage} />
+                    <button onClick={() => this.uploadImage()}>Upload</button>
+                    {/* <h2 onClick={() => this.methodInUploader()}>
                         Click here to run method in uploader
-                    </h2>
+                    </h2> */}
                 </div>
             </div>
         );
@@ -51,3 +78,4 @@ class Uploader extends Component {
 }
 
 export default Uploader;
+//onClick={() => this.uploadImage()}

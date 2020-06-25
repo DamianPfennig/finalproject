@@ -7,6 +7,32 @@ const csurf = require('csurf');
 const cryptoRandomString = require('crypto-random-string');
 const ses = require('./ses');
 
+//////////////----for uploading image----///////////////
+
+const multer = require('multer');
+const uidSafe = require('uid-safe');
+const path = require('path');
+
+const diskStorage = multer.diskStorage({
+    destination: function (req, file, callback) {
+        callback(null, __dirname + '/uploads');
+    },
+    filename: function (req, file, callback) {
+        uidSafe(24).then(function (uid) {
+            callback(null, uid + path.extname(file.originalname));
+        });
+    }
+});
+
+const uploader = multer({
+    storage: diskStorage,
+    limits: {
+        fileSize: 2097152
+    }
+});
+
+//////////////////////////////////////////////////////////////////
+
 
 const { hash, compare } = require('./bc');
 
@@ -182,6 +208,44 @@ app.get('/user', (req, res) => {
     }).catch(err => console.log('error inserting secretCode', err));
 })
 
+app.post('/upload', uploader.single('file'), ses.upload, (req, res) => {
+    console.log('axios in /upload')
+    //console.log('req::', req)
+    let userId = req.session.userId;
+    let filename = req.file.filename;
+    let url = `https://s3.amazonaws.com/spicedling/${filename}`;
+    if (req.file) {
+        db.addImage(userId, url).then(results => {
+            //console.log('results from addImages: ', results.rows[0])
+            res.json(results.rows[0]);
+        }).catch(err => {
+            console.log('err: ', err);
+        });
+    } else {
+        res.json({ success: false });
+    }
+
+})
+
+// app.post('/upload', uploader.single('file'), ses.upload, (req, res) => {
+//     console.log('all worked well');
+//     //console.log('file:', req.file);
+//     console.log('req.body', req.body);
+//     let filename = req.file.filename;
+//     let url = `https://s3.amazonaws.com/spicedling/${filename}`;
+//     console.log('title:::', title);
+//     if (req.file) {
+//         db.addImages(url).then(results => {
+//             //console.log('results from addImages: ', results.rows[0])
+//             res.json(results.rows[0]);
+//         }).catch(err => {
+//             console.log('err: ', err);
+//         });
+//     } else {
+//         res.json({ success: false });
+//     }
+// })
+
 
 app.get('/welcome', (req, res) => {
     if (req.session.userId) {
@@ -200,6 +264,6 @@ app.get('*', function (req, res) {
     }
 });
 
-app.listen(8080, function () {
+app.listen(3000, function () {
     console.log("I'm listening.");
 });

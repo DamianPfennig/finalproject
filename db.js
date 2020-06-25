@@ -59,4 +59,12 @@ module.exports.getUserInfo = (userId) => {
     `)
 }
 
-// AND CURRENT_TIMESTAMP - created_at < INTERVAL '10 minutes'
+module.exports.addImage = (id, url) => {
+    return db.query(`
+    UPDATE users
+    SET image = $1
+    WHERE id = '${id}'
+    RETURNING *`,
+        [url]
+    )
+}
