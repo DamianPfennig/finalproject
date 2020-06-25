@@ -51,7 +51,8 @@ class Uploader extends Component {
         console.log('---------->', this.state)
 
         axios.post('/upload', formData).then(({ data }) => {
-            console.log('resp from Post/upload:', data)
+            //console.log('resp from Post/upload---url:::', data.image)
+            this.props.methodGetUrl(data.image);
         }).catch(function (err) {
             console.log('err in POST', err)
         })

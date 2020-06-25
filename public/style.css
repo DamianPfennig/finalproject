@@ -12,6 +12,13 @@ body{
     position: absolute;
     right: 20px;
     top: 20px;
+    height: 100px;
+    width: 100px;
+}
+
+.profileImage img {
+    width: 100%;
+    height: auto;
 }
 
 .modal{

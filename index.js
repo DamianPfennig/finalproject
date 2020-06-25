@@ -224,7 +224,6 @@ app.post('/upload', uploader.single('file'), ses.upload, (req, res) => {
     } else {
         res.json({ success: false });
     }
-
 })
 
 // app.post('/upload', uploader.single('file'), ses.upload, (req, res) => {
