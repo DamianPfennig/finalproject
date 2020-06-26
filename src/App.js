@@ -82,16 +82,17 @@ class App extends Component {
     render() {
         return (
             <div>
-                <div>
-                    <Logo />
-                </div>
-                <div onClick={() => this.toggleModal()}>
-                    <ProfilePic
-                        imageUrl={this.state.imageUrl}
-                        first={this.state.first}
-                        last={this.state.last}
-                    />
-                </div>
+
+                <Logo />
+
+
+                <ProfilePic
+                    imageUrl={this.state.imageUrl}
+                    first={this.state.first}
+                    last={this.state.last}
+                    toggleModal={this.toggleModal}
+                />
+
 
                 <Profile
                     first={this.state.first}
