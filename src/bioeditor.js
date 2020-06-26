@@ -8,6 +8,7 @@ class BioEditor extends Component {
             textAreaIsVisible: false
         }
         this.inputBio = this.inputBio.bind(this);
+        //this.updateBio = this.updateBio.bind(this);
     }
 
     componentDidMount() {
@@ -38,6 +39,8 @@ class BioEditor extends Component {
         this.setState({
             [e.target.name]: e.target.value
         }, () => console.log('this.state in inputBio: ', this.state));
+        this.props.updateBio(e.target.value);
+
     }
 
     saveBio(event) {

@@ -79,6 +79,8 @@ module.exports.addBio = (id, bio) => {
     )
 }
 
+
+
 // module.exports.addBio = (id, bio) => {
 //     return db.query(`
 //     INSERT INTO users (bio)

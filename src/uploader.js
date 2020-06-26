@@ -56,22 +56,23 @@ class Uploader extends Component {
         }).catch(function (err) {
             console.log('err in POST', err)
         })
-
     }
 
     render() {
         return (
             <div>
-                <div className="modal">
-                    <p onClick={() => this.closeModalInUploader()}>X</p>
-                    <h2>
-                        Want to change or upload your image?
-                    </h2>
-                    <input type="file" id="file" name="file" accept="image/*" onChange={this.selectedImage} />
-                    <button onClick={() => this.uploadImage()}>Upload</button>
-                    {/* <h2 onClick={() => this.methodInUploader()}>
-                        Click here to run method in uploader
-                    </h2> */}
+                <div className="modal-background">
+                    <div className="modal">
+                        <p onClick={() => this.closeModalInUploader()}>X</p>
+                        <h2>
+                            Want to change or upload your image?
+                        </h2>
+                        <input type="file" id="file" name="file" accept="image/*" onChange={this.selectedImage} />
+                        <button onClick={() => this.uploadImage()}>Upload</button>
+                        {/* <h2 onClick={() => this.methodInUploader()}>
+                            Click here to run method in uploader
+                        </h2> */}
+                    </div>
                 </div>
             </div>
         );

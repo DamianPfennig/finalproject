@@ -2,7 +2,7 @@ import React from 'react';
 import ProfilePic from './profilepic';
 import BioEditor from './bioeditor';
 
-export default function Profile({ first, last, imageUrl, bio, toggleModal }) {
+export default function Profile({ first, last, imageUrl, bio, updateBio, toggleModal }) {
     return (
 
         <div className="mainProfile">
@@ -29,7 +29,8 @@ export default function Profile({ first, last, imageUrl, bio, toggleModal }) {
                 first={first}
                 last={last}
                 bio={bio}
-            // changeBio={props.changeBio}
+                updateBio={updateBio}
+            //changeBio={props.changeBio}
             />
 
         </div >

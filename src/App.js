@@ -19,6 +19,7 @@ class App extends Component {
         this.closeModal = this.closeModal.bind(this);
         this.methodGetUrl = this.methodGetUrl.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
+        this.updateBio = this.updateBio.bind(this);
     }
 
     componentDidMount() {
@@ -65,6 +66,14 @@ class App extends Component {
         })
     }
 
+    updateBio(bio) {
+        this.setState({
+            bio: bio
+        })
+    }
+
+
+
     // methodInApp(arg) {
     //     console.log('uploaded image in App', arg)
 
@@ -90,6 +99,7 @@ class App extends Component {
                     imageUrl={this.state.imageUrl}
                     bio={this.state.bio}
                     toggleModal={this.toggleModal}
+                    updateBio={this.updateBio}
                 //clickHandler={img => this.setState({ img })}
                 //changeBio={bio => this.setState({ bio })}
                 />

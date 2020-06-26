@@ -7,7 +7,7 @@ export default function ProfilePic(props) {
 
     return (
         <div className="profileImage">
-
+            {/* <p>Upload a picture</p> */}
             <img src={imageUrl} alt={props.first} alt={props.last} ></img>
             <p>{props.first} {props.last}</p>
 
