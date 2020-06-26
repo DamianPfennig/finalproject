@@ -200,10 +200,10 @@ app.post('/reset/verify', (req, res) => {
 })
 
 app.get('/user', (req, res) => {
-    console.log('req.session.userId:: ', req.session.userId)
+    //console.log('req.session.userId:: ', req.session.userId)
     let userId = req.session.userId;
     db.getUserInfo(userId).then(results => {
-        console.log('results from getUserInfo: ', results.rows[0]);
+        //console.log('results from getUserInfo: ', results.rows[0]);
         res.json(results.rows[0]);
     }).catch(err => console.log('error inserting secretCode', err));
 })
@@ -239,8 +239,14 @@ app.post('/bioediting', (req, res) => {
 
 })
 
-app.get('/isBio', (req, res) => {
-    ('axios getting bio')
+// app.get('/isBio', (req, res) => {
+//     ('axios getting bio')
+// })
+
+app.get('/otherUser/:id', async function (req, res) {
+    console.log('req otherUser in index:', req.params.id)
+    const otherUser = await db.getOtherUser(req.params.id);
+    res.json(otherUser);
 })
 
 

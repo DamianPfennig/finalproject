@@ -4,6 +4,8 @@ import Uploader from './uploader';
 import Logo from './logo';
 import axios from './axios';
 import Profile from './profile';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
+import OtherProfile from './otherprofile';
 
 
 class App extends Component {
@@ -80,11 +82,12 @@ class App extends Component {
     // }
 
     render() {
+
         return (
-            <div>
+            <BrowserRouter>
+
 
                 <Logo />
-
 
                 <ProfilePic
                     imageUrl={this.state.imageUrl}
@@ -94,17 +97,6 @@ class App extends Component {
                 />
 
 
-                <Profile
-                    first={this.state.first}
-                    last={this.state.last}
-                    imageUrl={this.state.imageUrl}
-                    bio={this.state.bio}
-                    toggleModal={this.toggleModal}
-                    updateBio={this.updateBio}
-                //clickHandler={img => this.setState({ img })}
-                //changeBio={bio => this.setState({ bio })}
-                />
-
                 {/*<h2 onClick={() => this.toggleModal()}>Make visible</h2>*/}
 
                 {this.state.uploaderIsVisible && <Uploader
@@ -112,10 +104,35 @@ class App extends Component {
                     closeModal={this.closeModal}
                 />}
 
-            </div>
+
+                <div>
+                    <Route exact path="/" render={() => (
+                        <Profile
+                            first={this.state.first}
+                            last={this.state.last}
+                            imageUrl={this.state.imageUrl}
+                            bio={this.state.bio}
+                            toggleModal={this.toggleModal}
+                            updateBio={this.updateBio}
+                        //clickHandler={img => this.setState({ img })}
+                        //changeBio={bio => this.setState({ bio })}
+                        />
+                    )} />
+
+                    <Route exact path="/user/:id" component={OtherProfile} />
+                    {/* <Link to="/user/5"></Link> */}
+
+
+                </div>
+
+            </BrowserRouter>
 
         );
     }
 }
 
 export default App;
+
+// Route path = "/"----->
+// clickHandler={img => this.setState({ img })}
+// changeBio={bio => this.setState({ bio })}

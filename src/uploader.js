@@ -60,7 +60,7 @@ class Uploader extends Component {
 
     render() {
         return (
-            <div>
+            <div className="test">
                 <div className="modal-background">
                     <div className="modal">
                         <p onClick={() => this.closeModalInUploader()}>X</p>

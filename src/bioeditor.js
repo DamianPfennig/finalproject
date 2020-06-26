@@ -14,9 +14,9 @@ class BioEditor extends Component {
     componentDidMount() {
         this.setState({})
         console.log('props in inputBio: ', this.props.bio)
-        axios.get('/isBio', this.state).then(({ data }) => {
+        // axios.get('/isBio', this.state).then(({ data }) => {
 
-        })
+        // })
         // if (this.state.bio) {
         //     this.setState({
         //         textBio: true
@@ -84,7 +84,7 @@ class BioEditor extends Component {
                 {
                     this.state.textAreaIsVisible ?
                         <div className="textarea">
-                            <textarea id="bioediting" name="biotext" rows="20" cols="50" onChange={this.inputBio}></textarea>
+                            <textarea id="bioediting" name="biotext" rows="10" cols="50" onChange={this.inputBio}></textarea>
                             <button onClick={() => this.saveBio()}>Save</button>
                         </div>
                         : null

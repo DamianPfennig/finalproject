@@ -16,6 +16,7 @@ body{
     top: 20px;
     height: 100px;
     width: 100px;
+    border-radius: 50%;
 }
 
 .profileImage img {
@@ -66,19 +67,21 @@ body{
     left: 10px;
     height: 400px;
     width: 400px;
+   
 }
 
 .bigPicture .profileImage{
     border: black solid 2px;
     position: absolute;
     left: 0;
-    height: 400px;
-    width: 400px;
+    height: 100%;
+    width: 100%;
+    /* object-fit: cover; */
 }
 
 .bioEditor{
     position: absolute;
-    left: 50%;
+    left: 55%;
     height: 400px;
     width: 50%;
 

@@ -79,6 +79,13 @@ module.exports.addBio = (id, bio) => {
     )
 }
 
+module.exports.getOtherUser = (id) => {
+    return db.query(`
+    SELECT first, last, image, bio
+    FROM users
+    WHERE id = '${id}'
+    `,)
+}
 
 
 // module.exports.addBio = (id, bio) => {
