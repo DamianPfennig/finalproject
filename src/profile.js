@@ -17,7 +17,7 @@ export default function Profile({ first, last, imageUrl, bio, updateBio, toggleM
             </div> */}
 
 
-            <div className="bigPicture">
+            <div className="bigImageContainer">
                 <ProfilePic
                     imageUrl={imageUrl}
                     toggleModal={toggleModal}

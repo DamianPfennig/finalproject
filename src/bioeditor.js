@@ -40,7 +40,6 @@ class BioEditor extends Component {
             [e.target.name]: e.target.value
         }, () => console.log('this.state in inputBio: ', this.state));
         this.props.updateBio(e.target.value);
-
     }
 
     saveBio(event) {
@@ -75,10 +74,9 @@ class BioEditor extends Component {
                 <h1>{this.props.first} {this.props.last}</h1>
                 {
                     this.props.bio ?
-                        <p onClick={() => this.toggleTextarea()}>Edit your bio</p>
-
+                        <button onClick={() => this.toggleTextarea()}>Edit your Bio</button>
                         :
-                        <p onClick={() => this.toggleTextarea()}>Add your bio</p>
+                        <button onClick={() => this.toggleTextarea()}>Add your Bio</button>
                 }
 
                 {
@@ -87,15 +85,9 @@ class BioEditor extends Component {
                             <textarea id="bioediting" name="biotext" rows="10" cols="50" onChange={this.inputBio}></textarea>
                             <button onClick={() => this.saveBio()}>Save</button>
                         </div>
-                        : null
+                        :
+                        <p>{this.props.bio}</p>
                 }
-
-
-
-                <p>{this.props.bio}</p>
-
-
-
 
             </div>
 

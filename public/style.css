@@ -1,27 +1,118 @@
 body{
-    background-color: cornflowerblue;
+    background-color: #f3f3f3;
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Roboto', sans-serif;
+}
+
+main{
+    height: 100vh;
+    width: auto;
+    display: grid;
+    grid-template-rows: 120px 1fr 50px;
+}
+
+/*-----Welcome-----*/
+.welcome-title{
+    grid-row: 1/2;
+    text-align: center;
+}
+
+.welcome-container{
+    position: relative;
+    grid-row: 2/3;
+    height: 800px;
+    width: 100%;
+}
+
+.welcome-input{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+}
+
+/*-----------Registration-------------*/
+.registration-container{
+    width: 100%;
+    height: 600px;
+}
+
+.registration-container h2{
+    text-align: center;
+}
+.registration-container .registration{
+    margin-top: 20px;
+}
+.registration input{
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #b4b4b4;
+    font-weight: bold;
+
+}
+
+.registration input:focus{
+    background-color: #ddd;
+    outline: none;
+    font-weight: normal;
+}
+
+.btn-registration{
+    border: 2px solid #b4b4b4;
+    background: transparent;
+    border-radius: 6px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin: 30px 0px ;
+}
+
+.btn-registration:hover{
+    background-color: #b4b4b4;
+    font-weight: bold;
+    border: 1px solid #9f9f9f;
 }
 
 
 
+/*----Logo-----*/
+.logo{
+    grid-row: 1/2;
+    /* border-bottom: solid black; */
+}
+
 .logo p{
+    position: relative;
+    left: 20px;
     font-size: 40px;
     color: crimson;
     font-family: 'Sriracha', cursive;
 }
 
-.profileImage{
+
+
+/*------Small Profile Image------*/
+
+.imageContainer{
     position: absolute;
+    grid-row: 1/2;
     right: 20px;
-    top: 20px;
+    top: 10px;
     height: 100px;
     width: 100px;
     border-radius: 50%;
+    overflow: hidden;
+
 }
 
-.profileImage img {
+.imageContainer image {
     width: 100%;
-    height: auto;
+    height: auto;    
+   
 }
 
 .modal-background{
@@ -62,7 +153,7 @@ body{
 
 } 
 
-.bigPicture{
+.bigImageContainer{
     position: absolute;
     left: 10px;
     height: 400px;
@@ -70,13 +161,19 @@ body{
    
 }
 
-.bigPicture .profileImage{
-    border: black solid 2px;
+.mainProfile .bigImageContainer .imageContainer {
+    /* border: black solid 2px; */
     position: absolute;
     left: 0;
     height: 100%;
     width: 100%;
+    border: black solid 2px;
+    border-radius: 0%;
     /* object-fit: cover; */
+}
+
+.mainProfile .bigImageContainer .imageContainer image{
+
 }
 
 .bioEditor{

@@ -9,6 +9,7 @@ class Logo extends Component {
         return (
             <div className="logo">
                 <p>Logo</p>
+                <hr></hr>
             </div>
         );
     }

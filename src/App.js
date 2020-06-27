@@ -107,6 +107,7 @@ class App extends Component {
 
                 <div>
                     <Route exact path="/" render={() => (
+
                         <Profile
                             first={this.state.first}
                             last={this.state.last}

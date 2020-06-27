@@ -37,14 +37,23 @@ class Registration extends Component {
 
     render() {
         return (
-            <div className="registration">
-                <h1>Please fill out the registration form</h1>
-                {this.state.error && <div>Oops something went wrong!</div>}
-                <input name="first" placeholder="first" onChange={e => this.handleChange(e)} />
-                <input name="last" placeholder="last" onChange={e => this.handleChange(e)} />
-                <input name="email" placeholder="email" type="email" onChange={e => this.handleChange(e)} />
-                <input name="password" placeholder="password" type="password" onChange={e => this.handleChange(e)} />
-                <button onClick={() => this.submit()}>Register</button>
+            <div className="registration-container">
+                <h2>Please fill out the registration</h2>
+                {this.state.error && <div className="registration-error">Oops something went wrong!</div>}
+                <div className="registration">
+                    <label form="first">First Name</label>
+                    <input id="first" name="first" placeholder="Enter First Name" onChange={e => this.handleChange(e)} />
+                    <label form="last">Last Name</label>
+                    <input id="last" name="last" placeholder="Enter Last Name" onChange={e => this.handleChange(e)} />
+                    <label form="email">Email</label>
+                    <input id="email" name="email" placeholder="Enter Email" type="email" onChange={e => this.handleChange(e)} />
+                    <label form="password">Password</label>
+                    <input id="password" name="password" placeholder="Enter Password" type="password" onChange={e => this.handleChange(e)} />
+
+                    <button className="btn-registration" onClick={() => this.submit()}>Register</button>
+                </div>
+                <br></br>
+                <p>Are you already registered?</p>
                 <Link to="/login">Login</Link>
             </div>
 
