@@ -42,15 +42,19 @@ class Login extends Component {
 
     render() {
         return (
-            <div>
-                <h1>
-                    Login please
-                </h1>
+            <div className="login-container">
+                <h2>Login please</h2>
+                <div className="login-input">
+                    {this.state.error && <div>Oops something went wrong! Are you registered?</div>}
+                    <label form="email">Enter Email</label>
+                    <input name="email" placeholder="email" type="email" onChange={e => this.handleChange(e)} />
+                    <label form="password">Enter Password</label>
+                    <input name="password" placeholder="password" type="password" onChange={e => this.handleChange(e)} />
 
-                {this.state.error && <div>Oops something went wrong! Are you registered?</div>}
-                <input name="email" placeholder="email" type="email" onChange={e => this.handleChange(e)} />
-                <input name="password" placeholder="password" type="password" onChange={e => this.handleChange(e)} />
-                <button onClick={() => this.submit()}>Login</button>
+                    <button className="btn-login" onClick={() => this.submit()}>Login</button>
+
+                </div>
+                <p>Forgot your password?</p>
                 <Link to="/reset">Reset your password</Link>
 
             </div>

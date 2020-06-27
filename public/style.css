@@ -40,10 +40,11 @@ main{
 }
 
 .registration-container h2{
+    margin-top: 0;
     text-align: center;
 }
 .registration-container .registration{
-    margin-top: 20px;
+    margin-top: 40px;
 }
 .registration input{
     width: 100%;
@@ -53,7 +54,6 @@ main{
     border: none;
     background: #b4b4b4;
     font-weight: bold;
-
 }
 
 .registration input:focus{
@@ -77,7 +77,50 @@ main{
     border: 1px solid #9f9f9f;
 }
 
+/*------------------ Log-in ---------------------*/
+.login-container{
+    width: 100%;
+    height: 600px;
+}
 
+.login-input{
+    margin-top: 40px;
+}
+
+.login-container h2{
+    margin-bottom: 20px;
+}
+
+.login-input input{
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #b4b4b4;
+    font-weight: bold;
+}
+
+.login-input input:focus{
+    background-color: #ddd;
+    outline: none;
+    font-weight: normal;
+}
+
+.btn-login{
+    border: 2px solid #b4b4b4;
+    background: transparent;
+    border-radius: 6px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin: 30px 0px ;
+}
+
+.btn-login:hover{
+    background-color: #b4b4b4;
+    font-weight: bold;
+    border: 1px solid #9f9f9f;
+}
 
 /*----Logo-----*/
 .logo{
