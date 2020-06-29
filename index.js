@@ -266,10 +266,16 @@ app.get('/users.json', async function (req, res) {
 
 app.get('/findUsers/:id', (req, res) => {
     console.log('req.params.id in findUsers: ', req.params.id)
-    db.getFindUsers(req.params.id).then(results => {
-        console.log('findUsers: ', results.rows)
-        res.json(results.rows);
-    }).catch(err => console.log('error in findUsers', err));
+    if (req.params.id === '') {
+        console.log('empty req.paramas')
+    } else {
+        db.getFindUsers(req.params.id).then(results => {
+            console.log('findUsers: ', results.rows)
+            console.log('::::::::::::::::::::::::::::')
+            res.json(results.rows);
+
+        }).catch(err => console.log('error in findUsers', err));
+    }
 })
 
 

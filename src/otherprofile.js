@@ -27,7 +27,7 @@ class OtherProfile extends Component {
     render() {
         return (
             <div>
-                <h1>Other Profile!!!</h1>
+
                 <h2>{this.state.first} {this.state.last}</h2>
                 <img src={this.state.image} alt={this.state.first} alt={this.state.last} />
                 <p>{this.state.bio}</p>

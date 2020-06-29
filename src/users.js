@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from './axios';
+import { Link } from 'react-router-dom';
+
 
 export default function Users() {
     const [users, setUsers] = useState([]);
     const [inputUsers, setInputUsers] = useState([]);
     const [findUsers, setFindUsers] = useState([]);
     const [showNewestUsers, setShowNewestUsers] = useState(true);
-    //const [showUserByLetters, setShowUsersByLetter] = useState(false);
+    const [showNoUser, setShowNoUser] = useState(false);
 
     useEffect(() => {
         console.log('mounting');
@@ -30,14 +32,22 @@ export default function Users() {
 
     const handleChange = e => {
         console.log('input value: ', e.target.value)
-        setInputUsers(e.target.value)
-        setShowNewestUsers(false)
+        setInputUsers(e.target.value);
+        setShowNewestUsers(false);
+        if (e.target.value === '') {
+            setShowNoUser(true);
+        } else {
+            axios.get(`/findUsers/${e.target.value}`).then(({ data }) => {
+                console.log('data from findUsers::: ', data);
+                setFindUsers(data);
+                setShowNoUser(false);
 
-        axios.get(`/findUsers/${e.target.value}`).then(({ data }) => {
-            console.log('data from findUsers::: ', data);
-            setFindUsers(data);
+            }).catch(err => {
+                console.log('error in findUsers ', err);
+            })
+        }
 
-        })
+
 
 
     }
@@ -52,22 +62,21 @@ export default function Users() {
 
     return (
         <div className="users-container">
-            <h1>This are our most recent users</h1>
-
             {
                 showNewestUsers ?
+                    <div>
+                        <h1>This are our most recent users</h1>
+                        {users.map((elem, idx) => {
+                            return (
+                                <div className="users-info" key={idx}>
+                                    <h3 className="users-name">{elem.first}</h3>
+                                    <img className="users-image" src={elem.image} />
+                                </div>
+                            )
+                        })
+                        }
 
-
-                    users.map((elem, idx) => {
-                        return (
-                            <div className="users-info" key={idx}>
-                                <h3 className="users-name">{elem.first}</h3>
-                                <img className="users-image" src={elem.image} />
-                            </div>
-                        )
-                    })
-
-
+                    </div>
                     :
                     null
 
@@ -77,31 +86,38 @@ export default function Users() {
             <p>Find a user by the name:</p>
             <input onChange={handleChange}></input>
 
+            {showNoUser ?
+                <p>No user found</p>
+                :
+                null
 
-            {findUsers.length > 0 && findUsers.map((elem, idx) => {
+            }
+
+            {/* {findUsers && findUsers.map((elem, idx) => {
                 return (
                     <div className="users-info" key={idx}>
                         <h3 className="users-name">{elem.first}</h3>
                         <img className="users-image" src={elem.image} />
                     </div>
                 )
-            })}
+            })} */}
 
 
 
 
 
-            {/* {
-                { inputUsers }.length == 0 ?
-
+            {
+                inputUsers.length === 0 ?
                     null :
-
-                    findUsers.map(elem => {
+                    findUsers.map((elem, idx) => {
                         return (
-                            <h1>{elem.first}</h1>
+                            <div className="users-info" key={idx}>
+                                <h3 className="users-name">{elem.first}</h3>
+                                <Link to={`/user/${elem.id}`} ><img className="users-image" src={elem.image} /></Link>
+                            </div>
                         )
                     })
-            } */}
+            }
 
 
 
