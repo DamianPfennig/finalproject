@@ -122,16 +122,21 @@ app.post('/login', (req, res) => {
                     }
                 }).catch(err => {
                     console.log('error comparing password', err);
+                    results.rows[0].success = false;
+                    res.json(results.rows[0]);
+
                 });
 
             } else {
                 console.log('email not found')
                 location.replace('/');
+                res.json([]);
             }
         }
 
     }).catch(err => {
         console.log('error passing email', err);
+        res.json([]);
     });
 
 })
@@ -173,7 +178,10 @@ app.post('/reset/start', (req, res) => {
             }
         }
 
-    }).catch(err => console.log('error getting email', err));
+    }).catch(err => {
+        console.log('error getting email', err)
+        res.json([])
+    });
 })
 
 app.post('/reset/verify', (req, res) => {

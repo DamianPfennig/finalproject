@@ -41,13 +41,13 @@ class Registration extends Component {
                 <h2>Please fill out the registration</h2>
                 {this.state.error && <div className="registration-error">Oops something went wrong!</div>}
                 <div className="registration">
-                    <label form="first">First Name</label>
+                    <label for="first">First Name</label>
                     <input id="first" name="first" placeholder="Enter First Name" onChange={e => this.handleChange(e)} />
-                    <label form="last">Last Name</label>
+                    <label for="last">Last Name</label>
                     <input id="last" name="last" placeholder="Enter Last Name" onChange={e => this.handleChange(e)} />
-                    <label form="email">Email</label>
+                    <label for="email">Email</label>
                     <input id="email" name="email" placeholder="Enter Email" type="email" onChange={e => this.handleChange(e)} />
-                    <label form="password">Password</label>
+                    <label for="password">Password</label>
                     <input id="password" name="password" placeholder="Enter Password" type="password" onChange={e => this.handleChange(e)} />
 
                     <button className="btn-registration" onClick={() => this.submit()}>Register</button>

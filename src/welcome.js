@@ -10,9 +10,9 @@ export default function Welcome() {
     return (
         <div >
             <div className="welcome-title">
-                <h1>Welcome to the Fusion Network</h1>
+                <h1>Welcome to </h1>
+                <p className="welcome-logo">the Fusion Network</p>
                 <h3>A platform for fusionist to meet each other and exchange their experience at the Fusion Festival</h3>
-                <hr></hr>
             </div>
             <div className="welcome-container">
                 <HashRouter>

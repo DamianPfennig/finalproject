@@ -29,7 +29,8 @@ class Reset extends Component {
                     step: 2
                 });
                 console.log('this.state.step:', this.state.step)
-            } else {
+            } else if (data.length == 0) {
+                console.log('something went wrong in reset')
                 //div pop-up 'something went wrong'
                 this.setState({
                     error: true
@@ -63,19 +64,22 @@ class Reset extends Component {
         const step = this.state.step;
         if (step === 1) {
             return (
-                <div >
-                    <h1>Please write your email adress</h1>
-                    {this.state.error && <div>Oops something went wrong! Please try again</div>}
-                    <input name="email" placeholder="email" type="email" onChange={e => this.handleChange(e)} />
-                    <button onClick={() => this.submit()}>Send</button>
+                <div className="reset-step1" >
+                    <h3>Please write your email adress</h3>
+                    {this.state.error && <div className="reset-error">Oops something went wrong! Is it a valid email? Please try again</div>}
+                    <br></br>
+                    {/* <label for="email">Email</label> */}
+                    <input name="email" placeholder="Enter Email" type="email" onChange={e => this.handleChange(e)} required />
+                    <p>We will send you an email with a code</p>
+                    <button className="btn-reset" onClick={() => this.submit()}>Send</button>
                 </div>
             )
         } else if (step === 2) {
             return (
-                <div>
+                <div className="reset-step2">
                     {this.state.error && <div>Oops something went wrong! Please try again</div>}
                     <p>Please enter your code</p>
-                    <input name="code" key="code" placeholder="code" onChange={e => this.handleChange(e)} />
+                    <input name="code" key="code" placeholder="Enter Code" onChange={e => this.handleChange(e)} />
                     <p>Please enter your new password</p>
                     <input name="password" placeholder="password" type="password" onChange={e => this.handleChange(e)} />
                     <button onClick={() => this.submitVerify()}>Send</button>
@@ -83,9 +87,9 @@ class Reset extends Component {
             )
         } else if (step === 3) {
             return (
-                <div>
+                <div className="reset-step3">
                     <h3>Password changed</h3>
-                    <Link to="/login">Login</Link>
+                    <p>You can now <Link to="/login">log-in</Link> with your new password</p>
                 </div>
             )
 
@@ -97,7 +101,7 @@ class Reset extends Component {
 
     render() {
         return (
-            <div>
+            <div className="reset-container">
                 {this.getCurrentDisplay()}
             </div >
         );

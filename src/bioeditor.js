@@ -74,9 +74,9 @@ class BioEditor extends Component {
                 <h1>{this.props.first} {this.props.last}</h1>
                 {
                     this.props.bio ?
-                        <button onClick={() => this.toggleTextarea()}>Edit your Bio</button>
+                        <button className="btn-bio" onClick={() => this.toggleTextarea()}>Edit your Bio</button>
                         :
-                        <button onClick={() => this.toggleTextarea()}>Add your Bio</button>
+                        <button className="btn-bio" onClick={() => this.toggleTextarea()}>Add your Bio</button>
                 }
 
                 {

@@ -18,11 +18,25 @@ class Login extends Component {
         }, () => console.log('this.state in loggedIn: ', this.state));
     }
 
+    errorMessage() {
+        this.setState({
+            error: false,
+            emailError: false
+        })
+    }
+
     submit() {
         console.log('about to submit!!!!')
         //get this.state info and send it to server with axios
         axios.post('/login', this.state).then(({ data }) => {
             console.log('data from server: ', data.success);
+            if (data.length == 0) {
+                //div pop-up 'something went wrong'
+                console.log('login went wrong');
+                this.setState({
+                    emailError: true
+                });
+            }
             if (data.success) {
                 //log user into app
                 //location.replace('/logo')
@@ -45,11 +59,14 @@ class Login extends Component {
             <div className="login-container">
                 <h2>Login please</h2>
                 <div className="login-input">
-                    {this.state.error && <div>Oops something went wrong! Are you registered?</div>}
-                    <label form="email">Enter Email</label>
-                    <input name="email" placeholder="email" type="email" onChange={e => this.handleChange(e)} />
-                    <label form="password">Enter Password</label>
-                    <input name="password" placeholder="password" type="password" onChange={e => this.handleChange(e)} />
+
+                    <label htmlFor="email">Email</label>
+                    {this.state.emailError && <div className="login-email-error">Oops, something went wrong with your email. Please, try again. Are you registered?</div>}
+                    <input name="email" placeholder="Enter Email" type="email" onChange={e => this.handleChange(e)} onClick={() => this.errorMessage()} />
+
+                    <label htmlFor="password">Password</label>
+                    {this.state.error && <div className="login-password-error">Wrong password. Please, try again.</div>}
+                    <input name="password" placeholder="Enter Password" type="password" onChange={e => this.handleChange(e)} onClick={() => this.errorMessage()} />
 
                     <button className="btn-login" onClick={() => this.submit()}>Login</button>
 

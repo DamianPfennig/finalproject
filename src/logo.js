@@ -8,7 +8,7 @@ class Logo extends Component {
     render() {
         return (
             <div className="logo">
-                <p>Logo</p>
+                <p>The Fusion Network</p>
                 <hr></hr>
             </div>
         );
