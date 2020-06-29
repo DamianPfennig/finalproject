@@ -382,3 +382,10 @@ main{
     font-weight: bold;
     border: 1px solid #9f9f9f;
 }
+
+/*----------------------Users------------------*/
+
+.users-container .users-image{
+    height: 200px;
+    width: 200px;
+}

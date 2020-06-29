@@ -87,6 +87,12 @@ module.exports.getOtherUser = (id) => {
     `,)
 }
 
+module.exports.getUsers = () => {
+    return db.query(`
+    SELECT * FROM users ORDER BY id DESC LIMIT 3;
+    `)
+}
+
 
 // module.exports.addBio = (id, bio) => {
 //     return db.query(`

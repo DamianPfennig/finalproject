@@ -257,6 +257,13 @@ app.get('/otherUser/:id', async function (req, res) {
     res.json(otherUser);
 })
 
+app.get('/users.json', async function (req, res) {
+    console.log('axios in /users')
+    const users = await db.getUsers();
+    console.log('users::', users.rows)
+    res.json(users.rows);
+})
+
 
 app.get('/welcome', (req, res) => {
     if (req.session.userId) {

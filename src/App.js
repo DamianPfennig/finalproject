@@ -6,6 +6,7 @@ import axios from './axios';
 import Profile from './profile';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import OtherProfile from './otherprofile';
+import Users from './users';
 
 
 class App extends Component {
@@ -123,6 +124,8 @@ class App extends Component {
                     <Route exact path="/user/:id" component={OtherProfile} />
                     {/* <Link to="/user/5"></Link> */}
 
+
+                    <Route exact path="/users" component={Users} />
 
                 </div>
 
