@@ -93,6 +93,14 @@ module.exports.getUsers = () => {
     `)
 }
 
+module.exports.getFindUsers = id => {
+    return db.query(`
+    SELECT * FROM users
+    WHERE first ILIKE  $1`,
+        [id + '%']
+    );
+}
+
 
 // module.exports.addBio = (id, bio) => {
 //     return db.query(`

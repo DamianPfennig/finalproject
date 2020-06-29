@@ -258,10 +258,18 @@ app.get('/otherUser/:id', async function (req, res) {
 })
 
 app.get('/users.json', async function (req, res) {
-    console.log('axios in /users')
+    //console.log('axios in /users')
     const users = await db.getUsers();
-    console.log('users::', users.rows)
+    //console.log('users::', users.rows);
     res.json(users.rows);
+})
+
+app.get('/findUsers/:id', (req, res) => {
+    console.log('req.params.id in findUsers: ', req.params.id)
+    db.getFindUsers(req.params.id).then(results => {
+        console.log('findUsers: ', results.rows)
+        res.json(results.rows);
+    }).catch(err => console.log('error in findUsers', err));
 })
 
 
