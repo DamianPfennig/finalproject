@@ -252,7 +252,7 @@ app.post('/bioediting', (req, res) => {
 // })
 
 app.get('/otherUser/:id', async function (req, res) {
-    console.log('req otherUser in index:', req.params.id)
+    //console.log('req otherUser in index:', req.params.id)
     const otherUser = await db.getOtherUser(req.params.id);
     res.json(otherUser);
 })
@@ -276,6 +276,13 @@ app.get('/findUsers/:id', (req, res) => {
 
         }).catch(err => console.log('error in findUsers', err));
     }
+})
+
+app.get('/initial-friendship-status/:id', (req, res) => {
+    console.log('req.params.id in /initial-friendship-status: ', req.params.id)
+    db.getFriendship(req.params.id).then(results => {
+        console.log('results /friendship: ', results.rows)
+    })
 })
 
 

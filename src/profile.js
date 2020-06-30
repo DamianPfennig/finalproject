@@ -7,6 +7,7 @@ export default function Profile({ first, last, imageUrl, bio, updateBio, toggleM
 
         <div className="mainProfile">
 
+
             {/* <div onClick={toggleModal}>
                 <ProfilePic
                     imageUrl={imageUrl}

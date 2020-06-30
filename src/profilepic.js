@@ -2,7 +2,7 @@ import React from 'react';
 
 
 export default function ProfilePic(props) {
-    console.log('props en ProfilePic:', props);
+    //console.log('props en ProfilePic:', props);
     //url="/default.jpg"
     //const imageUrl = props.imageUrl || '/default.png';
     let imageUrl;

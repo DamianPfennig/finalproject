@@ -39,9 +39,13 @@ export default function Users() {
         } else {
             axios.get(`/findUsers/${e.target.value}`).then(({ data }) => {
                 console.log('data from findUsers::: ', data);
-                setFindUsers(data);
-                setShowNoUser(false);
-
+                if (data.length == 0) {
+                    console.log('data length 0')
+                    setShowNoUser(true)
+                } else {
+                    setFindUsers(data);
+                    setShowNoUser(false);
+                }
             }).catch(err => {
                 console.log('error in findUsers ', err);
             })
@@ -66,15 +70,20 @@ export default function Users() {
                 showNewestUsers ?
                     <div>
                         <h1>This are our most recent users</h1>
-                        {users.map((elem, idx) => {
-                            return (
-                                <div className="users-info" key={idx}>
-                                    <h3 className="users-name">{elem.first}</h3>
-                                    <img className="users-image" src={elem.image} />
-                                </div>
-                            )
-                        })
-                        }
+                        <div className="users-info">
+                            {users.map((elem, idx) => {
+                                return (
+                                    <div className="users-name-image" key={idx}>
+                                        <h3 className="users-name">{elem.first}</h3>
+                                        <div className="users-image">
+                                            <img src={elem.image} />
+                                        </div>
+
+                                    </div>
+                                )
+                            })
+                            }
+                        </div>
 
                     </div>
                     :
@@ -82,16 +91,16 @@ export default function Users() {
 
             }
 
+            <div className="finduser">
+                <p>Find a user by the name:</p>
+                <input onChange={handleChange}></input>
 
-            <p>Find a user by the name:</p>
-            <input onChange={handleChange}></input>
-
-            {showNoUser ?
-                <p>No user found</p>
-                :
-                null
-
-            }
+                {showNoUser ?
+                    <p>No user found</p>
+                    :
+                    null
+                }
+            </div>
 
             {/* {findUsers && findUsers.map((elem, idx) => {
                 return (

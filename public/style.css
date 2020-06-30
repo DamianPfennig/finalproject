@@ -10,6 +10,7 @@ main{
     width: auto;
     display: grid;
     grid-template-rows: 120px 1fr 50px;
+    /* grid-template-columns: 20px 1fr 20px; */
 }
 
 /*----------------Logo---------------------------*/
@@ -385,7 +386,48 @@ main{
 
 /*----------------------Users------------------*/
 
-.users-container .users-image{
+.users-container{
+    grid-row: 2/3;
+    position: relative;
+    height: 400px;
+    width: 80%;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.users-container h1{
+    text-align: center;
+}
+
+.users-container .users-info{
+    position: absolute;
+    display: flex;
+    height: 100%;
+    width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.users-container .users-info .users-name-image{
+    height: 400px;
+    width: 300px;
+}
+
+.users-container .users-info .users-name-image .users-image{
+    height: 200px;
+    width: 200px; 
+}
+
+.users-name-image .users-image img{
     height: 200px;
     width: 200px;
+    object-fit: cover;
+    border: #3f3f3f solid 2px;
+}
+
+.finduser{
+    position: relative;
+    top: 400px;
+    width: 50%;
 }

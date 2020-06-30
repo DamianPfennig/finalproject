@@ -81,7 +81,7 @@ module.exports.addBio = (id, bio) => {
 
 module.exports.getOtherUser = (id) => {
     return db.query(`
-    SELECT first, last, image, bio
+    SELECT *
     FROM users
     WHERE id = '${id}'
     `,)
@@ -99,6 +99,13 @@ module.exports.getFindUsers = id => {
     WHERE first ILIKE  $1`,
         [id + '%']
     );
+}
+
+module.exports.getFriendship = id => {
+    return db.query(`
+    SELECT * FROM frienship
+    WHERE receiver_id = '${id}'
+    `)
 }
 
 

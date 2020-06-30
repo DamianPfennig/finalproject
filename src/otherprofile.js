@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import FriendButton from './friendButton';
 
 class OtherProfile extends Component {
     constructor(props) {
@@ -10,7 +11,10 @@ class OtherProfile extends Component {
     componentDidMount() {
         //console.log('otherProfile')
         let url = this.props.match.params.id
-        console.log('url in otherprofile:', url)
+        // this.setState({
+        //     url: url
+        // })
+        //console.log('url in otherprofile:', url)
         axios.get(`/otherUser/${url}`).then(({ data }) => {
             console.log('data in otheruser', data.rows[0]);
             this.setState({
@@ -20,6 +24,7 @@ class OtherProfile extends Component {
                 image: data.rows[0].image,
                 bio: data.rows[0].bio
             })
+            console.log('state in otherprofile:', this.state)
         })
     }
 
@@ -27,10 +32,16 @@ class OtherProfile extends Component {
     render() {
         return (
             <div>
+                <div className="otherProfile-container">
+                    <h2>{this.state.first} {this.state.last}</h2>
+                    <img src={this.state.image} alt={this.state.first} alt={this.state.last} />
+                    <p>{this.state.bio}</p>
 
-                <h2>{this.state.first} {this.state.last}</h2>
-                <img src={this.state.image} alt={this.state.first} alt={this.state.last} />
-                <p>{this.state.bio}</p>
+                </div>
+
+                <FriendButton
+                    id={this.state.id}
+                />
             </div>
 
 

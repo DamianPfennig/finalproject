@@ -2,6 +2,25 @@ import React, { Component } from 'react';
 import axios from './axios';
 import { Link } from 'react-router-dom';
 
+
+// import { useStatefulFields } from "./hooks/useStatefulFields";
+// import { useSubmit } from "./hooks/useSubmit"
+
+// function Login() {
+//     const [values, handleChange] = useStatefulFields();
+//     const [error, handleClick] = useSubmit('/login', values);
+//     return (
+//         <div>
+//             {error && <p>something went wrong</p>}
+//             <input name="email" onChange={handleChange}></input>
+//             <input name="password" onChange={handleChange}></input>
+//             <button onClick={handleClick}>Submit</button>
+//         </div>
+//     )
+// }
+
+
+
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -42,7 +61,7 @@ class Login extends Component {
                 //location.replace('/logo')
                 console.log('data from server: ', data);
                 console.log('login succeed!!');
-                location.replace('/App')
+                location.replace('/')
             } else {
                 //div pop-up 'something went wrong'
                 console.log('login went wrong');
