@@ -41,6 +41,7 @@ class OtherProfile extends Component {
 
                 <FriendButton
                     url={this.state.id}
+                    name={this.state.first}
                 />
             </div>
 

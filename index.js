@@ -282,6 +282,8 @@ app.get('/initial-friendship-status/:id', (req, res) => {
     console.log('req.params.id in /initial-friendship-status: ', req.params.id)
     db.getFriendship(req.params.id).then(results => {
         console.log('results /friendship: ', results.rows)
+    }).catch(err => {
+        console.log('error in initial-friendship-status: ', err)
     })
 })
 

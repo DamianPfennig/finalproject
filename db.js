@@ -103,7 +103,7 @@ module.exports.getFindUsers = id => {
 
 module.exports.getFriendship = id => {
     return db.query(`
-    SELECT * FROM frienship
+    SELECT * FROM friendships
     WHERE receiver_id = '${id}'
     `)
 }
