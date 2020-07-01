@@ -67,9 +67,19 @@ export default function Users() {
 
     return (
         <div className="users-container">
+            <div className="finduser">
+                <p>Find a user by the name:</p>
+                <input onChange={handleChange}></input>
+
+                {showNoUser ?
+                    <p>No user found</p>
+                    :
+                    null
+                }
+            </div>
             {
                 showNewestUsers ?
-                    <div>
+                    <div className="title-info-container">
                         <h1>This are our most recent users</h1>
                         <div className="users-info">
                             {users.map((elem, idx) => {
@@ -91,17 +101,6 @@ export default function Users() {
                     null
 
             }
-
-            <div className="finduser">
-                <p>Find a user by the name:</p>
-                <input onChange={handleChange}></input>
-
-                {showNoUser ?
-                    <p>No user found</p>
-                    :
-                    null
-                }
-            </div>
 
             {/* {findUsers && findUsers.map((elem, idx) => {
                 return (

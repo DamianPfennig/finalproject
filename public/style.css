@@ -403,13 +403,17 @@ main{
 .otherProfile-image-container{
     height: 300px;
     width: 300px;
-    overflow: hidden;
+    /* overflow: hidden;  */
+    object-fit: content; 
+    
 }
 
 .otherProfile-image-container img{
-    width: 100%;
-    height: auto;
-    object-fit: cover;
+   
+    height: 300px;
+    width: auto;
+    
+    
 }
 
 .otherProfile-bio{
@@ -434,7 +438,7 @@ main{
 .users-container{
     grid-row: 2/3;
     position: relative;
-    height: 400px;
+    height: 500px;
     width: 80%;
     top: 50px;
     left: 50%;
@@ -446,12 +450,12 @@ main{
 }
 
 .users-container .users-info{
-    position: absolute;
-    display: flex;
+    margin: 20px;
+    /* position: relative;
     height: 100%;
-    width: 80%;
+    width: 100%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%); */
 }
 
 .users-container .users-info .users-name-image{
@@ -459,20 +463,33 @@ main{
     width: 300px;
 }
 
+.users-info .users-image,
 .users-container .users-info .users-name-image .users-image{
     height: 200px;
     width: 200px; 
+    object-fit: content;
+}
+
+.users-info,
+.users-name-image{
+    float: left;
 }
 
 .users-name-image .users-image img{
     height: 200px;
-    width: 200px;
-    object-fit: cover;
+    width: auto;
+    margin: 0px 5px;
     border: #3f3f3f solid 2px;
 }
 
 .finduser{
     position: relative;
-    top: 400px;
+    top: 0;
+    left: 20px;
     width: 50%;
 }
+
+.title-info-container{
+    width: 100%;
+    height: 100%;
+} 
