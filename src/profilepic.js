@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
 
 
 export default function ProfilePic(props) {
-    //console.log('props en ProfilePic:', props);
+    console.log('props.id en ProfilePic:', props.id);
     //url="/default.jpg"
     //const imageUrl = props.imageUrl || '/default.png';
     let imageUrl;
@@ -22,8 +23,10 @@ export default function ProfilePic(props) {
 
             </div>
             <div className="profilepic-name">
-                <p>{props.first} {props.last}</p>
+                <p>{props.first} {props.last} </p>
             </div>
+
+
         </div>
 
     )

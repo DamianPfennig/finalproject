@@ -90,7 +90,9 @@ class App extends Component {
 
                 <Logo />
 
+
                 <ProfilePic
+                    id={this.state.id}
                     imageUrl={this.state.imageUrl}
                     first={this.state.first}
                     last={this.state.last}
@@ -110,6 +112,7 @@ class App extends Component {
                     <Route exact path="/" render={() => (
 
                         <Profile
+                            id={this.state.id}
                             first={this.state.first}
                             last={this.state.last}
                             imageUrl={this.state.imageUrl}

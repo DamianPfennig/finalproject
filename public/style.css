@@ -272,6 +272,10 @@ main{
     text-align: center;
 }
 
+.profilepic-friendButton{
+    display: none;
+}
+
 /*------------- Main Profile -------------------*/
 
 .mainProfile{
@@ -382,6 +386,47 @@ main{
     background-color: #b4b4b4;
     font-weight: bold;
     border: 1px solid #9f9f9f;
+}
+
+/*---------------------Other Profiles-----------*/
+
+.otherProfile-main{
+    padding-left: 20px;
+}
+
+.otherProfile-container{
+    height: 300Px;
+    width: 800px;
+    display: flex;
+}
+
+.otherProfile-image-container{
+    height: 300px;
+    width: 300px;
+    overflow: hidden;
+}
+
+.otherProfile-image-container img{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.otherProfile-bio{
+    margin-left: 20px;
+}
+
+
+/*------------------Friend Button------------------*/
+
+.friend-button{
+    border: 2px solid #000000;
+    background: transparent;
+    border-radius: 6px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin: 30px 0px ;
+
 }
 
 /*----------------------Users------------------*/

@@ -14,9 +14,9 @@ class OtherProfile extends Component {
         // this.setState({
         //     url: url
         // })
-        //console.log('url in otherprofile:', url)
+        //console.log('props in otherprofile:', this.props)
         axios.get(`/otherUser/${url}`).then(({ data }) => {
-            console.log('data in otheruser', data.rows[0]);
+            //console.log('data in otheruser', data.rows[0]);
             this.setState({
                 id: data.rows[0].id,
                 first: data.rows[0].first,
@@ -24,18 +24,24 @@ class OtherProfile extends Component {
                 image: data.rows[0].image,
                 bio: data.rows[0].bio
             })
-            console.log('state in otherprofile:', this.state)
+            //console.log('state in otherprofile:', this.state); 
+        }).catch(err => {
+            console.log('error in /otherUser: ', err);
         })
     }
 
 
     render() {
         return (
-            <div>
+            <div className="otherProfile-main">
+                <h2>{this.state.first} {this.state.last}</h2>
                 <div className="otherProfile-container">
-                    <h2>{this.state.first} {this.state.last}</h2>
-                    <img src={this.state.image} alt={this.state.first} alt={this.state.last} />
-                    <p>{this.state.bio}</p>
+
+                    <div className="otherProfile-image-container">
+                        <img src={this.state.image} alt={this.state.first} alt={this.state.last} />
+                    </div>
+
+                    <p className="otherProfile-bio">{this.state.bio}</p>
 
                 </div>
 

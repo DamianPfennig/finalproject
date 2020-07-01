@@ -101,11 +101,43 @@ module.exports.getFindUsers = id => {
     );
 }
 
-module.exports.getFriendship = id => {
+// module.exports.getFriendship = id => {
+//     return db.query(`
+//     SELECT * FROM friendships
+//     WHERE receiver_id = '${id}'
+//     `)
+// }
+
+module.exports.getFriendship = (sender_id, receiver_id) => {
     return db.query(`
     SELECT * FROM friendships
-    WHERE receiver_id = '${id}'
-    `)
+  WHERE (receiver_id = $1 AND sender_id = $2)
+  OR (receiver_id = $2 AND sender_id = $1)`,
+        [sender_id, receiver_id])
+}
+
+module.exports.addFriendship = (sender_id, receiver_id) => {
+    return db.query(`
+    INSERT INTO friendships (sender_id, receiver_id)
+    VALUES ($1, $2)`,
+        [sender_id, receiver_id])
+}
+
+module.exports.acceptFriendship = (sender_id, receiver_id) => {
+    return db.query(`
+    UPDATE friendships
+    SET accepted = true
+    WHERE sender_id = $1 AND receiver_id = $2`,
+        [sender_id, receiver_id])
+}
+
+module.exports.deleteFriendship = (sender_id, receiver_id) => {
+    return db.query(`
+    DELETE FROM friendships
+    WHERE (receiver_id = $2 AND sender_id = $1)
+    OR (receiver_id = $2 AND sender_id = $1)`,
+        [sender_id, receiver_id])
+
 }
 
 

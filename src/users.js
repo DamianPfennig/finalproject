@@ -12,12 +12,13 @@ export default function Users() {
 
     useEffect(() => {
         console.log('mounting');
-        console.log('state: ', findUsers);
+
 
         (async () => {
             const { data } = await axios.get('/users.json');
             setUsers(data);
             console.log('data:', data);
+            console.log('users: ', users);
 
         })();
     }, []);

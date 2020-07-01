@@ -280,12 +280,48 @@ app.get('/findUsers/:id', (req, res) => {
 
 app.get('/initial-friendship-status/:id', (req, res) => {
     console.log('req.params.id in /initial-friendship-status: ', req.params.id)
-    db.getFriendship(req.params.id).then(results => {
-        console.log('results /friendship: ', results.rows)
+    console.log('cookie userId: ', req.session.userId);
+    let userId = req.session.userId
+    db.getFriendship(userId, req.params.id).then(results => {
+        //console.log('results /friendship: ', results.rows);
+        results.rows.userId = userId;
+        res.json(results.rows);
     }).catch(err => {
         console.log('error in initial-friendship-status: ', err)
     })
 })
+
+app.post('/make-friend-request/:id', (req, res) => {
+    console.log('req.params.id in /make-friend-request ', req.params.id);
+    console.log('cookie userId: ', req.session.userId);
+    db.addFriendship(req.session.userId, req.params.id).then(results => {
+        console.log('results /make-friend-request: ', results.rows);
+        res.json(results.rows);
+    }).catch(err => {
+        console.log('error in /make-friend-request: ', err);
+    });
+})
+
+app.post('/accept-friend-request/:id', (req, res) => {
+    console.log('req.params.id in /accept-friend-request ', req.params.id);
+    db.acceptFriendship(req.session.userId, req.params.id).then(results => {
+        console.log('results from /accept-friend-request: ', results.rows);
+        res.json(results.rows);
+    }).catch(err => {
+        console.log('error in accept-friend-request: ', err);
+    })
+})
+
+app.post('/end-friendship/:id', (req, res) => {
+    console.log('req.params.id in /end-friendship: ', req.params.id);
+    db.deleteFriendship(req.session.userId, req.params.id).then(results => {
+        console.log('results from end-friendship: ', results.rows)
+        res.json(results.rows);
+    }).catch(err => {
+        console.log('error in end-friendship: ', err);
+    })
+})
+
 
 
 app.get('/welcome', (req, res) => {
