@@ -7,6 +7,7 @@ export default function FriendButton({ url }) {
     //const [newUrl, setNewUrl] = useState(url);
     const [buttonText, setButtonText] = useState();
     useEffect(() => {
+        console.log('mounting')
         //console.log('window.location.pathname ', window.location.pathname);
         console.log('url in friendButton: ', url);
         if (url) {
@@ -14,12 +15,9 @@ export default function FriendButton({ url }) {
                 console.log('data from initial-friendship-status: ', data[0]);
                 if (data.length == 0) {
                     setButtonText('Make Friendship Request');
-                    console.log('buttonText :', buttonText)
-
                 } else if (data[0].accepted == false) {
                     if (data[0].receiver_id == url) {
                         setButtonText('Cancel Friendship Request');
-
                     } else {
                         setButtonText('Accept Friendship Request');
                     }
