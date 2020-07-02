@@ -323,7 +323,7 @@ app.post('/end-friendship/:id', (req, res) => {
 })
 
 app.get('/friends-requests', (req, res) => {
-
+    console.log('friends request working')
     db.getFriendsAndRequests(req.session.userId).then(results => {
         console.log('results in getFriendsAndRequests', results.rows);
         res.json(results.rows)

@@ -530,3 +530,10 @@ main{
     height: 300px;
     width: auto;
 }
+
+.separation{
+    border-top: #3f3f3f solid 1px;
+    left: 20%;
+    height: 1px;
+    width: 80%;
+}
