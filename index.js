@@ -306,7 +306,7 @@ app.post('/accept-friend-request/:id', (req, res) => {
     console.log('req.params.id in /accept-friend-request ', req.params.id);
     db.acceptFriendship(req.session.userId, req.params.id).then(results => {
         console.log('results from /accept-friend-request: ', results.rows);
-        res.json(results.rows);
+        res.json(results.rows[0]);
     }).catch(err => {
         console.log('error in accept-friend-request: ', err);
     })

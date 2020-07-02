@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { receiveFriendsAndRequests } from './actions';
+import { receiveFriendsAndRequests, acceptFriendship } from './actions';
 import { Link } from 'react-router-dom';
 
 
@@ -12,32 +12,32 @@ export default function Friends() {
         //console.log('state from useSelector in friends:: ', state.friendsWannabes)
         state.friendsWannabes.filter(user => user.accepted == true)
     );
-    console.log('friends: ', friends);
+    //console.log('friends: ', friends);
 
     const wannabes = useSelector(state => state.friendsWannabes &&
         //console.log('state from useSelector in friends:: ', state.friendsWannabes)
         state.friendsWannabes.filter(user => user.accepted == false)
     );
-    console.log('wannabes: ', wannabes);
+    //console.log('wannabes: ', wannabes);
 
     const friendAccepted = useSelector(state => state.user &&
         console.log('state.user from useSelector in friendAccepted: ', state.user)
+
     );
 
     useEffect(() => {
-        console.log('friends mount');
+        //console.log('friends mount');
         dispatch(receiveFriendsAndRequests());
 
     }, []);
 
     function handleClick(e) {
-        console.log('e.target: ', e.target.value);
+        //console.log('e.target: ', e.target.value);
         dispatch(acceptFriendship(e.target.value));
     }
 
     return (
         <div>
-            <h1>Friends</h1>
             <div className="wannabes-container">
                 <h3>Users who send you a friendship request</h3>
                 {
@@ -58,6 +58,9 @@ export default function Friends() {
 
             <div className="friends-container">
                 <h3>Users you are already friends with</h3>
+                {
+                    !friendAccepted && <div>No friends</div>
+                }
                 {
                     friends &&
                     friends.map((elem, idx) => {

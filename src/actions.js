@@ -12,14 +12,15 @@ export async function receiveFriendsAndRequests() {
     }
 }
 
-// export function acceptFriendship(id) {
-//     axios.post(`/accept-friend-request/${id}`).then(({ data }) => {
-//         console.log('data in action post :', data);
-//     }).catch(err => {
-//         console.log('error from accept friend request in action :', err)
-//     });
-//     return {
-//         type: 'ACCEPT_FRIENDSHIP',
-//         id
-//     }
-// }
+export function acceptFriendship(id) {
+    console.log('id in action:::', id)
+    axios.post(`/accept-friend-request/${id}`).then(({ data }) => {
+        console.log('data in action post :', data);
+    }).catch(err => {
+        console.log('error from accept friend request in action :', err)
+    });
+    return {
+        type: 'ACCEPT_FRIENDSHIP',
+        id
+    }
+}

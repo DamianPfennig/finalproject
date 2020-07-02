@@ -4,25 +4,29 @@ export function reducer(state = {}, action) {
             ...state,
             friendsWannabes: action.friendsAndRequests
         }
-        console.log('state in reducer:: ', state);
+        //console.log('state in reducer:: ', state);
         return state;
     }
 
-    // if (action.type == 'ACCEPT_FRIENDSHIP') {
-    //     state = {
-    //         ...state,
-    //         user: state.map(user => {
-    //             if (user.id == action.id) {
-    //                 return {
-    //                     ...user,
-    //                     accepted: true
-    //                 }
+    if (action.type == 'ACCEPT_FRIENDSHIP') {
+        console.log('state in reducer:::', state)
+        console.log('action.id: ', action.id)
+        state = {
+            ...state,
+            friendsWannabes: state.friendsWannabes.map(user => {
+                if (user.id != action.id) {
+                    return user
+                } else {
+                    return {
+                        ...user,
+                        accepted: true
+                    }
 
-    //             }
-    //         })
-    //     }
-    //     return state;
-    // }
+                }
+            })
+        }
+        return state;
+    }
     return state;
 
 
