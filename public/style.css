@@ -13,6 +13,16 @@ main{
     /* grid-template-columns: 20px 1fr 20px; */
 }
 
+/*----------------header--------------*/
+
+.header{
+    display: flex;
+
+    /* border-bottom: black solid 2px; */
+}
+
+
+
 /*----------------Logo---------------------------*/
 .logo{
     grid-row: 1/2;
@@ -25,6 +35,17 @@ main{
     position: relative;
     left: 20px;
     font-size: 40px;
+}
+
+/*-------------Links------------------------*/
+
+.link-users,
+.link-friends{
+    grid-row: 1/2;
+    top: 40px;
+    margin: 20px;
+    cursor: pointer;
+    padding: 0;
 }
 
 /*-----------------Welcome----------------------------*/
@@ -438,7 +459,7 @@ main{
 .users-container{
     grid-row: 2/3;
     position: relative;
-    height: 500px;
+    height: 800px;
     width: 80%;
     top: 50px;
     left: 50%;
@@ -451,6 +472,8 @@ main{
 
 .users-container .users-info{
     margin: 20px;
+    height: 200px;
+    width: auto;
     /* position: relative;
     height: 100%;
     width: 100%;
@@ -493,3 +516,17 @@ main{
     width: 100%;
     height: 100%;
 } 
+
+/*------------------friends--------------*/
+.wannabes,
+.friends{
+    height: 400px;
+    width: auto;
+    object-fit: contain;
+}
+
+.wannabes img,
+.friends img{
+    height: 300px;
+    width: auto;
+}

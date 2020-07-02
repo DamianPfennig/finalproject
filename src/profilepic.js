@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 
 export default function ProfilePic(props) {
-    console.log('props.id en ProfilePic:', props.id);
+    //console.log('props.id en ProfilePic:', props.id);
     //url="/default.jpg"
     //const imageUrl = props.imageUrl || '/default.png';
     let imageUrl;

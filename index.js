@@ -322,8 +322,18 @@ app.post('/end-friendship/:id', (req, res) => {
     })
 })
 
+app.get('/friends-requests', (req, res) => {
+
+    db.getFriendsAndRequests(req.session.userId).then(results => {
+        console.log('results in getFriendsAndRequests', results.rows);
+        res.json(results.rows)
+    }).catch(err => {
+        console.log('error in getFriendsAndRequests', err);
+    })
+})
 
 
+//////////////////////////////////////////////////////////////////
 app.get('/welcome', (req, res) => {
     if (req.session.userId) {
         res.redirect('/');

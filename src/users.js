@@ -67,6 +67,7 @@ export default function Users() {
 
     return (
         <div className="users-container">
+
             <div className="finduser">
                 <p>Find a user by the name:</p>
                 <input onChange={handleChange}></input>
@@ -77,6 +78,21 @@ export default function Users() {
                     null
                 }
             </div>
+
+            {
+                inputUsers.length === 0 ?
+                    null :
+                    findUsers.map((elem, idx) => {
+                        return (
+                            <div className="users-info" key={idx}>
+                                <h3 className="users-name">{elem.first}</h3>
+                                <Link to={`/user/${elem.id}`} ><img className="users-image" src={elem.image} /></Link>
+                            </div>
+                        )
+                    })
+            }
+
+
             {
                 showNewestUsers ?
                     <div className="title-info-container">
@@ -111,22 +127,6 @@ export default function Users() {
                 )
             })} */}
 
-
-
-
-
-            {
-                inputUsers.length === 0 ?
-                    null :
-                    findUsers.map((elem, idx) => {
-                        return (
-                            <div className="users-info" key={idx}>
-                                <h3 className="users-name">{elem.first}</h3>
-                                <Link to={`/user/${elem.id}`} ><img className="users-image" src={elem.image} /></Link>
-                            </div>
-                        )
-                    })
-            }
 
 
 

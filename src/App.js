@@ -7,6 +7,7 @@ import Profile from './profile';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import OtherProfile from './otherprofile';
 import Users from './users';
+import Friends from './friends';
 
 
 class App extends Component {
@@ -87,25 +88,30 @@ class App extends Component {
         return (
             <BrowserRouter>
 
+                <div className="header">
+                    <Logo />
 
-                <Logo />
+                    <Link className="link-users" to="/users">Find Users</Link>
 
-
-                <ProfilePic
-                    id={this.state.id}
-                    imageUrl={this.state.imageUrl}
-                    first={this.state.first}
-                    last={this.state.last}
-                    toggleModal={this.toggleModal}
-                />
+                    <Link className="link-friends" to="/friends">Friends</Link>
 
 
-                {/*<h2 onClick={() => this.toggleModal()}>Make visible</h2>*/}
+                    <ProfilePic
+                        id={this.state.id}
+                        imageUrl={this.state.imageUrl}
+                        first={this.state.first}
+                        last={this.state.last}
+                        toggleModal={this.toggleModal}
+                    />
 
-                {this.state.uploaderIsVisible && <Uploader
-                    methodGetUrl={this.methodGetUrl}
-                    closeModal={this.closeModal}
-                />}
+
+                    {/*<h2 onClick={() => this.toggleModal()}>Make visible</h2>*/}
+
+                    {this.state.uploaderIsVisible && <Uploader
+                        methodGetUrl={this.methodGetUrl}
+                        closeModal={this.closeModal}
+                    />}
+                </div>
 
 
                 <div>
@@ -129,6 +135,8 @@ class App extends Component {
 
 
                     <Route exact path="/users" component={Users} />
+
+                    <Route exact path="/friends" component={Friends} />
 
                 </div>
 
