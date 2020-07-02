@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 
 export default function Friends() {
     const dispatch = useDispatch();
+
+
     const friends = useSelector(state => state.friendsWannabes &&
         //console.log('state from useSelector in friends:: ', state.friendsWannabes)
         state.friendsWannabes.filter(user => user.accepted == true)
@@ -18,9 +20,9 @@ export default function Friends() {
     );
     console.log('wannabes: ', wannabes);
 
-    // const friendAccepted = useSelector(state => state.user &&
-    //     console.log('state.user from useSelector in friendAccepted: ', state.user)
-    // );
+    const friendAccepted = useSelector(state => state.user &&
+        console.log('state.user from useSelector in friendAccepted: ', state.user)
+    );
 
     useEffect(() => {
         console.log('friends mount');
@@ -28,10 +30,10 @@ export default function Friends() {
 
     }, []);
 
-    // function handleClick(e) {
-    //     console.log('e.target: ', e.target.value);
-    //     dispatch(acceptFriendship(e.target.value));
-    // }
+    function handleClick(e) {
+        console.log('e.target: ', e.target.value);
+        dispatch(acceptFriendship(e.target.value));
+    }
 
     return (
         <div>
@@ -51,7 +53,7 @@ export default function Friends() {
                     })
                 }
             </div>
-            {/*
+
             <div className="separation"></div>
 
             <div className="friends-container">
@@ -68,7 +70,7 @@ export default function Friends() {
                         )
                     })
                 }
-            </div> */}
+            </div>
 
 
 

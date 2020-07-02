@@ -8,7 +8,7 @@ import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import reduxPromise from "redux-promise";
 import { composeWithDevTools } from "redux-devtools-extension";
-import reducer from "./reducer";
+import { reducer } from "./reducer";
 
 const store = createStore(
     reducer,

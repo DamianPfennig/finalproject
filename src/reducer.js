@@ -1,4 +1,4 @@
-export default function reducer(state = {}, action) {
+export function reducer(state = {}, action) {
     if (action.type == 'RECEIVE_FRIENDS_REQUESTS') {
         state = {
             ...state,
@@ -23,7 +23,7 @@ export default function reducer(state = {}, action) {
     //     }
     //     return state;
     // }
-
+    return state;
 
 
 

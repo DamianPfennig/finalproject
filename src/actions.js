@@ -7,7 +7,8 @@ export async function receiveFriendsAndRequests() {
     console.log('data:.', data)
     return {
         type: 'RECEIVE_FRIENDS_REQUESTS',
-        friendsAndRequests: data
+        friendsAndRequests: data,
+        test: 'test'
     }
 }
 
