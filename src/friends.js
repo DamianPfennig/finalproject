@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { receiveFriendsAndRequests, acceptFriendship } from './actions';
+import { receiveFriendsAndRequests, acceptFriendship, endFriendship } from './actions';
 import { Link } from 'react-router-dom';
 
 
@@ -20,10 +20,19 @@ export default function Friends() {
     );
     //console.log('wannabes: ', wannabes);
 
-    const friendAccepted = useSelector(state => state.user &&
-        console.log('state.user from useSelector in friendAccepted: ', state.user)
 
-    );
+    //useSelector(state => state.user);
+    // const friendAccepted = useSelector(state => state.user &&
+    //     console.log('state.user from useSelector in friendAccepted: ', state.user)
+
+    // );
+
+    // useSelector(state => state.user);
+    // const friendEnd = useSelector(state => state.user &&
+    //     state.friendsWannabes.filter(user => user.accepted != null)
+    // );
+
+
 
     useEffect(() => {
         //console.log('friends mount');
@@ -31,9 +40,13 @@ export default function Friends() {
 
     }, []);
 
-    function handleClick(e) {
+    function handleClickAccept(e) {
         //console.log('e.target: ', e.target.value);
         dispatch(acceptFriendship(e.target.value));
+    }
+
+    function handleClickEnd(e) {
+        dispatch(endFriendship(e.target.value));
     }
 
     return (
@@ -47,7 +60,7 @@ export default function Friends() {
                             <div className="wannabes" key={idx}>
                                 <h3>{elem.first}</h3>
                                 <Link to={`/user/${elem.id}`} ><img src={elem.image} /></Link>
-                                <button value={elem.id} onClick={handleClick}>Accept Friendship Request</button>
+                                <button value={elem.id} onClick={handleClickAccept}>Accept Friendship Request</button>
                             </div>
                         )
                     })
@@ -57,9 +70,9 @@ export default function Friends() {
             <div className="separation"></div>
 
             <div className="friends-container">
-                <h3>Users you are already friends with</h3>
+                <h3>Users you are already friend with</h3>
                 {
-                    !friendAccepted && <div>No friends</div>
+                    !friends && <div>No friends</div>
                 }
                 {
                     friends &&
@@ -68,7 +81,7 @@ export default function Friends() {
                             <div className="friends" key={idx}>
                                 <h3>{elem.first}</h3>
                                 <Link to={`/user/${elem.id}`} ><img src={elem.image} /></Link>
-                                <button>End Friendship</button>
+                                <button value={elem.id} onClick={handleClickEnd}>End Friendship</button>
                             </div>
                         )
                     })

@@ -135,7 +135,7 @@ module.exports.deleteFriendship = (sender_id, receiver_id) => {
     return db.query(`
     DELETE FROM friendships
     WHERE (receiver_id = $2 AND sender_id = $1)
-    OR (receiver_id = $2 AND sender_id = $1)`,
+    OR (receiver_id = $1 AND sender_id = $2)`,
         [sender_id, receiver_id])
 
 }

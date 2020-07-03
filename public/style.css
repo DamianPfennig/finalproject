@@ -518,17 +518,25 @@ main{
 } 
 
 /*------------------friends--------------*/
+
+.wannabes{
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .wannabes,
 .friends{
-    height: 400px;
-    width: auto;
+    display: block;
+    height: 300px;
+    width: 25%;
     object-fit: contain;
 }
 
 .wannabes img,
 .friends img{
-    height: 300px;
+    height: 200px;
     width: auto;
+    margin-bottom: 20px;
 }
 
 .separation{
