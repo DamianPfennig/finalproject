@@ -5,7 +5,8 @@ class BioEditor extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            textAreaIsVisible: false
+            textAreaIsVisible: false,
+            buttonVisible: true
         }
         this.inputBio = this.inputBio.bind(this);
         //this.updateBio = this.updateBio.bind(this);
@@ -14,24 +15,25 @@ class BioEditor extends Component {
     componentDidMount() {
         this.setState({})
         console.log('props in inputBio: ', this.props.bio)
-        // axios.get('/isBio', this.state).then(({ data }) => {
-
-        // })
-        // if (this.state.bio) {
-        //     this.setState({
-        //         textBio: true
-        //     })
-        // } else {
-        //     this.setState({
-        //         textBio: false
-        //     })
-        // }
     }
 
     toggleTextarea() {
         this.setState({
-            textAreaIsVisible: !this.state.textAreaIsVisible
+            textAreaIsVisible: !this.state.textAreaIsVisible,
+            buttonVisible: !this.state.buttonVisible
+
         })
+    }
+
+    handleCancel() {
+        this.setState({
+            textAreaIsVisible: !this.state.textAreaIsVisible,
+            buttonVisible: !this.state.buttonVisible,
+        });
+        axios.get('/getBio').then(({ data }) => {
+            console.log('data from server: ', data)
+            this.props.updateBio(data.bio);
+        }).catch(err => console.log('error ', err))
     }
 
     inputBio(e) {
@@ -59,7 +61,8 @@ class BioEditor extends Component {
             //     });
             // }
             this.setState({
-                textAreaIsVisible: !this.state.textAreaIsVisible
+                textAreaIsVisible: !this.state.textAreaIsVisible,
+                buttonVisible: !this.state.buttonVisible,
             })
         }).catch(err => console.log('error ', err))
     }
@@ -73,26 +76,47 @@ class BioEditor extends Component {
 
                 <h1>{this.props.first} {this.props.last}</h1>
                 {
-                    this.props.bio ?
+                    this.state.buttonVisible ?
                         <button className="btn-bio" onClick={() => this.toggleTextarea()}>Edit your Bio</button>
                         :
-                        <button className="btn-bio" onClick={() => this.toggleTextarea()}>Add your Bio</button>
+                        null
+                    // <div>
+                    //     <button className="btn-bio" onClick={() => this.toggleTextarea()}>Add your Bio</button>
+
+                    // </div>
                 }
 
                 {
                     this.state.textAreaIsVisible ?
                         <div className="textarea">
-                            <textarea id="bioediting" name="biotext" rows="10" cols="50" onChange={this.inputBio}></textarea>
-                            <button onClick={() => this.saveBio()}>Save</button>
+                            <button className="btn-bio-save" onClick={() => this.saveBio()}>Save</button>
+                            <button className="btn-bio-cancel" onClick={() => this.handleCancel()}> Cancel</button>
+                            <textarea id="bioediting" name="biotext" rows="12" cols="75" wrap="hard" onChange={this.inputBio} value={this.props.bio}></textarea>
+
                         </div>
                         :
                         <p>{this.props.bio}</p>
                 }
 
-            </div>
+            </div >
 
         );
     }
 }
 
 export default BioEditor;
+
+
+//in componentdidmount
+        // axios.get('/isBio', this.state).then(({ data }) => {
+
+        // })
+        // if (this.state.bio) {
+        //     this.setState({
+        //         textBio: true
+        //     })
+        // } else {
+        //     this.setState({
+        //         textBio: false
+        //     })
+        // }

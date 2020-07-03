@@ -95,6 +95,10 @@ class App extends Component {
 
                     <Link className="link-friends" to="/friends">Friends</Link>
 
+                    <Link className="link-profile" to="/">My Profile</Link>
+
+                    <a className="link-log-out" href="/log-out">Log-out</a>
+
 
                     <ProfilePic
                         id={this.state.id}

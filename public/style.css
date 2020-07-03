@@ -39,13 +39,20 @@ main{
 
 /*-------------Links------------------------*/
 
+.link-log-out,
+.link-profile,
 .link-users,
 .link-friends{
     grid-row: 1/2;
     top: 40px;
-    margin: 20px;
+    margin: 60px 20px 0px 20px;
+    
     cursor: pointer;
     padding: 0;
+}
+
+.link-log-out{
+    margin-left: 80px;
 }
 
 /*-----------------Welcome----------------------------*/
@@ -345,19 +352,21 @@ main{
 /*------------------------Bio Editor-------------------*/
 
 .bioEditor{
-    position: absolute;
+    position: relative;
     left: 50%;
     height: 400px;
-    width: 50%;
+    width: 500px;
 }
 
+.btn-bio-save,
+.btn-bio-cancel,
 .btn-bio{
     /* margin-bottom: 20px;
     background: transparent;
     border-radius: 6px;
     border: 2px solid #9f9f9f;
-    padding: 5px 10px;
-    cursor: pointer; */
+    padding: 5px 10px;*/
+    cursor: pointer; 
     padding: 10px;
     font-weight: 600;
     font-size: 15px;
@@ -365,8 +374,17 @@ main{
     background-color: #9f9f9f;
     border-radius: 6px;
     transition: 0.3s;
+    margin: 0px, 10px 10px 0px;
 }
 
+.btn-bio-save,
+.btn-bio-cancel{
+    position: relative;
+    margin-bottom: 15px;
+    margin-right: 10px;
+}
+.btn-bio-save:hover,
+.btn-bio-cancel:hover,
 .btn-bio:hover{
     /* background-color: #9f9f9f;
     color: #f7f7f7;  */
@@ -375,10 +393,11 @@ main{
     font-weight: 700;
 }
 
-.btn-bio:after{
+/* .btn-bio:after{
     content:'';
+    margin: 0px, 10px 10px 0px;
+} */
 
-}
 .btn-bio:active{
     animation: gradient 100ms;
   background: #7f7f7f;
@@ -387,11 +406,13 @@ main{
 }
 
 
-.bioEditor .textarea{
-    display: block;
+.bioEditor textarea{
+    margin-top: 15px;
+    font-family: inherit; 
+    font-size: 15px; 
 }
 
-.bioEditor .textarea button{
+/* .bioEditor .textarea button{
     border: 2px solid #b4b4b4;
     background: transparent;
     border-radius: 6px;
@@ -407,6 +428,14 @@ main{
     background-color: #b4b4b4;
     font-weight: bold;
     border: 1px solid #9f9f9f;
+} */
+
+.bioEditor p{
+    width: 500px;
+    height: 200px;
+    border: #3f3f3f solid 2px;
+    overflow-wrap: break-word;
+    padding: 10px;
 }
 
 /*---------------------Other Profiles-----------*/
@@ -525,15 +554,15 @@ main{
     display: flex;
     align-content: flex-start;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: start;
     width: 80%;
     height: auto;
     min-height: 300px;
     overflow: auto;
     left: 50%;
     transform: translate(-50%);
-     border-bottom: #3f3f3f solid 1px;
-     padding-bottom: 30px;
+    border-bottom: #3f3f3f solid 1px;
+    padding-bottom: 30px;
 }
 
 .friends-title,
@@ -546,7 +575,8 @@ main{
 .friends{
     display: block;
     height: 300px;
-    width: 25%;
+    min-width: 20%;
+    max-width: 21%;
     object-fit: contain;
     margin: 10px;
 }

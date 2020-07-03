@@ -247,13 +247,20 @@ app.post('/bioediting', (req, res) => {
 
 })
 
-// app.get('/isBio', (req, res) => {
-//     ('axios getting bio')
-// })
+app.get('/getBio', (req, res) => {
+    console.log('req.session.userId: ', req.session.userId)
+    db.getBio(req.session.userId).then(results => {
+        console.log('results getting bio: ', results.rows[0])
+        res.json(results.rows[0]);
+    }).catch(err => {
+        console.log('error in get_bio: ', err);
+    })
+})
 
 app.get('/otherUser/:id', async function (req, res) {
     //console.log('req otherUser in index:', req.params.id)
     const otherUser = await db.getOtherUser(req.params.id);
+    console.log('otherUser', otherUser)
     res.json(otherUser);
 })
 
@@ -330,6 +337,12 @@ app.get('/friends-requests', (req, res) => {
     }).catch(err => {
         console.log('error in getFriendsAndRequests', err);
     })
+})
+
+app.get('/log-out', (req, res) => {
+    req.session = null;
+    //res.end();
+    res.redirect('/welcome');
 })
 
 

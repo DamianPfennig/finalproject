@@ -55,8 +55,6 @@ export default function FriendButton({ url }) {
                 console.log('error in /end-friendship ', err);
             });
         };
-
-
     }
 
 
