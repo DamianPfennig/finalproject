@@ -519,9 +519,27 @@ main{
 
 /*------------------friends--------------*/
 
-.wannabes{
+.friends-container,
+.wannabes-container{
+    position: relative;
     display: flex;
+    align-content: flex-start;
     flex-wrap: wrap;
+    justify-content: center;
+    width: 80%;
+    height: auto;
+    min-height: 300px;
+    overflow: auto;
+    left: 50%;
+    transform: translate(-50%);
+     border-bottom: #3f3f3f solid 1px;
+     padding-bottom: 30px;
+}
+
+.friends-title,
+.wannabes-title{
+    margin-top: 40px;
+    text-align: center;
 }
 
 .wannabes,
@@ -530,6 +548,7 @@ main{
     height: 300px;
     width: 25%;
     object-fit: contain;
+    margin: 10px;
 }
 
 .wannabes img,
@@ -539,9 +558,13 @@ main{
     margin-bottom: 20px;
 }
 
-.separation{
+.friends-container p{
+    font-weight: bold;
+}
+
+/* .separation{
     border-top: #3f3f3f solid 1px;
-    left: 20%;
     height: 1px;
     width: 80%;
-}
+    text-align: center;
+} */

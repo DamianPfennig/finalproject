@@ -12,13 +12,13 @@ export default function Friends() {
         //console.log('state from useSelector in friends:: ', state.friendsWannabes)
         state.friendsWannabes.filter(user => user.accepted == true)
     );
-    //console.log('friends: ', friends);
+    console.log('friends: ', friends);
 
     const wannabes = useSelector(state => state.friendsWannabes &&
         //console.log('state from useSelector in friends:: ', state.friendsWannabes)
         state.friendsWannabes.filter(user => user.accepted == false)
     );
-    //console.log('wannabes: ', wannabes);
+    console.log('wannabes: ', wannabes);
 
 
     //useSelector(state => state.user);
@@ -51,8 +51,12 @@ export default function Friends() {
 
     return (
         <div>
-            <div className="wannabes-container">
+            <div className="wannabes-title">
                 <h3>Users who send you a friendship request</h3>
+            </div>
+
+            <div className="wannabes-container">
+
                 {
                     wannabes &&
                     wannabes.map((elem, idx) => {
@@ -69,27 +73,26 @@ export default function Friends() {
 
             <div className="separation"></div>
 
-            <div className="friends-container">
+            <div className="friends-title">
                 <h3>Users you are already friend with</h3>
+            </div>
+            <div className="friends-container">
+
                 {
-                    !friends && <div>No friends</div>
-                }
-                {
-                    friends &&
-                    friends.map((elem, idx) => {
-                        return (
-                            <div className="friends" key={idx}>
-                                <h3>{elem.first}</h3>
-                                <Link to={`/user/${elem.id}`} ><img src={elem.image} /></Link>
-                                <button value={elem.id} onClick={handleClickEnd}>End Friendship</button>
-                            </div>
-                        )
-                    })
+                    friends ?
+                        friends.map((elem, idx) => {
+                            return (
+                                <div className="friends" key={idx}>
+                                    <h3>{elem.first}</h3>
+                                    <Link to={`/user/${elem.id}`} ><img src={elem.image} /></Link>
+                                    <button value={elem.id} onClick={handleClickEnd}>End Friendship</button>
+                                </div>
+                            )
+                        })
+                        :
+                        <p>No friends</p>
                 }
             </div>
-
-
-
         </div>
     )
 }
