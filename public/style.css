@@ -258,11 +258,14 @@ main{
     width: 100px;
     border-radius: 50%;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .imageContainer img {
-    width: 100%;
-    height: auto;    
+    height: 100%;
+    width: auto; 
+    border: #3f3f3f solid 2px;  
+    cursor: pointer; 
    
 }
 
@@ -279,25 +282,94 @@ main{
   width: 100%;
   height: 100%; 
   background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 10;
 }
 
 .modal{
+    position: absolute;
     width: 600px;
-    height: 500px;
-    border: black solid 2px;
-    left: -50%;
-    transform: translateX(50%);
+    height: 300px;
+    background-color: #f3f3f3;
+    border: #3f3f3f solid 2px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
 }
 
 .modal p {
     position: absolute;
-    right: 5px;
+    font-weight: bold;
+    right: 10px;
     top: 5px;
+    cursor: pointer;
+    border: #3f3f3f solid 1px;
+    padding: 2px;
+}
+
+.modal-info{
+    position: relative;
+    height: 200px;
+    width: 100%;
+    top: 50px;
 }
 
 .modal h2{
     text-align: center;
+    font-family: inherit;
+    color: #3f3f3f;
+    margin-bottom: 50px;
+}
+
+.upload-image{
+    
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.upload-image + label {
+    position: relative; 
+    font-size: 1em;
+    font-weight: 700;
+    color: #f3f3f3;
+    background-color: #9f9f9f;
+    display: inline-block;
+    padding: 8px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.upload-image + label,
+.modal button{
+    position: relative;
+    left: 40%;
+    transform: translateX(-50%);
+}
+
+
+.upload-image:focus + label {
+	outline: 1px dotted #000;
+	outline: -webkit-focus-ring-color auto 5px;
+}
+
+.upload-image:hover + label{
+    background-color: #7f7f7f;
+}
+.modal button{
+    position: relative;
+    margin-left: 20px ;
+    border: #9f9f9f solid 2px;
+    padding: 4px 6px;
+    border-radius: 6px;
+}
+
+.modal button:hover{
+    font-weight: 550;
 }
 
 .profilepic-friendButton{
@@ -311,7 +383,7 @@ main{
     display: block;
     position: relative;
     left: 0;
-    top: 50px;
+    top: 100px;
     height: 600px;
     width: 80%;
 
@@ -332,6 +404,7 @@ main{
     top: 20px;
     height: 400px;
     width: 400px;
+    z-index: -10;
 }
 
 .mainProfile .bigImageContainer .profilepic-container .imageContainer {
@@ -344,9 +417,10 @@ main{
 }
 
 
-.mainProfile .bigImageContainer .profilepic-container .imageContainer image{
+.mainProfile .bigImageContainer .profilepic-container .imageContainer img{
     width: 100%;
     height: auto;
+    
 }
 
 /*------------------------Bio Editor-------------------*/
@@ -499,40 +573,10 @@ main{
     text-align: center;
 }
 
-.users-container .users-info{
-    margin: 20px;
-    height: 200px;
-    width: auto;
-    /* position: relative;
-    height: 100%;
+.title-info-container{
     width: 100%;
-    left: 50%;
-    transform: translateX(-50%); */
-}
-
-.users-container .users-info .users-name-image{
     height: 400px;
-    width: 300px;
-}
-
-.users-info .users-image,
-.users-container .users-info .users-name-image .users-image{
-    height: 200px;
-    width: 200px; 
-    object-fit: content;
-}
-
-.users-info,
-.users-name-image{
-    float: left;
-}
-
-.users-name-image .users-image img{
-    height: 200px;
-    width: auto;
-    margin: 0px 5px;
-    border: #3f3f3f solid 2px;
-}
+} 
 
 .finduser{
     position: relative;
@@ -541,10 +585,71 @@ main{
     width: 50%;
 }
 
-.title-info-container{
+.findUser-container{
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.users-container .findUsers-info{
+    margin: 20px;
+    height: 250px;
+    width: 200px;
+    
+    
+    /* position: relative;
     height: 100%;
-} 
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%); */
+}
+
+.findUsers-name{
+    margin-top: 0;
+}
+.findUsers-image-container{
+    height: 250px;
+    width: 250px;
+    object-fit: content;
+}
+
+
+.users-container .users-info .users-name-image{
+    height: 300px;
+    width: 250px;
+}
+
+.findUsers-image{
+    height: 200px;
+    width: auto; 
+    border: #3f3f3f solid 2px;
+}
+
+.users-info{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.users-image{
+    height: 200px;
+    width: 200px;
+    object-fit: contain;
+     margin: 0px 5px;
+}
+
+
+.users-name-image .users-image img{
+    height: 200px;
+    width: auto;
+   
+    border: #3f3f3f solid 2px;
+}
+
+
+
+
 
 /*------------------friends--------------*/
 
@@ -586,6 +691,7 @@ main{
     height: 200px;
     width: auto;
     margin-bottom: 20px;
+    border: #3f3f3f solid 2px;
 }
 
 .friends-container p{

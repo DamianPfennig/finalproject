@@ -10,6 +10,7 @@ export default function Users() {
     const [showNewestUsers, setShowNewestUsers] = useState(true);
     const [showNoUser, setShowNoUser] = useState(false);
 
+
     useEffect(() => {
         console.log('mounting');
 
@@ -79,18 +80,27 @@ export default function Users() {
                 }
             </div>
 
-            {
-                inputUsers.length === 0 ?
-                    null :
-                    findUsers.map((elem, idx) => {
-                        return (
-                            <div className="users-info" key={idx}>
-                                <h3 className="users-name">{elem.first}</h3>
-                                <Link to={`/user/${elem.id}`} ><img className="users-image" src={elem.image} /></Link>
-                            </div>
-                        )
-                    })
-            }
+            <div className="findUser-container">
+                {
+                    inputUsers.length === 0 ?
+                        null :
+                        findUsers.map((elem, idx) => {
+                            return (
+                                <div className="findUsers-info" key={idx}>
+                                    <h3 className="findUsers-name">{elem.first}</h3>
+                                    <div className="findUsers-image-container">
+                                        <Link to={`/user/${elem.id}`} >
+
+                                            <img className="findUsers-image" src={elem.image} />
+
+                                        </Link>
+                                    </div>
+
+                                </div>
+                            )
+                        })
+                }
+            </div>
 
 
             {

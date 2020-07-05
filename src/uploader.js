@@ -8,7 +8,8 @@ class Uploader extends Component {
         super(props);
         this.state = {
             name: '',
-            file: null
+            file: null,
+            selectedImage: false
 
         }
 
@@ -30,7 +31,8 @@ class Uploader extends Component {
         this.setState({
             //[event.target.name]: event.target.value
             file: event.target.files[0],
-            name: event.target.files[0].name
+            name: event.target.files[0].name,
+            selectedImage: true
         }, () => console.log('this.state uploading image: ', this.state));
         //console.log('upload image running')
         // console.log('event:::::.', event.target.files[0])
@@ -64,14 +66,24 @@ class Uploader extends Component {
                 <div className="modal-background">
                     <div className="modal">
                         <p onClick={() => this.closeModalInUploader()}>X</p>
-                        <h2>
-                            Want to change or upload your image?
+                        <div className="modal-info">
+                            <h2>
+                                Want to change or upload your image?
                         </h2>
-                        <input type="file" id="file" name="file" accept="image/*" onChange={this.selectedImage} />
-                        <button onClick={() => this.uploadImage()}>Upload</button>
-                        {/* <h2 onClick={() => this.methodInUploader()}>
+                            <input type="file" id="file" className="upload-image" name="file" accept="image/*" onChange={this.selectedImage} />
+                            {
+                                this.state.selectedImage ?
+                                    <label htmlFor="file">{this.state.name}</label>
+
+                                    :
+                                    <label htmlFor="file">Choose an image</label>
+                            }
+
+                            <button onClick={() => this.uploadImage()}>Upload</button>
+                            {/* <h2 onClick={() => this.methodInUploader()}>
                             Click here to run method in uploader
                         </h2> */}
+                        </div>
                     </div>
                 </div>
             </div>
