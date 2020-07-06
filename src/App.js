@@ -8,6 +8,7 @@ import { BrowserRouter, Route, Link } from 'react-router-dom';
 import OtherProfile from './otherprofile';
 import Users from './users';
 import Friends from './friends';
+import Chat from './chat';
 
 
 class App extends Component {
@@ -97,6 +98,8 @@ class App extends Component {
 
                     <Link className="link-profile" to="/">My Profile</Link>
 
+                    <Link className="link-chat" to="/chat">Chat-Room</Link>
+
                     <a className="link-log-out" href="/log-out">Log-out</a>
 
 
@@ -141,6 +144,8 @@ class App extends Component {
                     <Route exact path="/users" component={Users} />
 
                     <Route exact path="/friends" component={Friends} />
+
+                    <Route exact path="/chat" component={Chat} />
 
                 </div>
 

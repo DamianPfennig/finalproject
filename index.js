@@ -1,5 +1,11 @@
 const express = require('express');
 const app = express();
+
+const server = require('http').Server(app);
+const io = require('socket.io')(server, {
+    origins: 'localhost:8080'
+});
+
 const compression = require('compression');
 const db = require('./db');
 const cookieSession = require('cookie-session');
@@ -38,10 +44,20 @@ const { hash, compare } = require('./bc');
 
 app.use(compression());
 
-app.use(cookieSession({
-    secret: "I'm always angry",
-    maxAge: 1000 * 60 * 60 * 24 * 14
-}));
+// app.use(cookieSession({
+//     secret: "I'm always angry",
+//     maxAge: 1000 * 60 * 60 * 24 * 14
+// }));
+
+const cookieSessionMiddleware = cookieSession({
+    secret: `I'm always angry.`,
+    maxAge: 1000 * 60 * 60 * 24 * 90
+});
+
+app.use(cookieSessionMiddleware);
+io.use(function (socket, next) {
+    cookieSessionMiddleware(socket.request, socket.request.res, next);
+});
 
 
 app.use(csurf());
@@ -345,6 +361,16 @@ app.get('/log-out', (req, res) => {
     res.redirect('/welcome');
 })
 
+// app.get('/chat', (req, res) => {
+//     db.getLastMessages().then(results => {
+//         console.log('results from getLastMessages: ', results.rows);
+//         //io.sockets.emit('chatMessages', results.rows);
+//     }).catch(err => {
+//         console.log('error in getLastMessage', err);
+//     })
+// })
+
+
 
 //////////////////////////////////////////////////////////////////
 app.get('/welcome', (req, res) => {
@@ -364,9 +390,84 @@ app.get('*', function (req, res) {
     }
 });
 
-app.listen(3000, function () {
+server.listen(8080, function () {
     console.log("I'm listening.");
 });
+
+
+io.on('connection', function (socket) {
+    //all socket code goes here:::
+    console.log(`socket id ${socket.id} is now connected`);
+
+    if (!socket.request.session.userId) {
+        return socket.disconnect(true);
+    };
+
+    // socket.on('disconnect', function () {
+    //     console.log(`socket with the id ${socket.id} is now disconnected`);
+    // });
+
+    const userId = socket.request.session.userId;
+    //get the last 10 chat messages
+    if (userId) {
+        console.log('userId: ', userId)
+        db.getLastMessages(userId).then(results => {
+            console.log('results from getLastMessages: ', results.rows);
+            io.sockets.emit('chatMessages', results.rows.reverse());
+        }).catch(err => {
+            console.log('error in getLastMessages', err);
+        });
+    }
+
+    //new chat message
+    // let promises = [];
+    // let p1, p2;
+
+    socket.on('newMsg', newMsg => {
+        console.log('messsage from chat.js component ', newMsg);
+        console.log('user who sent new message: ', userId);
+        db.addNewMessage(newMsg, userId).then(
+            db.getNewMessage(userId).then(results => {
+                console.log('results from getNewMessage: ', results.rows);
+                io.sockets.emit('addChatMsg', results.rows);
+            }).catch(err => {
+                console.log('error inn getNewMessage: ', err);
+            })
+        )
+
+        //     results => {
+        //     console.log('results from addNewMessage: ', results.rows);
+        // }).catch(err => {
+        //     console.log('error in newMsg: ', err)
+        // });
+
+
+
+        //1. insert msg in chat table (Returning something?)
+        //2.do query to get first, last, img (Join)
+        //
+        //emit the msg so that everyone can see it:
+        //io.socket.emit('addChatMsg', ....)
+
+        // promises.push(p1, p2);
+        // Promise.all([promises]).then(results => {
+        //     console.log('Promise all: ', results.row)
+        //     io.sockets.emit('addChatMsg', results.rows);
+        // }).catch(err => {
+        //     console.log('error in add/getNewMessage: ', err);
+
+        // });
+    });
+
+
+
+
+
+
+
+});
+
+
 
 
 // app.post('/upload', uploader.single('file'), ses.upload, (req, res) => {

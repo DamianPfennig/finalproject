@@ -159,6 +159,37 @@ module.exports.getFriendsAndRequests = (id) => {
         [id])
 }
 
+module.exports.getLastMessages = () => {
+    return db.query(`
+    SELECT users.id, users.first, users.last, users.image, chat.message, chat.created_at
+    FROM chat
+    JOIN users
+    ON users.id= chat.user_id
+    ORDER BY created_at DESC
+    LIMIT 10;
+    `)
+}
+
+module.exports.addNewMessage = (message, id) => {
+    return db.query(`
+    INSERT INTO chat (message, user_id)
+    VALUES ($1, $2)
+    `,
+        [message, id])
+}
+
+module.exports.getNewMessage = id => {
+    return db.query(`
+    SELECT users.id, users.first, users.last, users.image, chat.message, chat.created_at
+    FROM chat
+    JOIN users
+    ON users.id= chat.user_id
+    WHERE chat.user_id = '${id}'
+    ORDER BY created_at DESC
+    LIMIT 1;
+    `)
+}
+
 
 // module.exports.addBio = (id, bio) => {
 //     return db.query(`

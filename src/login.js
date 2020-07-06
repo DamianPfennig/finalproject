@@ -3,6 +3,7 @@ import axios from './axios';
 import { Link } from 'react-router-dom';
 
 
+
 // import { useStatefulFields } from "./hooks/useStatefulFields";
 // import { useSubmit } from "./hooks/useSubmit"
 
@@ -61,7 +62,7 @@ class Login extends Component {
                 //location.replace('/logo')
                 console.log('data from server: ', data);
                 console.log('login succeed!!');
-                location.replace('/')
+                location.replace('/');
             } else {
                 //div pop-up 'something went wrong'
                 console.log('login went wrong');

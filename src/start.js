@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Welcome from './welcome';
-import App from './App'
+import App from './App';
+import { init } from './socket';
 
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
@@ -27,11 +28,12 @@ if (!userIsLoggedIn) {
     element = <Welcome />;
 } else {
     //element = <Logo />;
+    init(store);
     element = (
         <Provider store={store}>
             <App />
         </Provider>
-    );;
+    );
 }
 
 ReactDOM.render(

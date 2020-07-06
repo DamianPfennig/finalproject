@@ -37,3 +37,19 @@ export function endFriendship(id) {
         id
     }
 }
+
+export function chatMessages(data) {
+    //console.log('data in action chatMessages: ', data);
+    return {
+        type: 'GET_LAST_MESSAGES',
+        data
+    }
+}
+
+export function addChatMsg(data) {
+    console.log('data in action addChatMsg: ', data);
+    return {
+        type: 'ADD_NEW_MESSAGE',
+        data
+    }
+}

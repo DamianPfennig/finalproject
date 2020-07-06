@@ -43,6 +43,22 @@ export function reducer(state = {}, action) {
             })
         }
     }
+
+    if (action.type == 'GET_LAST_MESSAGES') {
+        state = {
+            ...state,
+            chatMessages: action.data
+        }
+        return state;
+    }
+
+    if (action.type == 'ADD_NEW_MESSAGE') {
+        state = {
+            ...state,
+            newMessage: action.data
+        }
+        return state;
+    }
     return state;
 
 

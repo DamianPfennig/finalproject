@@ -1,5 +1,5 @@
 body{
-    background-color: rgb(17, 17, 17);
+    background-color: rgb(26, 26, 26);
     margin: 0;
     min-height: 100vh;
     font-family: 'Roboto', sans-serif;
@@ -49,6 +49,7 @@ main{
 
 /*-------------Links------------------------*/
 
+.link-chat,
 .link-log-out,
 .link-profile,
 .link-users,
@@ -845,3 +846,53 @@ main{
     width: 80%;
     text-align: center;
 } */
+
+/*-------------Chat------------------*/
+
+.chat-page-container{
+    position: relative;
+    grid-row: 2/3;
+    top: 100px;
+    width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+
+}
+
+.chat-title{
+    color: #f3f3f3;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.chat-messages-container{
+    /* color: #f3f3f3; */
+
+    height: 300px;
+    width: 100%;
+    overflow-y: scroll;
+    margin-bottom: 50px;
+}
+
+.chat-messages-container textarea{
+
+}
+
+.chat-messages-container p{
+    color: #f3f3f3;
+}
+
+.chat-messages{
+    position: relative;
+    display: flex;
+}
+
+.chat-messages h3,
+.chatmessages p{
+    color: #f3f3f3;
+}
+
+.chat-messages img{
+    height: 100px;
+    width: auto;
+}
