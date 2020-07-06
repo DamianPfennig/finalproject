@@ -50,7 +50,7 @@ export default function Friends() {
     }
 
     return (
-        <div>
+        <div className="friends-wannabes-container">
             <div className="wannabes-title">
                 <h3>Users who send you a friendship request</h3>
             </div>
