@@ -1,5 +1,5 @@
 body{
-    background-color: #9f9f9f;
+    background-color: rgb(17, 17, 17);
     margin: 0;
     min-height: 100vh;
     font-family: 'Roboto', sans-serif;
@@ -44,6 +44,7 @@ main{
     position: relative;
     left: 20px;
     font-size: 40px;
+    color: #f3f3f3;
 }
 
 /*-------------Links------------------------*/
@@ -57,6 +58,7 @@ main{
     margin: 60px 20px 0px 20px;
     cursor: pointer;
     padding: 0;
+    color: #f3f3f3;
 }
 
 .link-log-out{
@@ -68,7 +70,7 @@ main{
 .link-users:visited,
 .link-friends:visited,
 .link-log-out:visited{
-    color: black;
+    color: #f3f3f3;
     font-weight: 600;
 }
 
@@ -85,6 +87,11 @@ main{
 .welcome-title h1{
     grid-row: 1/2;
     text-align: center;
+    color: #f3f3f3;
+}
+
+.welcome-title h3 {
+    color: #f3f3f3;
 }
 .welcome-title h3,
 .welcome-title p{
@@ -96,6 +103,7 @@ main{
     font-size: 80px;
     font-family: 'Roboto Slab', serif;
     margin: 0;
+    color: #f3f3f3;
 }
 
 .welcome-container{
@@ -123,6 +131,7 @@ main{
 .registration-container h2{
     margin-top: 0;
     text-align: center;
+    color: #f3f3f3;
 }
 .registration-container .registration{
     margin-top: 40px;
@@ -133,8 +142,12 @@ main{
     margin: 5px 0 22px 0;
     display: inline-block;
     border: none;
-    background: #b4b4b4;
+    background: #f3f3f3;
     font-weight: bold;
+    color: #f3f3f3;
+}
+.registration label{
+    color: #f3f3f3;
 }
 
 .registration input:focus{
@@ -144,17 +157,28 @@ main{
 }
 
 .btn-registration{
-    border: 2px solid #b4b4b4;
+    border: 2px solid #f3f3f3;
     background: transparent;
     border-radius: 6px;
     padding: 5px 10px;
     cursor: pointer;
+    color: #f3f3f3;
 }
 
 .btn-registration:hover{
-    background-color: #b4b4b4;
-    font-weight: bold;
-    border: 1px solid #9f9f9f;
+    /* background-color: #b4b4b4; */
+    border: 2px solid #f3f3f3;
+}
+
+.registration-container p{
+    color: #f3f3f3;
+}
+
+.registration-container a{
+    color: #f3f3f3;
+}
+.registration-container a:visited{
+    color: #f3f3f3;
 }
 
 /*------------------ Log-in ---------------------*/
@@ -169,6 +193,11 @@ main{
 
 .login-container h2{
     margin-bottom: 20px;
+    color: #f3f3f3;
+}
+
+.login-input label{
+    color: #f3f3f3;
 }
 
 .login-input input{
@@ -188,23 +217,34 @@ main{
 }
 
 .btn-login{
-    border: 2px solid #b4b4b4;
+    border: 2px solid #f3f3f3;
     background: transparent;
     border-radius: 6px;
     padding: 5px 10px;
     cursor: pointer;
     margin: 30px 0px ;
+    color: #f3f3f3;
 }
 
 .btn-login:hover{
     background-color: #b4b4b4;
-    font-weight: bold;
-    border: 1px solid #9f9f9f;
 }
 
 .login-password-error,
 .login-email-error{
     color: red;
+}
+
+.login-container p{
+    color: #f3f3f3;
+}
+
+.login-container a{
+    color: #f3f3f3;
+}
+
+.login-container a:visited{
+    color: #f3f3f3;
 }
 
 /*-----------------------Reset----------------------*/
@@ -219,6 +259,7 @@ main{
 
 .reset-step1 p{
     margin-top: 0;
+    color: #f3f3f3;
     /* position: relative;
     left: 50%;
     top: 50%;
@@ -226,7 +267,7 @@ main{
 }
 
 .reset-step1 h3{
-   
+   color: #f3f3f3;
 }
 
 .reset-step1 input{
@@ -237,27 +278,27 @@ main{
     border: none;
     background: #b4b4b4;
     font-weight: bold;
+    color: #f3f3f3;
 }
 
 .reset-step1 input:focus{
-    background-color: #ddd;
+    background-color: rgb(122, 122, 122);
     outline: none;
     font-weight: normal;
 }
 
 .btn-reset{
-     border: 2px solid #b4b4b4;
+     border: 2px solid #f3f3f3;
     background: transparent;
     border-radius: 6px;
     padding: 5px 10px;
     cursor: pointer;
     margin: 30px 0px ;
+    color: #f3f3f3;
 }
 
 .btn-reset:hover{
-    background-color: #b4b4b4;
-    font-weight: bold;
-    border: 1px solid #9f9f9f;
+    background-color: #b4b4b4;   
 }
 
 .reset-error{
@@ -299,6 +340,7 @@ main{
 .profilepic-name p{
     text-align: center;
     font-size: 15px;
+    color: #f3f3f3;
 }
 
 .modal-background{
@@ -364,7 +406,9 @@ main{
     font-size: 1em;
     font-weight: 700;
     color: #f3f3f3;
-    background-color: #7f7f7f;
+    /* background-color: rgb(17, 17, 17); */
+    border: rgb(17, 17, 17) solid 1px;
+    color: rgb(26, 26, 26);
     display: inline-block;
     padding: 8px 10px;
     border-radius: 6px;
@@ -385,21 +429,22 @@ main{
 }
 
 .upload-image:hover + label{
-    background-color: #5f5f5f;
+    background-color: rgb(26, 26, 26);
+    color: #f3f3f3;
 }
 .modal button{
     position: relative;
     margin-left: 20px ;
-    border: #9f9f9f solid 2px;
+    border: rgb(26, 26, 26) solid 1px;
+    color: rgb(26, 26, 26);;
     padding: 4px 6px;
     border-radius: 6px;
     font-weight: 500;
 }
 
 .modal button:hover{
-    background-color: #9f9f9f;
+    background-color: rgb(26, 26, 26);
     color: #f3f3f3;
-    font-weight: 700;
 }
 
 .profilepic-friendButton{
@@ -464,6 +509,7 @@ main{
 }
 .bioEditor h1{
     margin-top: 0;
+    color: #f3f3f3;
 }
 
 .btn-bio-save,
@@ -545,6 +591,7 @@ main{
     overflow-wrap: break-word;
     padding: 10px;
     margin-top: 20px;
+    color: #f3f3f3;
 }
 
 /*---------------------Other Profiles-----------*/
@@ -556,6 +603,10 @@ main{
     width: 70%;
     border-bottom: #f3f3f3 solid 1px;
     border-right: #f3f3f3 solid 1px;
+}
+
+.otherProfile-main h2{
+    color: #f3f3f3;
 }
 
 .otherProfile-container{
@@ -592,6 +643,7 @@ main{
     padding: 5px 10px;
     cursor: pointer;
     margin: 30px 0px ;
+    color: #f3f3f3;
 
 }
 
@@ -620,11 +672,18 @@ main{
     top: 100px;
 } 
 
+.title-info-container{
+    color: #f3f3f3;
+}
+
 .finduser{
     position: relative;
     top: 20px;
     left: 20px;
     width: 50%;
+}
+.finduser p{
+    color: #f3f3f3
 }
 
 .findUser-container{
@@ -650,6 +709,7 @@ main{
 
 .findUsers-name{
     margin-top: 0;
+    color: #f3f3f3;
 }
 .findUsers-image-container{
     height: 250px;
@@ -722,10 +782,17 @@ main{
     /* background-color: rgba(240, 240, 240, 0.3); */
 }
 
-.friends-title,
+
 .wannabes-title{
     margin-top: 50px;
     text-align: center;
+    color: #f3f3f3;
+}
+
+.friends-title{
+    margin-top: 100px;
+    text-align: center;
+    color: #f3f3f3;
 }
 
 .wannabes,
@@ -736,6 +803,11 @@ main{
     max-width: 21%;
     object-fit: contain;
     margin: 10px;
+}
+
+.wannabes h3,
+.friends h3{
+    color: #f3f3f3;
 }
 
 .wannabes img,

@@ -74,7 +74,7 @@ export default function Users() {
                 <input onChange={handleChange}></input>
 
                 {showNoUser ?
-                    <p>No user found</p>
+                    <p>No users found</p>
                     :
                     null
                 }
