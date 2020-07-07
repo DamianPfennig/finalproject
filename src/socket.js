@@ -1,5 +1,5 @@
 import * as io from 'socket.io-client';
-import { chatMessages, addChatMsg } from './actions';
+import { addNewChatMsg, getLastChatMessages } from './actions';
 
 export let socket;
 
@@ -8,12 +8,12 @@ export const init = store => {
         socket = io.connect();
 
         socket.on('chatMessages', msgs =>
-            store.dispatch(chatMessages(msgs))
+            store.dispatch(getLastChatMessages(msgs))
         );
 
         socket.on('addChatMsg', msg => {
             console.log('new message in chat: ', msg)
-            store.dispatch(addChatMsg(msg))
+            store.dispatch(addNewChatMsg(msg))
         });
 
         // socket.on('userChatMessage', msg =>

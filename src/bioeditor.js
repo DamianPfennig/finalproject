@@ -91,7 +91,7 @@ class BioEditor extends Component {
                         <div className="textarea">
                             <button className="btn-bio-save" onClick={() => this.saveBio()}>Save</button>
                             <button className="btn-bio-cancel" onClick={() => this.handleCancel()}> Cancel</button>
-                            <textarea id="bioediting" name="biotext" rows="12" cols="75" wrap="hard" onChange={this.inputBio} value={this.props.bio}></textarea>
+                            <textarea id="bioediting" name="biotext" spellcheck="false" rows="12" cols="75" wrap="hard" onChange={this.inputBio} value={this.props.bio}></textarea>
 
                         </div>
                         :

@@ -423,47 +423,33 @@ io.on('connection', function (socket) {
     // let promises = [];
     // let p1, p2;
 
-    socket.on('newMsg', newMsg => {
+    socket.on('newMsg', async function (newMsg) {
         console.log('messsage from chat.js component ', newMsg);
         console.log('user who sent new message: ', userId);
-        db.addNewMessage(newMsg, userId).then(
-            db.getNewMessage(userId).then(results => {
-                console.log('results from getNewMessage: ', results.rows);
-                io.sockets.emit('addChatMsg', results.rows);
-            }).catch(err => {
-                console.log('error inn getNewMessage: ', err);
-            })
-        )
+        const newMessage = await db.addNewMessage(newMsg, userId)
+        //console.log('newMessage async: ', newMessage.rows);
 
-        //     results => {
-        //     console.log('results from addNewMessage: ', results.rows);
-        // }).catch(err => {
-        //     console.log('error in newMsg: ', err)
-        // });
+        db.getNewMessage(newMessage.rows[0].user_id).then(results => {
+            console.log('results from getNewMessage: ', results.rows);
+            io.sockets.emit('addChatMsg', results.rows);
+        }).catch(err => {
+            console.log('error inn getNewMessage: ', err);
+        })
+    })
 
-
-
-        //1. insert msg in chat table (Returning something?)
-        //2.do query to get first, last, img (Join)
-        //
-        //emit the msg so that everyone can see it:
-        //io.socket.emit('addChatMsg', ....)
-
-        // promises.push(p1, p2);
-        // Promise.all([promises]).then(results => {
-        //     console.log('Promise all: ', results.row)
-        //     io.sockets.emit('addChatMsg', results.rows);
-        // }).catch(err => {
-        //     console.log('error in add/getNewMessage: ', err);
-
-        // });
-    });
+    //     results => {
+    //     console.log('results from addNewMessage: ', results.rows);
+    // }).catch(err => {
+    //     console.log('error in newMsg: ', err)
+    // });
 
 
 
-
-
-
+    //1. insert msg in chat table (Returning something?)
+    //2.do query to get first, last, img (Join)
+    //
+    //emit the msg so that everyone can see it:
+    //io.socket.emit('addChatMsg', ....)
 
 });
 

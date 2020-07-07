@@ -174,7 +174,7 @@ module.exports.addNewMessage = (message, id) => {
     return db.query(`
     INSERT INTO chat (message, user_id)
     VALUES ($1, $2)
-    `,
+    RETURNING *`,
         [message, id])
 }
 

@@ -55,7 +55,19 @@ export function reducer(state = {}, action) {
     if (action.type == 'ADD_NEW_MESSAGE') {
         state = {
             ...state,
-            newMessage: action.data
+            //newMessage: action.data
+            chatMessages: [...state.chatMessages, ...action.data]
+
+            // chatMessages: state.chatMessages.map(
+            //     msg=>{
+            //         if(!action.data){
+            //             return msg
+            //         } else {
+            //             return{
+            //                 [...msg, ...action.data]
+            //             }
+            //         }
+            //     })
         }
         return state;
     }
