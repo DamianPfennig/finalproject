@@ -77,22 +77,24 @@ class Login extends Component {
     render() {
         return (
             <div className="login-container">
-                <h2>Login please</h2>
+                <h2>Login</h2>
                 <div className="login-input">
 
-                    <label htmlFor="email">Email</label>
+                    {/* <label htmlFor="email">Email</label> */}
                     {this.state.emailError && <div className="login-email-error">Oops, something went wrong with your email. Please, try again. Are you registered?</div>}
-                    <input name="email" placeholder="Enter Email" type="email" onChange={e => this.handleChange(e)} onClick={() => this.errorMessage()} />
+                    <input name="email" placeholder="Enter Email" type="email" spellCheck="false" onChange={e => this.handleChange(e)} onClick={() => this.errorMessage()} />
 
-                    <label htmlFor="password">Password</label>
+                    {/* <label htmlFor="password">Password</label> */}
                     {this.state.error && <div className="login-password-error">Wrong password. Please, try again.</div>}
-                    <input name="password" placeholder="Enter Password" type="password" onChange={e => this.handleChange(e)} onClick={() => this.errorMessage()} />
+                    <input name="password" placeholder="Enter Password" type="password" spellCheck="false" onChange={e => this.handleChange(e)} onClick={() => this.errorMessage()} />
 
                     <button className="btn-login" onClick={() => this.submit()}>Login</button>
 
                 </div>
-                <p>Forgot your password?</p>
-                <Link to="/reset">Reset your password</Link>
+                <div className="forgot-reset">
+                    <p>Forgot your password?</p>
+                    <Link to="/reset">Reset your password</Link>
+                </div>
 
             </div>
         );

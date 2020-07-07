@@ -52,12 +52,20 @@ class Uploader extends Component {
         formData.append('name', this.state.name);
         console.log('---------->', this.state)
 
-        axios.post('/upload', formData).then(({ data }) => {
-            //console.log('resp from Post/upload---url:::', data.image)
-            this.props.methodGetUrl(data.image);
-        }).catch(function (err) {
-            console.log('err in POST', err)
+        axios.get('/oldImage').then(({ data }) => {
+            console.log('data:::', data)
+            if (data.success == true) {
+                axios.post('/upload', formData).then(({ data }) => {
+                    //console.log('resp from Post/upload---url:::', data.image)
+                    this.props.methodGetUrl(data.image);
+                }).catch(function (err) {
+                    console.log('err in POST', err)
+                })
+            }
+        }).catch(err => {
+            console.log('err in oldImage: ', err);
         })
+
     }
 
     render() {
@@ -67,19 +75,22 @@ class Uploader extends Component {
                     <div className="modal">
                         <p onClick={() => this.closeModalInUploader()}>X</p>
                         <div className="modal-info">
-                            <h2>
-                                Want to change or upload your image?
-                        </h2>
-                            <input type="file" id="file" className="upload-image" name="file" accept="image/*" onChange={this.selectedImage} />
-                            {
-                                this.state.selectedImage ?
-                                    <label htmlFor="file">{this.state.name}</label>
+                            <h3>
+                                Change or upload your image?
+                            </h3>
+                            <div className="modal-input">
+                                <input type="file" id="file" className="upload-image" name="file" accept="image/*" onChange={this.selectedImage} />
+                                {
+                                    this.state.selectedImage ?
+                                        <label htmlFor="file">{this.state.name}</label>
 
-                                    :
-                                    <label htmlFor="file">Choose an image</label>
-                            }
-
-                            <button onClick={() => this.uploadImage()}>Upload</button>
+                                        :
+                                        <label htmlFor="file">Choose an image</label>
+                                }
+                            </div>
+                            <div className="modal-upload-button">
+                                <button onClick={() => this.uploadImage()}>Upload</button>
+                            </div>
                             {/* <h2 onClick={() => this.methodInUploader()}>
                             Click here to run method in uploader
                         </h2> */}

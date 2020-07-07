@@ -11,7 +11,14 @@ export default function Welcome() {
         <div >
             <div className="welcome-title">
                 <h1>Welcome to </h1>
-                <p className="welcome-logo">the Fusion Network</p>
+                {/* <p className="welcome-logo">the Fusion Network</p> */}
+                <div className="welcome-logo">
+                    <p className="one">The Fusion</p>
+                    <p className="two">Network</p>
+                    <img className="welcome-logo-image" src="astronaut.png" />
+                    {/* <img src="rakete-background-400.jpg" /> */}
+                    {/* <hr className="hr"></hr> */}
+                </div>
                 <h3>A platform for fusionist to meet each other and exchange their experience at the Fusion Festival</h3>
             </div>
             <div className="welcome-container">

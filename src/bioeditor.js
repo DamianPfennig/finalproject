@@ -23,6 +23,7 @@ class BioEditor extends Component {
             buttonVisible: !this.state.buttonVisible
 
         })
+
     }
 
     handleCancel() {
@@ -68,13 +69,26 @@ class BioEditor extends Component {
     }
 
     render() {
-        // if (!this.props.bio) {
-        //     return;
+        // if (!this.state.bio) {
+        //     return null;
         // }
         return (
             <div className="bioEditor">
 
-                <h1>{this.props.first} {this.props.last}</h1>
+                <h2>{this.props.first} {this.props.last}</h2>
+
+                {
+                    this.state.textAreaIsVisible ?
+                        <div className="textarea">
+                            <button className="btn-bio-save" onClick={() => this.saveBio()}>Save</button>
+                            <button className="btn-bio-cancel" onClick={() => this.handleCancel()}> Cancel</button>
+                            <textarea id="bioediting" name="biotext" spellCheck="false" rows="12" cols="75" wrap="hard" onChange={this.inputBio} value={this.props.bio}></textarea>
+
+                        </div>
+                        :
+                        <p>{this.props.bio}</p>
+                }
+
                 {
                     this.state.buttonVisible ?
                         <button className="btn-bio" onClick={() => this.toggleTextarea()}>Edit your Bio</button>
@@ -86,17 +100,6 @@ class BioEditor extends Component {
                     // </div>
                 }
 
-                {
-                    this.state.textAreaIsVisible ?
-                        <div className="textarea">
-                            <button className="btn-bio-save" onClick={() => this.saveBio()}>Save</button>
-                            <button className="btn-bio-cancel" onClick={() => this.handleCancel()}> Cancel</button>
-                            <textarea id="bioediting" name="biotext" spellcheck="false" rows="12" cols="75" wrap="hard" onChange={this.inputBio} value={this.props.bio}></textarea>
-
-                        </div>
-                        :
-                        <p>{this.props.bio}</p>
-                }
 
             </div >
 

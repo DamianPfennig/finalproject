@@ -9,6 +9,8 @@ import OtherProfile from './otherprofile';
 import Users from './users';
 import Friends from './friends';
 import Chat from './chat';
+import { Redirect } from 'react-router-dom'
+
 
 
 class App extends Component {
@@ -25,6 +27,7 @@ class App extends Component {
         this.methodGetUrl = this.methodGetUrl.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
         this.updateBio = this.updateBio.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     componentDidMount() {
@@ -77,6 +80,20 @@ class App extends Component {
         })
     }
 
+    handleClick() {
+        console.log('delete account clicked');
+        //console.log('id:', this.state.id)
+        axios.post('/delete').then(({ data }) => {
+            console.log('data::::::', data)
+            if (data.length == 0) {
+                console.log('!!!!');
+                //location.replace('/log-out');
+            }
+        }).catch(function (err) {
+            console.log('err in delete account', err)
+        })
+    }
+
 
 
     // methodInApp(arg) {
@@ -91,17 +108,22 @@ class App extends Component {
 
                 <div className="header">
                     <Logo />
+                    <div className="menu">
 
-                    <Link className="link-users" to="/users">Find Users</Link>
+                        <Link className="link-users" to="/users">Find Users</Link>
 
-                    <Link className="link-friends" to="/friends">Friends</Link>
+                        <Link className="link-friends" to="/friends">Friends</Link>
 
-                    <Link className="link-profile" to="/">My Profile</Link>
+                        <Link className="link-profile" to="/">My Profile</Link>
 
-                    <Link className="link-chat" to="/chat">Chat-Room</Link>
+                        <Link className="link-chat" to="/chat">Chat-Room</Link>
 
-                    <a className="link-log-out" href="/log-out">Log-out</a>
 
+                        <a className="link-log-out" href="/log-out">Log-out</a>
+
+                        <button className="delete-account-button" onClick={this.handleClick}>Delete Account</button>
+
+                    </div>
 
                     <ProfilePic
                         id={this.state.id}

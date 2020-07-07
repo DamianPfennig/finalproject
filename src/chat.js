@@ -3,8 +3,12 @@ import { socket } from './socket';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { addChatMsg, getLastChatMessages } from './actions';
+import moment from 'moment';
 
 export default function Chat() {
+    const date = moment();
+    console.log('date::', date)
+    //moment().format('LLL');
     const elemRef = useRef()
 
     const chatMessages = useSelector(state => state && state.chatMessages);

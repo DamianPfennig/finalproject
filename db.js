@@ -59,6 +59,23 @@ module.exports.getUserInfo = (userId) => {
     `)
 }
 
+module.exports.getOldImage = id => {
+    return db.query(`
+    SELECT id, image
+    FROM users
+    WHERE id= '${id}'
+    `)
+}
+
+module.exports.addOldImage = (id, url) => {
+    return db.query(`
+    INSERT INTO old_images (user_id, url)
+    VALUES ($1, $2)
+    RETURNING *`,
+        [id, url]
+    )
+}
+
 module.exports.addImage = (id, url) => {
     return db.query(`
     UPDATE users
@@ -68,6 +85,22 @@ module.exports.addImage = (id, url) => {
         [url]
     )
 }
+
+// module.exports.addImage = (id, url) => {
+//     return db.query(`
+//     WITH old AS(
+//         SELECT image 
+//         FROM users
+//         WHERE id = '${id}'
+
+//     )
+//     UPDATE users
+//     SET image = $1
+//     WHERE id = '${id}'
+//     RETURNING users.image, users.image AS old  `,
+//         [url]
+//     )
+// }
 
 module.exports.addBio = (id, bio) => {
     return db.query(`
@@ -84,15 +117,15 @@ module.exports.getBio = (id) => {
     SELECT bio 
     FROM users
     WHERE id = '${id}'
-    `)
+        `)
 }
 
 module.exports.getOtherUser = (id) => {
     return db.query(`
     SELECT *
-    FROM users
+        FROM users
     WHERE id = '${id}'
-    `,)
+        `,)
 }
 
 module.exports.getUsers = () => {
@@ -189,6 +222,37 @@ module.exports.getNewMessage = id => {
     LIMIT 1;
     `)
 }
+
+module.exports.deleteAccountOldImage = id => {
+    return db.query(`
+
+    DELETE FROM old_images
+    WHERE user_id = $1`,
+        [id])
+}
+
+module.exports.deleteAccountChat = id => {
+    return db.query(`
+    DELETE FROM chat
+    WHERE user_id = $1`,
+        [id])
+}
+
+module.exports.deleteAccountFriendships = id => {
+    return db.query(`
+    DELETE FROM friendships
+    WHERE sender_id = $1`,
+        [id])
+}
+
+module.exports.deleteAccountUsers = id => {
+    return db.query(`
+    DELETE FROM users
+    WHERE id = $1`,
+        [id])
+}
+
+
 
 
 // module.exports.addBio = (id, bio) => {

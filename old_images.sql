@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS old_images;
+
+CREATE TABLE old_images
+(
+    id SERIAL PRIMARY KEY,
+    url VARCHAR NOT NULL,
+    user_id INT REFERENCES users(id) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

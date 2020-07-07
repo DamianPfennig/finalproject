@@ -38,17 +38,17 @@ class Registration extends Component {
     render() {
         return (
             <div className="registration-container">
-                <h2>Please fill out the registration</h2>
+                <h2>Please fill out the registration form</h2>
                 {this.state.error && <div className="registration-error">Oops something went wrong!</div>}
                 <div className="registration">
-                    <label htmlFor="first">First Name</label>
-                    <input id="first" name="first" placeholder="Enter First Name" onChange={e => this.handleChange(e)} />
-                    <label htmlFor="last">Last Name</label>
-                    <input id="last" name="last" placeholder="Enter Last Name" onChange={e => this.handleChange(e)} />
-                    <label htmlFor="email">Email</label>
-                    <input id="email" name="email" placeholder="Enter Email" type="email" onChange={e => this.handleChange(e)} />
-                    <label htmlFor="password">Password</label>
-                    <input id="password" name="password" placeholder="Enter Password" type="password" onChange={e => this.handleChange(e)} />
+                    {/* <label htmlFor="first">First Name</label> */}
+                    <input id="first" name="first" placeholder="Enter First Name" spellCheck="false" onChange={e => this.handleChange(e)} />
+                    {/* <label htmlFor="last">Last Name</label> */}
+                    <input id="last" name="last" placeholder="Enter Last Name" spellCheck="false" onChange={e => this.handleChange(e)} />
+                    {/* <label htmlFor="email">Email</label> */}
+                    <input id="email" name="email" placeholder="Enter Email" type="email" spellCheck="false" onChange={e => this.handleChange(e)} />
+                    {/* <label htmlFor="password">Password</label> */}
+                    <input id="password" name="password" placeholder="Enter Password" type="password" spellCheck="false" onChange={e => this.handleChange(e)} />
 
                     <button className="btn-registration" onClick={() => this.submit()}>Register</button>
                 </div>

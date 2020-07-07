@@ -3,7 +3,7 @@ const app = express();
 
 const server = require('http').Server(app);
 const io = require('socket.io')(server, {
-    origins: 'localhost:8080'
+    origins: 'localhost:3000'
 });
 
 const compression = require('compression');
@@ -232,6 +232,16 @@ app.get('/user', (req, res) => {
     }).catch(err => console.log('error inserting secretCode', err));
 })
 
+app.get('/oldImage', async function (req, res) {
+    const oldImage = await db.getOldImage(req.session.userId)
+    console.log('oldImage.image::', oldImage.rows[0].image)
+
+    const results = await db.addOldImage(req.session.userId, oldImage.rows[0].image)
+    results.rows[0].success = true;
+    res.json(results.rows[0]);
+    console.log('results ===>', results.rows);
+})
+
 app.post('/upload', uploader.single('file'), ses.upload, (req, res) => {
     console.log('axios in /upload')
     //console.log('req::', req)
@@ -240,7 +250,7 @@ app.post('/upload', uploader.single('file'), ses.upload, (req, res) => {
     let url = `https://s3.amazonaws.com/spicedling/${filename}`;
     if (req.file) {
         db.addImage(userId, url).then(results => {
-            //console.log('results from addImages: ', results.rows[0])
+            console.log('results from addImages: ', results.rows);
             res.json(results.rows[0]);
         }).catch(err => {
             console.log('err: ', err);
@@ -361,6 +371,48 @@ app.get('/log-out', (req, res) => {
     res.redirect('/welcome');
 })
 
+app.post('/delete', (req, res) => {
+    // let promises = [];
+    // let p1, p2, p3, p4;
+    // p1 = db.deleteAccountOldImage(req.session.userId);
+    // p2 = db.deleteAccountChat(req.session.userId);
+    // p3 = db.deleteAccountFriendships(req.session.userId);
+    // p4 = db.deleteAccountUsers(req.session.userId);
+
+    // promises.push(p1, p2, p3);
+    // Promise.all([promises]).then((results) => {
+    // }).catch(err => {
+    //     console.log('error in /delete: ', err)
+    // })
+
+    db.deleteAccountOldImage(req.session.userId).then(results => {
+        db.deleteAccountChat(req.session.userId).then(results => {
+            db.deleteAccountFriendships(req.session.userId).then(results => {
+                db.deleteAccountUsers(req.session.userId).then(results => {
+                    results.rows.success = true;
+                    console.log('===>', results.rows);
+                    res.json(results.rows);
+                    // req.session = null;
+                    // res.end();
+
+                    //res.redirect('/welcome')
+
+                }).catch(err => console.log('error in /delete: ', err));
+            }).catch(err => console.log('error in /delete: ', err));
+        }).catch(err => console.log('error in /delete: ', err));
+    }).catch(err => console.log('error in /delete: ', err));
+
+
+
+});
+
+// app.get('/deleteRedirect', (req, res) => {
+//     req.session = null;
+//     //res.end();
+//     res.redirect('/welcome');
+// })
+
+////////////////////////////////////////////////////
 // app.get('/chat', (req, res) => {
 //     db.getLastMessages().then(results => {
 //         console.log('results from getLastMessages: ', results.rows);
@@ -389,11 +441,11 @@ app.get('*', function (req, res) {
         res.sendFile(__dirname + '/index.html');
     }
 });
-
-server.listen(8080, function () {
+//////////////////////////////////////////////////////////////////////
+server.listen(3000, function () {
     console.log("I'm listening.");
 });
-
+/////////////////////////////////////////////////////////////////////
 
 io.on('connection', function (socket) {
     //all socket code goes here:::
@@ -412,7 +464,7 @@ io.on('connection', function (socket) {
     if (userId) {
         console.log('userId: ', userId)
         db.getLastMessages(userId).then(results => {
-            console.log('results from getLastMessages: ', results.rows);
+            //console.log('results from getLastMessages: ', results.rows);
             io.sockets.emit('chatMessages', results.rows.reverse());
         }).catch(err => {
             console.log('error in getLastMessages', err);
@@ -454,9 +506,10 @@ io.on('connection', function (socket) {
 });
 
 
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // app.post('/upload', uploader.single('file'), ses.upload, (req, res) => {
+
 //     console.log('all worked well');
 //     //console.log('file:', req.file);
 //     console.log('req.body', req.body);
@@ -473,4 +526,40 @@ io.on('connection', function (socket) {
 //     } else {
 //         res.json({ success: false });
 //     }
+// })
+
+
+// app.get('/oldImage', async function (req, res) {
+//     const oldImage = await db.getOldImage(req.session.userId)
+//     // .then(results => {
+//     //     console.log('results in oldImage: ', results.rows);
+//     // }).catch(err => {
+//     //     console.log('error in get oldImage: ', err);
+//     // })
+//     console.log('oldImage.image::', oldImage.rows[0].image)
+
+//     const results = await db.addOldImage(req.session.userId, oldImage.rows[0].image)
+//     console.log('results ===>', results.rows)
+//     // .then(results => {
+//     //     console.log('results in addOldImage: ', results.rows)
+//     // }).catch(err => {
+//     //     console.log('error in addoldImage: ', err);
+//     // })
+//     app.post('/upload', uploader.single('file'), ses.upload, (req, res) => {
+//         console.log('axios in /upload')
+//         //console.log('req::', req)
+//         let userId = req.session.userId;
+//         let filename = req.file.filename;
+//         let url = `https://s3.amazonaws.com/spicedling/${filename}`;
+//         if (req.file) {
+//             db.addImage(userId, url).then(results => {
+//                 console.log('results from addImages: ', results.rows);
+//                 res.json(results.rows[0]);
+//             }).catch(err => {
+//                 console.log('err: ', err);
+//             });
+//         } else {
+//             res.json({ success: false });
+//         }
+//     })
 // })
