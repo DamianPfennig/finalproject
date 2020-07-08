@@ -252,7 +252,16 @@ module.exports.deleteAccountUsers = id => {
         [id])
 }
 
+module.exports.getConnectedUser = id => {
+    return db.query(`
+    SELECT * 
+    FROM users
+    WHERE id ='${id}'
+    `)
 
+
+
+}
 
 
 // module.exports.addBio = (id, bio) => {

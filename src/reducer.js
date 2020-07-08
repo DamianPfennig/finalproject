@@ -71,6 +71,15 @@ export function reducer(state = {}, action) {
         }
         return state;
     }
+
+    if (action.type == 'ADD_USERS_CONNECTED') {
+        state = {
+            ...state,
+            users: action.data
+
+        }
+        return state
+    }
     return state;
 
 

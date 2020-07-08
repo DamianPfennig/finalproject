@@ -10,9 +10,8 @@ class Logo extends Component {
             <div className="logo">
                 <p className="one">The Fusion</p>
                 <p className="two">Network</p>
-                <img className="logo-image" src="astronaut.png" />
-                {/* <img src="rakete-background-400.jpg" /> */}
-                {/* <hr className="hr"></hr> */}
+                <img className="logo-image" src="_rakete.png" />
+
             </div>
         );
     }

@@ -4,15 +4,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { addChatMsg, getLastChatMessages } from './actions';
 import moment from 'moment';
+import OnlineUsers from './OnlineUsers';
 
 export default function Chat() {
     const date = moment();
-    console.log('date::', date)
+    //console.log('date::', date)
     //moment().format('LLL');
     const elemRef = useRef()
 
     const chatMessages = useSelector(state => state && state.chatMessages);
-    console.log('here are my last 10 messages: ', chatMessages);
+    //console.log('here are my last 10 messages: ', chatMessages);
 
     const keyCheck = e => {
         //console.log('value: ', e.target.value);
@@ -22,23 +23,15 @@ export default function Chat() {
             e.preventDefault();
             socket.emit('newMsg', e.target.value);
             e.target.value = '';
-
-
-
-
-            // if (e.target.value) {
-            //     finalMessages = useSelector(state => state && state.chatMessages.concat(state.newMessage));
-            //     console.log('finalMessages: ', finalMessages);
-            // }
         }
     };
 
     useEffect(() => {
-        console.log('mounted');
-        console.log('elemRef: ', elemRef);
-        console.log('scroll Top: ', elemRef.current.scrollTop);
-        console.log('clientHeight: ', elemRef.current.clientHeight);
-        console.log('scrollHeight: ', elemRef.current.scrollHeight);
+        //console.log('mounted');
+        //console.log('elemRef: ', elemRef);
+        //console.log('scroll Top: ', elemRef.current.scrollTop);
+        //console.log('clientHeight: ', elemRef.current.clientHeight);
+        //console.log('scrollHeight: ', elemRef.current.scrollHeight);
 
         //scrolltop = scrollheight -clientheight
         elemRef.current.scrollTop = elemRef.current.scrollHeight - elemRef.current.clientHeight;
@@ -93,7 +86,7 @@ export default function Chat() {
 
             </div>
             <textarea placeholder="add you message here" spellCheck="false" rows="12" cols="60" wrap="hard" onKeyDown={keyCheck}></textarea>
-
+            <OnlineUsers />
         </div>
     );
 }

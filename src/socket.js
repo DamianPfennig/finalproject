@@ -1,5 +1,5 @@
 import * as io from 'socket.io-client';
-import { addNewChatMsg, getLastChatMessages } from './actions';
+import { addNewChatMsg, getLastChatMessages, usersConnected } from './actions';
 
 export let socket;
 
@@ -16,8 +16,8 @@ export const init = store => {
             store.dispatch(addNewChatMsg(msg))
         });
 
-        // socket.on('userChatMessage', msg =>
-        //     store.dispatch(userChatMessage(msg))
-        // );
+        socket.on('onlineUsers', data =>
+            store.dispatch(usersConnected(data))
+        );
     }
 };

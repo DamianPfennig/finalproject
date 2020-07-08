@@ -186,38 +186,50 @@ body{
 
 .welcome-title .welcome-logo {
     position: relative;
-    top: 0;
-    
+    display: flex;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
     font-family: 'Roboto Slab', serif;
     margin: 0;
-    color: #f3f3f3;
+    color: #cecece;
     height: 250px;
 }
 
 .welcome-logo-image{
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 250px;
+    position: relative;
+    top: 10px;
+    left: 1px;
+    height: 180px;
     width: auto;
      -webkit-mask-image:-webkit-linear-gradient(left, rgba(0,0,0,0.7) 55%,rgba(71, 71, 71, 0.3) 75%,rgba(26,26,26,0.0) 100%);
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0)); 
-    
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));    
 }
+
+.welcome-logo-letters{
+    position: relative;
+    display: block;
+    padding: 0;
+    height: 200px;
+}
+
 .welcome-logo .one{
     position: relative;
-    top: 55px;
-    left: 80px;
+     top: 10px;
+    /*left: 100px; */
     font-size: 65px;
-    margin-bottom: 0;
+    margin: 0;
+    font-weight: 800;
 }
 
 .welcome-logo .two{
     position: relative;
-    top: -20px;
-    left: 65px;
+    /* top: -10px;
+    left: 85px; */
     font-size: 65px;
+    font-weight: 800;
+    margin-top: 0;
 }
 
 .welcome-container{
@@ -1159,6 +1171,7 @@ transform: translateX(-50%);
 .chat-messages img{
     height: 100px;
     width: auto;
+    max-width: 120px;
     border: #f3f3f3 solid 4px;
     border-radius: 50%;
     margin-top: 2px;
@@ -1174,4 +1187,25 @@ transform: translateX(-50%);
   padding: 10px;
   color: #f3f3f3;
   outline: none;
+}
+
+/*-----------------------Online Users------------------*/
+
+.online-users-container h3{
+    color: #f3f3f3;
+}
+
+.online-users{
+    color: #f3f3f3;
+    width: 200px;
+    height: auto;
+    border: #f3f3f3 solid 2px;
+    display: flex;
+}
+
+.online-users img {
+    height: 50px;
+    width: auto;
+    border-radius: 50%;
+    margin-right: 5px;
 }

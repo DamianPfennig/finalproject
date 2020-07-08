@@ -3,7 +3,7 @@ const app = express();
 
 const server = require('http').Server(app);
 const io = require('socket.io')(server, {
-    origins: 'localhost:3000'
+    origins: 'localhost:3030'
 });
 
 const compression = require('compression');
@@ -442,27 +442,53 @@ app.get('*', function (req, res) {
     }
 });
 //////////////////////////////////////////////////////////////////////
-server.listen(3000, function () {
+server.listen(3030, function () {
     console.log("I'm listening.");
 });
 /////////////////////////////////////////////////////////////////////
 
+
 io.on('connection', function (socket) {
     //all socket code goes here:::
-    console.log(`socket id ${socket.id} is now connected`);
+    //console.log(`socket id ${socket.id} is now connected`);
 
     if (!socket.request.session.userId) {
         return socket.disconnect(true);
     };
 
+    let socketUserId = socket.request.session.userId;
+    let eachUser = {};
+    let users = [];
+    //let onlineUsers = [];
+    //console.log('socketUserId: ', onlineUsers);
+
+    if (socket.id) {
+        eachUser[socketUserId] = socket.id
+
+        //socket.broadcast.emit('onlineUsers', onlineUsers);
+        //io.sockets.emit('onlineUsers', users)
+        console.log('socketUserId: ', socketUserId)
+        db.getConnectedUser(socketUserId).then(results => {
+            //console.log('results from getConnectedUser: ', results.rows[0])
+            users.push(results.rows[0]);
+            console.log('users::', users)
+            socket.broadcast.emit('onlineUsers', users)
+        }).catch(err => {
+            console.log('error in getConnectedUser: ', err);
+        })
+
+    }
+
     // socket.on('disconnect', function () {
     //     console.log(`socket with the id ${socket.id} is now disconnected`);
     // });
 
+
+
     const userId = socket.request.session.userId;
     //get the last 10 chat messages
     if (userId) {
-        console.log('userId: ', userId)
+        //console.log('userId: ', userId)
         db.getLastMessages(userId).then(results => {
             //console.log('results from getLastMessages: ', results.rows);
             io.sockets.emit('chatMessages', results.rows.reverse());
