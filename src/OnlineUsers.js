@@ -9,7 +9,9 @@ import { Link } from 'react-router-dom';
 export default function OnlineUsers() {
     //console.log('connected');
     //let onlineUsers = [];
-    const onlineUsers = useSelector(state => state && state.users);
+
+    const onlineUsers = useSelector(state => state && state.connectedUser);
+
     console.log('onlineUsers: ', onlineUsers)
 
 
@@ -27,10 +29,9 @@ export default function OnlineUsers() {
 
     return (
         <div className="online-users-container">
-            <h3>This users are connected</h3>
+            <p>This users are connected</p>
             {
                 onlineUsers &&
-                //<div>HELLO!!!</div>
                 onlineUsers.map((elem, idx) => {
                     return (
                         <div className="online-users" key={idx}>

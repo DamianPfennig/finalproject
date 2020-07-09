@@ -18,6 +18,7 @@ export const init = store => {
 
         socket.on('onlineUsers', data =>
             store.dispatch(usersConnected(data))
+
         );
     }
 };

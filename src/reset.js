@@ -69,7 +69,7 @@ class Reset extends Component {
                     {this.state.error && <div className="reset-error">Oops something went wrong! Is it a valid email? Please try again</div>}
                     <br></br>
                     {/* <label for="email">Email</label> */}
-                    <input name="email" placeholder="Enter Email" type="email" spellCheck="false" onChange={e => this.handleChange(e)} required />
+                    <input name="email" placeholder="Enter Email" type="email" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} required />
                     <p>We will send you an email with a code</p>
                     <button className="btn-reset" onClick={() => this.submit()}>Send</button>
                 </div>
@@ -79,9 +79,9 @@ class Reset extends Component {
                 <div className="reset-step2">
                     {this.state.error && <div>Oops something went wrong! Please try again</div>}
                     <p>Please enter your code</p>
-                    <input name="code" key="code" placeholder="Enter Code" spellCheck="false" onChange={e => this.handleChange(e)} />
+                    <input name="code" key="code" placeholder="Enter Code" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
                     <p>Please enter your new password</p>
-                    <input name="password" placeholder="password" type="password" spellCheck="false" onChange={e => this.handleChange(e)} />
+                    <input name="password" placeholder="password" type="password" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
                     <button onClick={() => this.submitVerify()}>Send</button>
                 </div>
             )

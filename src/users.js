@@ -117,7 +117,7 @@ export default function Users() {
                                     <div className="users-name-image" key={idx}>
                                         <h3 className="users-name">{elem.first}</h3>
                                         <div className="users-image">
-                                            <img src={elem.image} />
+                                            <Link to={`/user/${elem.id}`} >  <img src={elem.image} /> </Link>
                                         </div>
 
                                     </div>

@@ -42,13 +42,13 @@ class Registration extends Component {
                 {this.state.error && <div className="registration-error">Oops something went wrong!</div>}
                 <div className="registration">
                     {/* <label htmlFor="first">First Name</label> */}
-                    <input id="first" name="first" placeholder="Enter First Name" spellCheck="false" onChange={e => this.handleChange(e)} />
+                    <input id="first" name="first" placeholder="Enter First Name" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
                     {/* <label htmlFor="last">Last Name</label> */}
-                    <input id="last" name="last" placeholder="Enter Last Name" spellCheck="false" onChange={e => this.handleChange(e)} />
+                    <input id="last" name="last" placeholder="Enter Last Name" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
                     {/* <label htmlFor="email">Email</label> */}
-                    <input id="email" name="email" placeholder="Enter Email" type="email" spellCheck="false" onChange={e => this.handleChange(e)} />
+                    <input id="email" name="email" placeholder="Enter Email" type="email" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
                     {/* <label htmlFor="password">Password</label> */}
-                    <input id="password" name="password" placeholder="Enter Password" type="password" spellCheck="false" onChange={e => this.handleChange(e)} />
+                    <input id="password" name="password" placeholder="Enter Password" type="password" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
 
                     <button className="btn-registration" onClick={() => this.submit()}>Register</button>
                 </div>

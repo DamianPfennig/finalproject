@@ -54,7 +54,7 @@ export default function Chat() {
                                 <div className="chat-messages-info">
                                     <h3>{elem.first}</h3>
                                     <p>{elem.message}</p>
-                                    <p>({elem.created_at})</p>
+                                    <p className="created">({elem.created_at})</p>
                                 </div>
                             </div>
                         )

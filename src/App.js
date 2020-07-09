@@ -87,7 +87,7 @@ class App extends Component {
             console.log('data::::::', data)
             if (data.length == 0) {
                 console.log('!!!!');
-                //location.replace('/log-out');
+                location.replace('/log-out');
             }
         }).catch(function (err) {
             console.log('err in delete account', err)

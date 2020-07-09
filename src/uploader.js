@@ -52,21 +52,21 @@ class Uploader extends Component {
         formData.append('name', this.state.name);
         console.log('---------->', this.state)
 
-        axios.get('/oldImage').then(({ data }) => {
-            console.log('data:::', data)
-            if (data.success == true) {
-                axios.post('/upload', formData).then(({ data }) => {
-                    //console.log('resp from Post/upload---url:::', data.image)
-                    this.props.methodGetUrl(data.image);
-                }).catch(function (err) {
-                    console.log('err in POST', err)
-                })
-            }
-        }).catch(err => {
-            console.log('err in oldImage: ', err);
+        // axios.get('/oldImage').then(({ data }) => {
+        //     console.log('data:::', data)
+        //     if (data.success == true) {
+        axios.post('/upload', formData).then(({ data }) => {
+            //console.log('resp from Post/upload---url:::', data.image)
+            this.props.methodGetUrl(data.image);
+        }).catch(function (err) {
+            console.log('err in POST', err)
         })
-
     }
+    //     }).catch(err => {
+    //         console.log('err in oldImage: ', err);
+    //     })
+
+    // }
 
     render() {
         return (

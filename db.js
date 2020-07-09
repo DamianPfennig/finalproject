@@ -254,7 +254,7 @@ module.exports.deleteAccountUsers = id => {
 
 module.exports.getConnectedUser = id => {
     return db.query(`
-    SELECT * 
+    SELECT first, image 
     FROM users
     WHERE id ='${id}'
     `)

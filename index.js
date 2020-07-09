@@ -235,6 +235,11 @@ app.get('/user', (req, res) => {
 app.get('/oldImage', async function (req, res) {
     const oldImage = await db.getOldImage(req.session.userId)
     console.log('oldImage.image::', oldImage.rows[0].image)
+    if (oldImage.rows[0].image == null) {
+        console.log('!!!!!!!!!!!!')
+        res.json([]);
+        res.end();
+    }
 
     const results = await db.addOldImage(req.session.userId, oldImage.rows[0].image)
     results.rows[0].success = true;
@@ -446,39 +451,66 @@ server.listen(3030, function () {
     console.log("I'm listening.");
 });
 /////////////////////////////////////////////////////////////////////
-
-
-io.on('connection', function (socket) {
+//var users = [];
+var onlineUsers = {};
+// let eachUser = {};
+io.on('connection', async function (socket) {
     //all socket code goes here:::
     //console.log(`socket id ${socket.id} is now connected`);
 
     if (!socket.request.session.userId) {
         return socket.disconnect(true);
     };
+    //console.log('disconect? ', socket.disconnect == true)
 
     let socketUserId = socket.request.session.userId;
-    let eachUser = {};
-    let users = [];
-    //let onlineUsers = [];
-    //console.log('socketUserId: ', onlineUsers);
+    onlineUsers[socketUserId] = socket.id;
 
-    if (socket.id) {
-        eachUser[socketUserId] = socket.id
+    socket.on("disconnect", () => {
+        delete onlineUsers[socketUserId];
+    });
 
-        //socket.broadcast.emit('onlineUsers', onlineUsers);
-        //io.sockets.emit('onlineUsers', users)
-        console.log('socketUserId: ', socketUserId)
-        db.getConnectedUser(socketUserId).then(results => {
-            //console.log('results from getConnectedUser: ', results.rows[0])
-            users.push(results.rows[0]);
-            console.log('users::', users)
-            socket.broadcast.emit('onlineUsers', users)
-        }).catch(err => {
-            console.log('error in getConnectedUser: ', err);
-        })
+    users = [];
+    console.log('onlineUsers', onlineUsers)
+    for (let key in onlineUsers) {
+        //console.log('onlineUsers[key]: ', onlineUsers[key])
+        try {
+            const test = await db.getConnectedUser(key)
+            console.log('test', test.rows[0]);
 
+            users.push(test.rows[0]);
+        } catch (err) {
+            console.log(err);
+
+        }
+        //     // console.log('users::', users)
+        // }).catch(err => {
+        //     console.log('error in getConnectedUser: ', err);
+        // })
     }
+    console.log('users outside:', users);
 
+    io.sockets.emit('onlineUsers', users)
+
+
+    //});
+
+
+    //socket.broadcast.emit('onlineUsers', onlineUsers);
+    //io.sockets.emit('onlineUsers', users)
+    //console.log(':::::', eachUser)
+
+    //console.log('onlineUsers: ', onlineUsers)
+
+
+    // db.getConnectedUser(socketUserId).then(results => {
+    //     //console.log('results from getConnectedUser: ', results.rows[0])
+    //     users.push(results.rows[0]);
+    //     console.log('users::', users)
+    //     socket.broadcast.emit('onlineUsers', users)
+    // }).catch(err => {
+    //     console.log('error in getConnectedUser: ', err);
+    // })
     // socket.on('disconnect', function () {
     //     console.log(`socket with the id ${socket.id} is now disconnected`);
     // });

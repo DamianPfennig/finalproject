@@ -82,23 +82,29 @@ class BioEditor extends Component {
                         <div className="textarea">
                             <button className="btn-bio-save" onClick={() => this.saveBio()}>Save</button>
                             <button className="btn-bio-cancel" onClick={() => this.handleCancel()}> Cancel</button>
-                            <textarea id="bioediting" name="biotext" spellCheck="false" rows="12" cols="75" wrap="hard" onChange={this.inputBio} value={this.props.bio}></textarea>
+                            <textarea id="bioediting" name="biotext" spellCheck="false" rows="12" cols="55" wrap="hard" onChange={this.inputBio} value={this.props.bio}></textarea>
 
                         </div>
                         :
                         <p>{this.props.bio}</p>
                 }
 
-                {
+                {/* {
                     this.state.buttonVisible ?
                         <button className="btn-bio" onClick={() => this.toggleTextarea()}>Edit your Bio</button>
                         :
                         null
-                    // <div>
-                    //     <button className="btn-bio" onClick={() => this.toggleTextarea()}>Add your Bio</button>
+                } */}
+                {
+                    this.props.bio ?
+                        <button className="btn-bio" onClick={() => this.toggleTextarea()}>Edit your Bio</button>
+                        :
 
-                    // </div>
+                        <button className="btn-bio" onClick={() => this.toggleTextarea()}>Add your Bio</button>
                 }
+
+
+
 
 
             </div >

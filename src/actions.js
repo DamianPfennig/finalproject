@@ -54,10 +54,10 @@ export function addNewChatMsg(data) {
     }
 }
 
-export function usersConnected(data) {
-    console.log('data in action usersConnected: ', data)
+export function usersConnected(results) {
+    console.log('data in action usersConnected: ', results)
     return {
         type: 'ADD_USERS_CONNECTED',
-        data
+        results
     }
 }

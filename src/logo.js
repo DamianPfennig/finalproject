@@ -8,9 +8,11 @@ class Logo extends Component {
     render() {
         return (
             <div className="logo">
-                <p className="one">The Fusion</p>
-                <p className="two">Network</p>
-                <img className="logo-image" src="_rakete.png" />
+                <div className="logo-letters">
+                    <p className="one">The Fusion</p>
+                    <p className="two">Network</p>
+                </div>
+                <img className="logo-image" src="just_rakete.png" />
 
             </div>
         );
