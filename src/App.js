@@ -155,7 +155,6 @@ class App extends Component {
                             toggleModal={this.toggleModal}
                             updateBio={this.updateBio}
                         //clickHandler={img => this.setState({ img })}
-                        //changeBio={bio => this.setState({ bio })}
                         />
                     )} />
 
