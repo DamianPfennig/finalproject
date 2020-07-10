@@ -1,22 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Logo extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {}
-    }
-    render() {
-        return (
-            <div className="logo">
-                <div className="logo-letters">
-                    <p className="one">The Fusion</p>
-                    <p className="two">Network</p>
-                </div>
-                <img className="logo-image" src="just_rakete.png" />
-
-            </div>
-        );
-    }
+export default function Logo() {
+    return (
+        <div>
+            LOGO
+        </div>
+    );
 }
-
-export default Logo;

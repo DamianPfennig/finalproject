@@ -27,7 +27,7 @@ const conf = {
 };
 
 if (require.main == module) {
-    webpack(conf, function(err, info) {
+    webpack(conf, function (err, info) {
         if (err) {
             console.log(err);
         }
