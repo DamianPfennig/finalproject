@@ -14,21 +14,30 @@ const store = createStore(
     composeWithDevTools(applyMiddleware(reduxPromise))
 );
 
+init(store);
+let element = (
+    <Provider store={store}>
+        <App />
+    </Provider>
+)
+// const userIsLoggedIn = location.pathname != '/welcome';
 
-let element;
-const userIsLoggedIn = location.pathname != '/welcome';
+// if (!userIsLoggedIn) {
+//     element = (
+//         <Provider store={store}>
+//             <Welcome />
+//         </Provider>
+//     );
 
-if (!userIsLoggedIn) {
-    element = <Welcome />;
-} else {
-    //element = <Logo />;
-    init(store);
-    element = (
-        <Provider store={store}>
-            <App />
-        </Provider>
-    );
-}
+// } else {
+//     //element = <Logo />;
+//     init(store);
+//     element = (
+//         <Provider store={store}>
+//             <App />
+//         </Provider>
+//     );
+// }
 
 ReactDOM.render(
     element,

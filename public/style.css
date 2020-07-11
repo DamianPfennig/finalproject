@@ -29,7 +29,7 @@ nav{
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: rgb(73,79, 82);
+    background-color: rgb(99, 113, 121);
 }
 
 /* .menu{
@@ -56,6 +56,12 @@ nav{
 
 /*--------------Welcome----------------------------*/
 
+.welcome-container{
+    position: relative;
+    width: 80%;
+    height: 300px;
+}
+
 .welcome-title h1{
     text-align: center;
 }
@@ -72,24 +78,6 @@ nav{
     left: 150px;
 }
 
-.welcome-festival-container{
-position: relative;
-left: 50%;
-top: 200px;
-transform: translateX(-50%);
-
-width: 900px;
-display: flex;
-flex-wrap: wrap;
-}
-
-.welcome-festival{
-    height: 300px;
-    width: 400px;
-    margin: 10px;
-    background-color: rgb(160, 175, 184);
-}
-
 /*-----------------------App-------------------*/
 
 .app{
@@ -99,6 +87,88 @@ flex-wrap: wrap;
     width: 100%;
 }
 
+/*--------------------Festival Registration-----------------*/
+
+.festival-registration-container{
+    position: relative;
+    height: 400px;
+    width: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.festival-registration-container h2{
+    margin-top: 0;
+    text-align: center;
+    color: #3f3f3f;
+}
+.festival-registration-container .registration{
+    margin-top: 40px;
+    width: 90%;
+}
+.festival-registration input{
+   display: block;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  padding: 4px;
+  width: 70%;
+  
+  height: 32px;
+  border: none;
+  border-bottom: 1px solid #3f3f3f;
+  background-color: transparent;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  transition: 0.2s ease;
+  color: #3f3f3f;
+}
+.festival-registration label{
+    color: #3f3f3f;
+}
+
+.festival-registration input:focus{
+    /* background-color: #ddd; */
+    /* width: 80%;
+    outline: none;
+    font-weight: normal; */
+}
+
+
+.btn-festival-registration{
+    border: transparent;
+    background: transparent;
+    border-radius: 6px;
+    padding: 10px 15px;
+    cursor: pointer;
+    color: #3f3f3f;
+    transition: 0.3s;
+    font-size: 15px;
+}
+
+.btn-festival-registration:hover{
+    /* background-color: #b4b4b4; */
+    background-color: rgba(78, 78, 78, 0.4);
+}
+
+.festival-registration-container p{
+    color: #3f3f3f;
+}
+
+.festival-registration-container a{
+    color: #3f3f3f;
+    text-decoration: none;
+    transition: 0.3s;
+     padding: 10px 15px;
+     border-radius: 6px;
+}
+.festival-registration-container a:visited{
+    color: #3f3f3f;
+}
+
+.festival-registration-container a:hover{
+    background-color: rgba(78, 78, 78, 0.4);
+}
 
 /*---------------------Login----------------------*/
 
@@ -172,3 +242,54 @@ flex-wrap: wrap;
 .login-container p{
     color: #3f3f3f;
 }
+
+/*-------------------------home-------------------*/
+.home{
+    height: 100%;
+    width: 100%;
+}
+.welcome-festival-container{
+    font-family: 'Varela Round', sans-serif;
+    position: relative;
+    left: 50%;
+    top: 50px;
+    transform: translateX(-50%);
+    width: 900px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.festival-info{
+    height: auto;
+    width: 400px;
+    margin: 10px;
+    background-color: rgb(190, 209, 221);
+    
+}
+
+.festival-info a{
+    text-decoration: none;
+    color: #3f3f3f;
+}
+
+.festival-info p,
+.festival-info h3{
+    margin: 10px;
+    text-align: center;
+}
+
+.festival-info .image-container{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    height: auto;
+    width: 300px;
+    object-fit: content; 
+    margin-bottom: 20px;
+}
+
+.festival-info img{
+    height: auto;
+    width: 300px;
+}
+
