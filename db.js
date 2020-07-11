@@ -9,8 +9,8 @@ module.exports.getFestivals = () => {
     return db.query(`
     SELECT id,
     name,
-    TO_CHAR (starting_date,'DD/MM') as startingDate,
-    TO_CHAR (finishing_date,'DD/MM/YYYY') as finishingDate,
+    TO_CHAR (starting_date,'DD.MM') as startingDate,
+    TO_CHAR (finishing_date,'DD.MM.YYYY') as finishingDate,
     location,
     price,
     style ,
@@ -35,8 +35,8 @@ module.exports.getSelectedFestival = id => {
     return db.query(`
     SELECT id,
     name,
-    TO_CHAR (starting_date,'DD/MM') as startingDate,
-    TO_CHAR (finishing_date,'DD/MM/YYYY') as finishingDate,
+    TO_CHAR (starting_date,'DD.MM') as startingDate,
+    TO_CHAR (finishing_date,'DD.MM.YYYY') as finishingDate,
     location,
     price,
     style ,

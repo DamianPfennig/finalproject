@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
 import axios from './axios';
+// import GoogleApiWrapper from './map';
+import ReactWeather from 'react-open-weather';
+import { FaBeer, FaCarAlt, FaDonate } from 'react-icons/fa';
+import { FiLogIn, FiLogOut } from 'react-icons/fi';
+import { BsPeopleFill, BsMusicNoteBeamed, BsStar, BsStarFill } from 'react-icons/bs';
+
+
 
 class Festival extends Component {
     constructor(props) {
@@ -33,12 +40,32 @@ class Festival extends Component {
             return
         }
         return (
-            <div>
+            // <div>
+            //     <div>
+            //         Festival <h2>{this.state.name}</h2>
+            //         <p>from {this.state.startingdate} to {this.state.finishingdate}</p>
+            //     </div >
+            // </div>
+            <div className="festival-page">
+                <div className="selected-festival-container">
+                    <h3>Fusion Festival</h3>
+                    <div className="festival-content">
+                        <h2>Location: Berlin</h2>
+                        <h3>Dates: 30.06 - 04.07.2021</h3>
+                        <p>Price: 120 eur</p>
+                        <p>Program: Music, Theater, Workshops, and much more... </p>
+                        <p>Description: The best independent festival!!</p>
+                    </div>
+                </div>
+                <FaBeer
+                />
+                <FaCarAlt />
 
-                <div>
-                    Festival <h2>{this.state.name}</h2>
-                    <p>from {this.state.startingdate} to {this.state.finishingdate}</p>
-                </div >
+                {/* <ReactWeather
+                    forecast="5days"
+                    apikey="b74c34775e1a7ccb972c3eb120e57e32"
+                    type="city"
+                    city="Berlin" /> */}
             </div>
         )
 

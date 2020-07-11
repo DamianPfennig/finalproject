@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Link, withRouter } from 'react-router-dom';
 import axios from './axios';
+import ReactWeather from 'react-open-weather';
+//Optional include of the default css styles 
+// import 'react-open-weather/lib/css/ReactWeather.css';
 
 import Welcome from './welcome';
 import FestivalRegistration from './festival-registration';

@@ -6,7 +6,7 @@ body{
        
 }
 
-#main{
+.app{
     position: absolute;
     height: 100%;
     width: 100%;
@@ -25,7 +25,7 @@ body{
 
 nav{
     grid-row: 1/2;
-    grid-column: 2/4;
+    grid-column: 1/4;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -249,21 +249,24 @@ nav{
     width: 100%;
 }
 .welcome-festival-container{
+    grid-row: 2/3;
+    grid-column: 2/3;
     font-family: 'Varela Round', sans-serif;
     position: relative;
     left: 50%;
     top: 50px;
     transform: translateX(-50%);
-    width: 900px;
+    width: 80%;
     display: flex;
     flex-wrap: wrap;
 }
 
 .festival-info{
+    position: relative;
     height: auto;
-    width: 400px;
+    width: 450px;
     margin: 10px;
-    background-color: rgb(190, 209, 221);
+    /* background-color: rgb(202, 226, 241); */
     
 }
 
@@ -280,16 +283,110 @@ nav{
 
 .festival-info .image-container{
     position: relative;
-    left: 50%;
-    transform: translateX(-50%);
+    /* left: 50%;
+    transform: translateX(-50%); */
     height: auto;
-    width: 300px;
+    width: 100%;
     object-fit: content; 
-    margin-bottom: 20px;
 }
 
 .festival-info img{
     height: auto;
-    width: 300px;
+    width: 100%;
 }
 
+.festival-info .overlay{
+        background: #1C1D21;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 3px;
+    opacity: 0;
+    /* z-index: 1; */
+    -webkit-transition: 0.2s opacity;
+    transition: 0.2s opacity;
+    -webkit-transition-delay: 0.2s;
+    transition-delay: 0.2s;
+}
+
+.festival-info:hover .overlay {
+    -webkit-transition-delay: 0s;
+    transition-delay: 0s;
+    opacity: 0.8;
+}
+
+.festival-info .festival-content{
+    position: absolute;
+    left: 25px;
+    right: 25px;
+    top: 50%;
+    text-align: center;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+
+}
+.festival-info .festival-content h2,
+.festival-info .festival-content h3 {
+    -webkit-transform: translateY(100%);
+    -ms-transform: translateY(100%);
+    transform: translateY(100%);
+    opacity: 0;
+    color: #FFF;
+    margin-bottom: 10px;
+    -webkit-transition: 0.2s all;
+    transition: 0.2s all;
+    -webkit-transition-delay: 0.1s;
+    transition-delay: 0.1s;
+}
+.festival-info:hover .festival-content h2,
+.festival-info:hover .festival-content h3 {
+    /* z-index: 99; */
+  -webkit-transform: translateY(0%);
+    -ms-transform: translateY(0%);
+    transform: translateY(0%);
+    opacity: 1;
+    -webkit-transition-delay: 0.1s;
+    transition-delay: 0.1s;
+}
+
+.festival-info .festival-content p {
+    display: block;
+    /* text-transform: uppercase; */
+    -webkit-transform: translateY(100%);
+    -ms-transform: translateY(100%);
+    transform: translateY(100%);
+    opacity: 0;
+    color: rgb(129, 168, 248);
+    margin-bottom: 5px;
+    -webkit-transition: 0.2s all;
+    transition: 0.2s all;
+    -webkit-transition-delay: 0.2s;
+    transition-delay: 0.2s;
+}
+
+.festival-info:hover .festival-content p {
+       -webkit-transform: translateY(0%);
+    -ms-transform: translateY(0%);
+    transform: translateY(0%);
+    opacity: 2;
+    -webkit-transition-delay: 0s;
+    transition-delay: 0s;
+}
+
+/*---------------------Selected Festival-----------------------*/
+
+.festival-page{
+    grid-row: 2/3;
+    grid-column: 2/3;
+}
+
+.selected-festival-container{
+    grid-row: 2/3;
+    grid-column: 2/3;
+    position: relative;
+    width: 90%;
+    /* left: 50%;
+    transform: translateX(-50%); */
+}

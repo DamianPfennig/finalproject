@@ -22,16 +22,21 @@ export default function Home() {
         <div className="welcome-festival-container">
 
             <div className="festival-info">
-
                 <h3>Fusion Festival</h3>
-                <p>30.06 - 04-07-2021</p>
-                <p>Berlin</p>
-                <div className="image-container">
-                    <img src="fusion-rakete-farbe.jpg" />
-                </div>
-                <p>120 eur</p>
-                <p>Music, Theater, Workshops, and much more... </p>
-                <p>The best independent festival!!</p>
+                <Link to={'/festival/8'} >
+                    <div className="image-container">
+                        <div className="overlay"></div>
+                        <img src="fusion-rakete-farbe.jpg" />
+                    </div>
+                    <div className="festival-content">
+                        <h2>Berlin</h2>
+                        <br></br>
+                        <h3>30.06 - 04.07.2021</h3>
+                        {/* <p>120 eur</p>
+                    <p>Music, Theater, Workshops, and much more... </p>
+                    <p>The best independent festival!!</p> */}
+                    </div>
+                </Link>
 
             </div>
             {
