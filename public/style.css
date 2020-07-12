@@ -387,6 +387,52 @@ nav{
     grid-column: 2/3;
     position: relative;
     width: 90%;
-    /* left: 50%;
-    transform: translateX(-50%); */
+    left: 50%;
+    transform: translateX(-50%); 
+    
+}
+
+.selected-festival-container .image-container{
+    position: relative;
+    height: 300px;
+    width: 450px;
+    border: #3f3f3f solid 2px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.selected-festival-container .image-container img{
+    height: 100%;
+    width: auto;
+}
+
+.info-container{
+    font-family: 'Varela Round', sans-serif;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ecedf3;
+
+}
+
+.info-container h1,
+.info-container h2,
+.info-container h3{
+    text-align: center;
+
+}
+
+.info-container h4 {
+    text-align: left;
+    margin-bottom: 0 ;
+    
+}
+.info-container p{
+    margin-top: 5px;
+}
+
+
+.weather{
+    height: 100px;
+    width: auto;
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Link, withRouter } from 'react-router-dom';
 import axios from './axios';
-import ReactWeather from 'react-open-weather';
+// import ReactWeather from 'react-open-weather';
 //Optional include of the default css styles 
 // import 'react-open-weather/lib/css/ReactWeather.css';
 
@@ -12,6 +12,9 @@ import Login from './login';
 import Header from './header';
 import Home from './home';
 import Festival from './festival';
+
+import Weather from './weather';
+const API_KEY = "b74c34775e1a7ccb972c3eb120e57e32";
 
 
 
