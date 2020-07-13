@@ -50,8 +50,15 @@ nav{
 
 .nav-links li{
     color: #f3f3f3;
+
 }
 
+.nav-links li:visited{
+    color: #f3f3f3;
+    text-decoration: none;
+
+    
+}
 
 
 /*--------------Welcome----------------------------*/
@@ -87,10 +94,99 @@ nav{
     width: 100%;
 }
 
+/*----------------------Registration Container--------------*/
+
+.registration-container{
+    position: absolute;
+    grid-row: 2/3;
+    grid-column: 2/3;
+    width: 600px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) ;
+}
+
+
+.registration-container h2{
+    margin-top: 0;
+    text-align: center;
+    color: #3f3f3f;
+}
+.registration-container .registration{
+    margin-top: 40px;
+    width: 90%;
+}
+.registration input{
+   display: block;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  padding: 4px;
+  width: 70%;
+  
+  height: 32px;
+  border: none;
+  border-bottom: 1px solid #3f3f3f;
+  background-color: transparent;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  transition: 0.2s ease;
+  color: #3f3f3f;
+}
+.registration label{
+    color: #3f3f3f;
+}
+
+.registration input:focus{
+    /* background-color: #ddd; */
+    width: 80%;
+    outline: none;
+    font-weight: normal;
+}
+
+
+.btn-registration{
+    border: transparent;
+    background: transparent;
+    border-radius: 6px;
+    padding: 10px 15px;
+    cursor: pointer;
+    color: #3f3f3f;
+    transition: 0.3s;
+    font-size: 15px;
+}
+
+.btn-registration:hover{
+    /* background-color: #b4b4b4; */
+    background-color: rgba(54, 54, 54, 0.4);
+}
+
+.registration-container p{
+    color: #3f3f3f;
+}
+
+.registration-container a{
+    color: #3f3f3f;
+    text-decoration: none;
+    transition: 0.3s;
+     padding: 10px 15px;
+     border-radius: 6px;
+}
+.registration-container a:visited{
+    color: #3f3f3f;
+}
+
+.registration-container a:hover{
+    background-color: rgba(78, 78, 78, 0.4);
+}
+
+
 /*--------------------Festival Registration-----------------*/
 
 .festival-registration-container{
     position: relative;
+    grid-row: 2/3;
+    grid-column: 2/4;
     height: 400px;
     width: 60%;
     left: 50%;
@@ -168,6 +264,10 @@ nav{
 
 .festival-registration-container a:hover{
     background-color: rgba(78, 78, 78, 0.4);
+}
+
+.upload-image{
+
 }
 
 /*---------------------Login----------------------*/
@@ -264,8 +364,8 @@ nav{
 .festival-info{
     position: relative;
     height: auto;
-    width: 450px;
-    margin: 10px;
+    width: 300px;
+    margin: 50px;
     /* background-color: rgb(202, 226, 241); */
     
 }
@@ -275,10 +375,15 @@ nav{
     color: #3f3f3f;
 }
 
-.festival-info p,
-.festival-info h3{
+
+.festival-info h2{
     margin: 10px;
     text-align: center;
+}
+
+.festival-info h3{
+    text-align: center;
+    margin-top: 20px;
 }
 
 .festival-info .image-container{
@@ -435,4 +540,12 @@ nav{
 .weather{
     height: 100px;
     width: auto;
+}
+
+.map{
+    position: relative;
+    height: 300px;
+    width: 500px;
+    left: 50%;
+    transform: translateX(-50%);
 }

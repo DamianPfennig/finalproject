@@ -21,47 +21,57 @@ export default function Home() {
     return (
         <div className="welcome-festival-container">
 
-            <div className="festival-info">
-                <h3>Fusion Festival</h3>
+            {/* <div className="festival-info">
+                <h3>{elem.name}</h3>
                 <Link to={'/festival/8'} >
                     <div className="image-container">
                         <div className="overlay"></div>
-                        <img src="fusion-rakete-farbe.jpg" />
+                        <img src={elem.imageurl} />
                     </div>
                     <div className="festival-content">
-                        <h2>Berlin</h2>
+                        <h2>{elem.location}</h2>
                         <br></br>
-                        <h3>30.06 - 04.07.2021</h3>
-                        {/* <p>120 eur</p>
-                    <p>Music, Theater, Workshops, and much more... </p>
-                    <p>The best independent festival!!</p> */}
+                        <h3>{elem.startingdate} - {elem.finishingdate}</h3>
                     </div>
                 </Link>
 
-            </div>
+            </div> */}
             {
                 festivals &&
                 festivals.map((elem, idx) => {
                     return (
 
                         <div className="festival-info" key={idx}>
+                            <h2>{elem.name}</h2>
                             <Link to={`/festival/${elem.id}`} >
-                                <h3>{elem.name}</h3>
+                                <div className="image-container">
+                                    <div className="overlay"></div>
+                                    <img src={elem.imageurl} />
+                                </div>
+                                <div className="festival-content">
+                                    <h3>{elem.location}</h3>
+                                    <h3>{elem.startingdate} - {elem.finishingdate}</h3>
+
+                                </div>
+
+
+                                {/* <h3>{elem.name}</h3>
                                 <p>{elem.startingdate} - {elem.finishingdate}</p>
                                 <p>({elem.location})</p>
                                 <p>{elem.url}</p>
                                 <p>{elem.style}</p>
                                 <p>{elem.description}</p>
-                                <img src={elem.imageurl} />
+                                <img src={elem.imageurl} /> */}
                             </Link>
-                            <div className="chat-messages-info">
-                            </div>
+
                         </div>
 
                     )
 
                 })
             }
+
+
         </div>
     )
 

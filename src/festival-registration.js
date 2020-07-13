@@ -11,6 +11,8 @@ class FestivalRegistration extends Component {
             error: false,
 
         }
+        this.selectedImage = this.selectedImage.bind(this);
+        //this.submitImage = this.submitImage.bind(this);
     }
 
     handleChange(e) {
@@ -20,10 +22,33 @@ class FestivalRegistration extends Component {
         })
     }
 
+    selectedImage(event) {
+        console.log('event:::::.', event.target.files[0])
+        this.setState({
+            file: event.target.files[0],
+            name: event.target.files[0].imageName,
+            selectedImage: true
+        }, () => console.log('this.state uploading image: ', this.state));
+        //console.log('upload image running')
+    }
+
+    // submitImage() {
+    //     var formData = new FormData();
+    //     formData.append('file', this.state.file);
+    //     formData.append('name', this.state.imageName);
+
+    //     axios.post('/uploadImage', formData).then(({ data }) => {
+    //         console.log('upload image: ', data)
+    //     }).catch(function (err) {
+    //         console.log('err in POST', err)
+    //     })
+    // }
+
 
 
 
     handleClick() {
+
         console.log('this.state: ', this.state)
         axios.post('/festival-registration', this.state).then(({ data }) => {
             console.log('data from server: ', data)
@@ -43,24 +68,37 @@ class FestivalRegistration extends Component {
     render() {
         return (
             <div className="festival-registration-container">
-                <h2>Please fill out the registration form</h2>
+                <h2>Give us some information about your Festival</h2>
                 {this.state.error && <div className="registration-error">Oops something went wrong!</div>}
                 <div className="festival-registration">
                     {/* onChange={e => this.handleChange(e)} */}
-                    <input id="name" name="name" placeholder="Name of Festival" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
+                    <input id="name" name="name" placeholder="Name of the Festival" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
+
                     <input id="homepage" name="homepage" placeholder="Homepage " spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
+
                     <input id="startingDate" name="startingDate" placeholder="Starting Day ('YYYY-MM-DD')" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
+
                     <input id="finishingDate" name="finishingDate" placeholder="Finishing Day ('YYYY-MM-DD')" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
+
                     <input id="location" name="location" placeholder="Location" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
+
                     <input id="price" name="price" placeholder="Price" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
-                    {/* <input type="file" id="url" className="upload-image" name="url" accept="image/*" onChange={this.selectedImage} />                    <input id="style" name="style" placeholder="Style" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} /> */}
-                    <textarea id="description" name="description" spellCheck="false" rows="12" cols="55" wrap="hard" onChange={e => this.handleChange(e)}></textarea>
+
+                    <input id="style" name="style" placeholder="Style" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
+
+                    <input id="confirmed_artists" name="confirmed_artists" placeholder="Confirmed Artists" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
+
+                    <input type="file" id="url" className="upload-image" name="url" accept="image/*" multiple onChange={this.selectedImage} />
+
+                    <button className="btn-submit-image" onClick={() => this.submitImage()}>Upload Image</button>
+
+                    <textarea id="description" name="description" placeholder="Write some lines describing your festival" spellCheck="false" rows="12" cols="55" wrap="hard" onChange={e => this.handleChange(e)}></textarea>
 
                     <button className="btn-festival-registration" onClick={() => this.handleClick()}>Register Festival</button>
                 </div>
                 <br></br>
-                <p>Are you already registered?</p>
-                <Link to="/login">Login</Link>
+                {/* <p>Are you already registered?</p>
+                <Link to="/login">Login</Link> */}
             </div>
 
 

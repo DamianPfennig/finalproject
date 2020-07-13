@@ -7,6 +7,13 @@ export function reducer(state = {}, action) {
         }
         return state;
     }
+
+    if (action.type == 'GET_SELECTED_FESTIVAL') {
+        state = {
+            ...state,
+            selectedFestival: action.data
+        }
+    }
     // if (action.type == 'RECEIVE_FRIENDS_REQUESTS') {
     //     state = {
     //         ...state,

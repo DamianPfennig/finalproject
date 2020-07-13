@@ -6,6 +6,7 @@ import axios from './axios';
 // import 'react-open-weather/lib/css/ReactWeather.css';
 
 import Welcome from './welcome';
+import OrganizerRegistration from './organizer-registration';
 import FestivalRegistration from './festival-registration';
 import AttendeesRegistration from './attendees-registration';
 import Login from './login';
@@ -14,7 +15,7 @@ import Home from './home';
 import Festival from './festival';
 
 import Weather from './weather';
-const API_KEY = "b74c34775e1a7ccb972c3eb120e57e32";
+//const API_KEY
 
 
 
@@ -28,25 +29,9 @@ class App extends Component {
             <BrowserRouter>
                 <div className="app">
                     <Header />
-                    {/* <Welcome /> */}
-                    {/* <Home /> */}
-                    {/* <Route exact path='/home' render={() => (
-                        <Home
-                            id={this.state.id}
-                            name={this.state.name}
-                            startingDate={this.state.startingDate}
-                            finishingDate={this.state.finishingDate}
-                            location={this.state.location}
-                            price={this.state.price}
-                            style={this.state.style}
-                            imageUrl={this.state.imageUrl}
-                            homepage={this.state.homepage}
-                            description={this.state.description}
-                        />
-                    )} /> */}
-
 
                     <Route exact path="/home" component={Home} />
+                    <Route extact path="/organizer-registration" component={OrganizerRegistration} />
                     <Route exact path="/festival/:id" component={Festival} />
 
                     <Route exact path='/festival-registration' component={FestivalRegistration} />
@@ -63,6 +48,23 @@ class App extends Component {
 
 
 export default App;
+
+{/* <Welcome /> */ }
+{/* <Home /> */ }
+{/* <Route exact path='/home' render={() => (
+                        <Home
+                            id={this.state.id}
+                            name={this.state.name}
+                            startingDate={this.state.startingDate}
+                            finishingDate={this.state.finishingDate}
+                            location={this.state.location}
+                            price={this.state.price}
+                            style={this.state.style}
+                            imageUrl={this.state.imageUrl}
+                            homepage={this.state.homepage}
+                            description={this.state.description}
+                        />
+                    )} /> */}
 
 
 {/* <BrowserRouter>

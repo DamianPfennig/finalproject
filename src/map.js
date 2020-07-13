@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Map, GoogleApiWrapper } from 'google-maps-react';
+import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 
 const mapStyles = {
     width: '100%',
@@ -7,6 +7,16 @@ const mapStyles = {
 };
 
 export class MapContainer extends Component {
+    constructor(props) {
+        super(props);
+        // state = {
+        //     showingInfoWindow: false,
+        //     activeMarker: {},
+        //     selectedPlace: {}
+        // };
+    }
+
+
     render() {
         return (
             <Map
@@ -14,8 +24,8 @@ export class MapContainer extends Component {
                 zoom={14}
                 style={mapStyles}
                 initialCenter={{
-                    lat: -1.2884,
-                    lng: 36.8233
+                    lat: 52.520008,
+                    lng: 13.404954
                 }}
             />
         );
@@ -23,5 +33,5 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-    apiKey: 'AIzaSyC2PMeG6is5Gd1inhzR0DDWAcWvFwLaYi0'
+
 })(MapContainer);

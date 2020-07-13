@@ -5,6 +5,24 @@ let db = spicedPg(
     "postgres:postgres:postgres@localhost:5432/finalproject"
 );
 
+module.exports.addOrganizer = (email, pass) => {
+    return db.query(`
+        INSERT INTO organizers (email, password)
+        VALUES ($1, $2)
+        RETURNING *`,
+        [email, pass]
+    );
+};
+
+module.exports.getPass = (email) => {
+    return db.query(`
+        SELECT *
+        FROM organizers
+        WHERE email = '${email}'
+    `);
+};
+
+
 module.exports.getFestivals = () => {
     return db.query(`
     SELECT id,
@@ -29,6 +47,15 @@ module.exports.addFestival = (name, homepage, startingDay, finishingDay, locatio
         [name, homepage, startingDay, finishingDay, location, price, style, description]
     );
 };
+
+module.exports.addImage = (url) => {
+    return db.query(`
+    INSERT INTO festivals (image_url)
+    VALUEs ($1)
+    RETURNING *`,
+        [url]
+    )
+}
 
 module.exports.getSelectedFestival = id => {
 

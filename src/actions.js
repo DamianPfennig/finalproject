@@ -3,13 +3,39 @@ import axios from './axios';
 export async function getFestivals() {
     console.log('action initiated')
     const { data } = await axios.get('/festivals');
-    console.log('data in action: ', data);
+    console.log('getFestivals data in action: ', data);
     return {
         type: 'RECEIVE_FESTIVALS',
         data: data
 
     }
 }
+
+export async function getSelectedFestival(url) {
+    console.log('action SelectedFestival');
+    const { data } = await axios.get(`/selectedFestival/${url}`);
+    console.log('data in festival:: ', data);
+    return {
+        type: 'GET_SELECTED_FESTIVAL',
+        data: data
+    }
+}
+
+
+
+// export function getSelectedFestival(url) {
+//     console.log('action SelectedFestival');
+//     axios.get(`/selectedFestival/${url}`).then(({ results }) => {
+//         //console.log('data in action post :', results);
+//     }).catch(err => {
+//         console.log('error from getSelectedfestival in action :', err)
+//     });
+//     return {
+//         type: 'GET_SELECTED_FESTIVAL',
+//         results: results
+//     }
+
+// }
 
 
 

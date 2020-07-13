@@ -8,18 +8,19 @@ export default function Header() {
                 <Link to="/home">
                     <li>Home</li>
                 </Link>
-                <Link to="/festival-registration">
+                <Link to="/organizer-registration">
+                    {/* <Link to="/festival-registration"> */}
                     <li>Register your Festival</li>
                 </Link>
-                <Link to="/login">
+                {/* <Link to="/login">
                     <li>Log-in</li>
-                </Link>
+                </Link>*/}
 
                 <a className="link-log-out" href="/log-out">
                     <li>Log-out</li>
                 </a>
             </ul>
-        </nav>
+        </nav >
 
     )
 
