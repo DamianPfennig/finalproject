@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import React, { useState, useEffect } from "react";
 import { addRatings } from './actions';
 import { withRouter } from "react-router";
+import { Link } from 'react-router-dom';
 
 
 
@@ -16,28 +17,19 @@ function Ratings({ match }) {
         // console.log(':::::', match.params.id);
         // let url = match.params.id;
         // console.log(url)
-
-
-    }, [rating])
+    }, [])
 
     let input = {}
     input['festivalId'] = match.params.id;
     function handleChange(e) {
         input[e.target.name] = e.target.value;
         console.log('input: ', input)
-        // arr.push(input);
         // console.log('rating location::', arr);
-
     }
 
     function handleClick() {
         dispatch(addRatings(input));
     }
-
-
-
-
-
 
     return (
         <div className="ratings-page">
@@ -102,8 +94,9 @@ function Ratings({ match }) {
                         <label htmlFor="4-star1" title="text">1 star</label>
                     </div>
                 </div>
-
-                <button className="btn-ratings" onClick={handleClick}>Send Ratings</button>
+                <Link to={`/festival/${match.params.id}`} >
+                    <button className="btn-ratings" onClick={handleClick}>Send Ratings</button>
+                </Link>
 
             </div>
         </div>

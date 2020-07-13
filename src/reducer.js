@@ -13,7 +13,26 @@ export function reducer(state = {}, action) {
             ...state,
             selectedFestival: action.data
         }
+        return state
     }
+
+    if (action.type == 'ADD_RATINGS') {
+        state = {
+            ...state,
+            addRatings: action.data
+        }
+        return state
+    }
+
+    if (action.type == 'GET_RATINGS') {
+        state = {
+            ...state,
+            ratings: action.data
+        }
+        return state
+    }
+
+
     // if (action.type == 'RECEIVE_FRIENDS_REQUESTS') {
     //     state = {
     //         ...state,

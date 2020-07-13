@@ -48,7 +48,7 @@ nav{
     list-style: none;
 }
 
-.nav-links li{
+.nav-links a li{
     color: #f3f3f3;
     font-family: 'Varela Round', sans-serif;
         text-decoration: none;
@@ -57,7 +57,7 @@ nav{
 
 }
 
-.nav-links li:visited{
+.nav-links a li:visited{
     color: #f3f3f3;
     text-decoration: none;
 
@@ -662,3 +662,56 @@ nav{
 .item{
     display: flex;
 }
+
+/*--------------Stars Results------------*/
+.all-stars-results{
+    height: auto;
+    width: 90%;
+}
+.each-stars-results{
+    display: flex;
+}
+
+.each-stars-results p{
+    margin-right: 10px;
+}
+.stars-results {
+    position: relative;
+    float: left;
+    height: 46px;
+    margin: 5px 0px 0px 10px ;
+    padding: 0 10px;
+    display: block;
+}
+.stars-results:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.stars-results:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    font-size:30px;
+    color:#ccc;
+}
+.stars-results:not(:checked) > label:before {
+    content: '★ ';
+    color: #ffc700; 
+}
+/* 
+.stars-results > input:checked ~ label {
+    color: #ffc700;    
+}
+.stars-results:not(:checked) > label:hover,
+.stars-results:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.stars-results > input:checked + label:hover,
+.stars-results > input:checked + label:hover ~ label,
+.stars-results > input:checked ~ label:hover,
+.stars-results > input:checked ~ label:hover ~ label,
+.stars-results > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+ */

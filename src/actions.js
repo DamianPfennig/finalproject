@@ -1,9 +1,9 @@
 import axios from './axios';
 
 export async function getFestivals() {
-    console.log('action initiated')
+    //console.log('action initiated')
     const { data } = await axios.get('/festivals');
-    console.log('getFestivals data in action: ', data);
+    //console.log('getFestivals data in action: ', data);
     return {
         type: 'RECEIVE_FESTIVALS',
         data: data
@@ -12,9 +12,9 @@ export async function getFestivals() {
 }
 
 export async function getSelectedFestival(url) {
-    console.log('action SelectedFestival');
+    //console.log('action SelectedFestival');
     const { data } = await axios.get(`/selectedFestival/${url}`);
-    console.log('data in festival:: ', data);
+    //console.log('data in festival:: ', data);
     return {
         type: 'GET_SELECTED_FESTIVAL',
         data: data
@@ -23,12 +23,22 @@ export async function getSelectedFestival(url) {
 
 export async function addRatings(arr) {
     console.log('addRatings in action');
-    const { info } = await axios.post('/addRatings', arr);
+    const { data } = await axios.post('/addRatings', arr);
+    console.log('data in addRatings:: ', data)
     return {
         type: 'ADD_RATINGS',
-        info
+        data
     }
+}
 
+export async function getRatings(url) {
+    console.log('action getRatings');
+    const { data } = await axios.get(`/get-ratings/${url}`);
+    console.log('results in action from getRatings:: ', data);
+    return {
+        type: 'GET_RATINGS',
+        data
+    }
 }
 
 

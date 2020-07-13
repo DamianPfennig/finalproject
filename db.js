@@ -110,4 +110,13 @@ module.exports.addRatings = (festivalId, location, organization, food, toilets_s
     )
 }
 
+module.exports.getRatings = (url) => {
+    return db.query(`
+    SELECT * 
+    FROM ratings
+    WHERE festival_id = ${url}
+    
+    `)
+}
+
 

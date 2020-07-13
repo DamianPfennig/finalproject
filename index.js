@@ -236,7 +236,7 @@ app.post('/attendees-registration', (req, res) => {
 
 app.get(`/selectedFestival/:id`, (req, res) => {
     db.getSelectedFestival(req.params.id).then(results => {
-        console.log('results selected festival: ', results.rows[0]);
+        //console.log('results selected festival: ', results.rows[0]);
         res.json(results.rows);
     }).catch(err => { console.log('err: ', err) });
 
@@ -248,6 +248,15 @@ app.post('/addRatings', (req, res) => {
     console.log('req.body: ', req.body);
     db.addRatings(req.body.festivalId, req.body.location, req.body.organization, req.body.food, req.body.toilets_showers).then(results => {
         console.log('results addRatings: ', results.rows);
+        res.json(results.rows);
+    }).catch(err => { console.log('err: ', err) });
+})
+
+app.get(`/get-ratings/:id`, (req, res) => {
+    console.log('req.params: ', req.params)
+    db.getRatings(req.params.id).then(results => {
+        console.log('results fromgetRatings: ', results.rows);
+        res.json(results.rows);
 
     }).catch(err => { console.log('err: ', err) });
 })

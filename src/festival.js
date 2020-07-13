@@ -3,7 +3,7 @@ import axios from './axios';
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router";
-import { getSelectedFestival } from './actions';
+import { getSelectedFestival, getRatings } from './actions';
 import { Link } from 'react-router-dom';
 
 
@@ -18,14 +18,42 @@ import { BsPeopleFill, BsMusicNoteBeamed, BsStar, BsStarFill } from 'react-icons
 
 function Festival({ match }) {
     const dispatch = useDispatch();
-    const selectedFestival = useSelector(state => state.selectedFestival);
-    console.log('data in Festival Component: ', selectedFestival)
 
+    const selectedFestival = useSelector(state => state.selectedFestival);
+    console.log('data in Festival Component: ', selectedFestival);
+
+    const retrievedRatings = useSelector(state => state && state.ratings);
+    console.log('retrievedRatings ', retrievedRatings);
+    let test = [];
+    if (retrievedRatings) {
+        retrievedRatings.map((elem, idx) => {
+            test.push(elem.location)
+        })
+        console.log('test::', test)
+        let total = 0;
+        for (let i = 0; i < test.length; i++) {
+            total += test[i]
+        }
+        let avg = total / test.length
+        console.log('avg::', avg);
+    }
+
+
+
+    // const retrievedRatings = useSelector(state => state && state.ratings.map((elem, idx) => {
+    //     test = elem.location
+    // }))
+    //console.log('test::', test)
+    const justAddedRatings = useSelector(state => state && state.addRatings);
+
+
+    console.log('ratings in festival: ', justAddedRatings);
     useEffect(() => {
         console.log(':::::', match.params.id);
         let url = match.params.id;
-        console.log(url)
+        console.log(url);
         dispatch(getSelectedFestival(url));
+        dispatch(getRatings(url));
     }, [])
 
     return (
@@ -67,6 +95,55 @@ function Festival({ match }) {
                         )
                     })
                 }
+
+                <h1>Ratings</h1>
+                <div className="all-stars-results">
+
+                    {
+                        retrievedRatings &&
+                        retrievedRatings.map((elem, idx) => {
+                            return (
+                                <div className="each-stars-results" key={idx}>
+                                    <p>Location</p>
+                                    <p >{elem.location}</p>
+                                    <div className="stars-results">
+                                        <input type="radio" id="1-star1" name="location" value="1" />
+                                        <label htmlFor="1-star1" title="text">{elem.location}</label>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
+
+
+                    {
+                        justAddedRatings &&
+                        justAddedRatings.map((elem, idx) => {
+                            return (
+                                <div className="each-stars-results" key={idx}>
+
+                                    <p>Location</p>
+
+                                    <p >{elem.location}</p>
+
+                                    <div className="stars-results">
+                                        <input type="radio" id="1-star1" name="location" value="1" />
+                                        <label htmlFor="1-star1" title="text">{elem.location}</label>
+                                    </div>
+
+                                    {/* <p>Organization</p>
+                                <p>{elem.organization}</p>
+                                <p>Food</p>
+                                <p>{elem.food}</p>
+                                <p>Toilets and Showers</p>
+                                <p> {elem.toilets_showers}</p> */}
+
+                                </div>
+
+                            )
+                        })
+                    }
+                </div>
 
 
                 {/* </div> */}
