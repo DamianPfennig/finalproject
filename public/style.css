@@ -493,6 +493,7 @@ nav{
     position: relative;
     width: 90%;
     left: 50%;
+    top: 50px;
     transform: translateX(-50%); 
     
 }
@@ -516,7 +517,7 @@ nav{
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #ecedf3;
+    /* background-color: #ecedf3; */
 
 }
 

@@ -232,7 +232,7 @@ app.get('/log-out', (req, res) => {
     //req.session = null;
     //res.end();
     res.redirect('/home');
-})
+});
 
 
 app.get('/', (req, res) => {
