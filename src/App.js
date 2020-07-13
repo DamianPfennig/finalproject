@@ -13,6 +13,7 @@ import Login from './login';
 import Header from './header';
 import Home from './home';
 import Festival from './festival';
+import Ratings from './ratings';
 
 import Weather from './weather';
 //const API_KEY
@@ -35,8 +36,9 @@ class App extends Component {
                     <Route exact path="/festival/:id" component={Festival} />
 
                     <Route exact path='/festival-registration' component={FestivalRegistration} />
-                    <Route exact path='/atendees-registration' component={AttendeesRegistration} />
+                    <Route exact path='/attendees-registration' component={AttendeesRegistration} />
                     <Route exact path='/login' component={Login} />
+                    <Route exact path='/ratings/:id' component={Ratings} />
 
 
 

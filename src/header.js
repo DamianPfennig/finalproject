@@ -15,6 +15,10 @@ export default function Header() {
                 {/* <Link to="/login">
                     <li>Log-in</li>
                 </Link>*/}
+                <Link to="/attendees-registration">
+                    {/* <Link to="/festival-registration"> */}
+                    <li>Enter Attendees Site</li>
+                </Link>
 
                 <a className="link-log-out" href="/log-out">
                     <li>Log-out</li>

@@ -21,6 +21,16 @@ export async function getSelectedFestival(url) {
     }
 }
 
+export async function addRatings(arr) {
+    console.log('addRatings in action');
+    const { info } = await axios.post('/addRatings', arr);
+    return {
+        type: 'ADD_RATINGS',
+        info
+    }
+
+}
+
 
 
 // export function getSelectedFestival(url) {

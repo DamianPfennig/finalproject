@@ -48,12 +48,12 @@ module.exports.addFestival = (name, homepage, startingDay, finishingDay, locatio
     );
 };
 
-module.exports.addImage = (url) => {
+module.exports.addImage = (id, url) => {
     return db.query(`
-    INSERT INTO festivals (image_url)
-    VALUEs ($1)
+    INSERT INTO images (festival_id, image)
+    VALUES ($1, $2)
     RETURNING *`,
-        [url]
+        [id, url]
     )
 }
 
@@ -69,6 +69,7 @@ module.exports.getSelectedFestival = id => {
     style ,
     image_url as imageUrl ,
     url ,
+    artists,
     description FROM festivals
     WHERE id = '${id}'
     `)
@@ -100,5 +101,13 @@ module.exports.getPass = (emailInput) => {
     `);
 };
 
+module.exports.addRatings = (festivalId, location, organization, food, toilets_showers) => {
+    return db.query(`
+    INSERT INTO ratings (festival_id, location, organization, food, toilets_showers)
+    VALUES ($1, $2, $3, $4, $5)
+    RETURNING *`,
+        [festivalId, location, organization, food, toilets_showers]
+    )
+}
 
 

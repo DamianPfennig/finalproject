@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router";
 import { getSelectedFestival } from './actions';
+import { Link } from 'react-router-dom';
 
 
 import MapContainer from './map';
@@ -36,8 +37,6 @@ function Festival({ match }) {
                     selectedFestival &&
                     selectedFestival.map((elem, idx) => {
                         return (
-
-
                             <div className="info-container" key={idx}>
                                 <div className="image-container">
                                     <img src={elem.imageurl} alt="image" />
@@ -51,16 +50,25 @@ function Festival({ match }) {
                                     <h4>Program</h4>
                                     <p>{elem.style}</p>
                                     <h4>Price</h4>
-                                    <p>{elem.price}</p>
+                                    <p>{elem.price} euro</p>
                                     <p><a href={elem.url}>Homepage</a></p>
                                     <h4>Confirmed Artists</h4>
-                                    <p className="confirmed-artists"></p>
+                                    <p className="confirmed-artists">{elem.artists}</p>
                                 </div>
+                                <br></br>
+                                <div>
+                                    <Link to={`/ratings/${match.params.id}`} >
+                                        <h3>Give your ratings to {elem.name}</h3>
+                                    </Link>
+
+                                </div>
+
                             </div>
                         )
-
                     })
                 }
+
+
                 {/* </div> */}
             </div>
         </div>
@@ -68,6 +76,11 @@ function Festival({ match }) {
 
 }
 export default withRouter(Festival);
+
+
+
+
+
 
 
 

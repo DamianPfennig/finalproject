@@ -59,7 +59,7 @@ app.use(function (req, res, next) {
     //console.log('req.csrfToken', req.csrfToken())
     next();
 })
-
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use(express.static('public'));
@@ -166,7 +166,26 @@ app.get('/festivals', (req, res) => {
 //     });
 // })
 
-app.post('/festival-registration', uploader.single('file'), ses.upload, (req, res) => {
+app.post('/uploadImage', uploader.single('file'), (req, res) => {
+    console.log('axios in /upload')
+    console.log('::::::::', req.session.userId)
+    //console.log('req::', req)
+    let userId = req.session.userId;
+    let filename = req.file.filename;
+    let url = `https://s3.amazonaws.com/spicedling/${filename}`;
+    if (req.file) {
+        db.addImage(userId, url).then(results => {
+            console.log('results from addImages: ', results.rows);
+            res.json(results.rows[0]);
+        }).catch(err => {
+            console.log('err: ', err);
+        });
+    } else {
+        res.json({ success: false });
+    }
+})
+
+app.post('/festival-registration', (req, res) => {
     console.log('req.body uploadimage::: ', req.body)
     let name = req.body.name;
     let homepage = req.body.homepage;
@@ -176,11 +195,9 @@ app.post('/festival-registration', uploader.single('file'), ses.upload, (req, re
     let price = req.body.price;
     let style = req.body.style;
     let description = req.body.description;
-    let filename = req.file.filename;
-    let image = `https://s3.amazonaws.com/spicedling/${filename}`;
     if (req.file) {
         db.addFestival(name, image, homepage, startingDate, finishingDate, location, price, style, description).then(results => {
-            req.session.userId = results.rows[0].id;
+            //req.session.userId = results.rows[0].id;
             console.log('results from addFestivals: ', results.rows);
             res.json(results.rows[0]);
         }).catch(err => {
@@ -223,7 +240,18 @@ app.get(`/selectedFestival/:id`, (req, res) => {
         res.json(results.rows);
     }).catch(err => { console.log('err: ', err) });
 
+});
+
+
+app.post('/addRatings', (req, res) => {
+    console.log('axios addRatings')
+    console.log('req.body: ', req.body);
+    db.addRatings(req.body.festivalId, req.body.location, req.body.organization, req.body.food, req.body.toilets_showers).then(results => {
+        console.log('results addRatings: ', results.rows);
+
+    }).catch(err => { console.log('err: ', err) });
 })
+
 
 
 
