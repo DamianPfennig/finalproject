@@ -22,9 +22,9 @@ export async function getSelectedFestival(url) {
 }
 
 export async function addRatings(arr) {
-    console.log('addRatings in action');
+    // console.log('addRatings in action');
     const { data } = await axios.post('/addRatings', arr);
-    console.log('data in addRatings:: ', data)
+    //console.log('data in addRatings:: ', data)
     return {
         type: 'ADD_RATINGS',
         data
@@ -32,9 +32,9 @@ export async function addRatings(arr) {
 }
 
 export async function getRatings(url) {
-    console.log('action getRatings');
+    //console.log('action getRatings');
     const { data } = await axios.get(`/get-ratings/${url}`);
-    console.log('results in action from getRatings:: ', data);
+    //console.log('results in action from getRatings:: ', data);
     return {
         type: 'GET_RATINGS',
         data

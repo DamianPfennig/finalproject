@@ -14,32 +14,89 @@ import { FiLogIn, FiLogOut } from 'react-icons/fi';
 import { BsPeopleFill, BsMusicNoteBeamed, BsStar, BsStarFill } from 'react-icons/bs';
 
 // import Weather from './weather';
-// const API_KEY = "b74c34775e1a7ccb972c3eb120e57e32";
+
 
 function Festival({ match }) {
+
+
     const dispatch = useDispatch();
 
     const selectedFestival = useSelector(state => state.selectedFestival);
-    console.log('data in Festival Component: ', selectedFestival);
+    //console.log('data in Festival Component: ', selectedFestival);
+    var city;
+    var weatherData;
+    if (selectedFestival) {
+        //console.log('selectedFestival', selectedFestival[0].location)
+        city = selectedFestival[0].location;
 
-    const retrievedRatings = useSelector(state => state && state.ratings);
-    console.log('retrievedRatings ', retrievedRatings);
-    let test = [];
-    if (retrievedRatings) {
-        retrievedRatings.map((elem, idx) => {
-            test.push(elem.location)
-        })
-        console.log('test::', test)
-        let total = 0;
-        for (let i = 0; i < test.length; i++) {
-            total += test[i]
-        }
-        let avg = total / test.length
-        console.log('avg::', avg);
+        axios.get(`/get-weather${city}`).then(({ data }) => {
+            console.log('data from server: ', data)
+            weatherData = data;
+
+        }).catch(err => console.log('error ', err))
     }
 
 
 
+
+    const retrievedRatings = useSelector(state => state && state.ratings);
+    console.log('retrievedRatings ', retrievedRatings);
+
+
+    var test = [];
+    var locationAvg, organizationAvg, foodAvg, toiletesShowersAvg;
+
+    if (retrievedRatings) {
+        retrievedRatings.map((elem, idx) => {
+            test.push(elem.location)
+        })
+        //console.log('test::', test)
+        let total = 0;
+        for (let i = 0; i < test.length; i++) {
+            total += test[i]
+        }
+        locationAvg = total / test.length
+        console.log('locationAvg::', locationAvg);
+    }
+
+    if (retrievedRatings) {
+        retrievedRatings.map((elem, idx) => {
+            test.push(elem.organization)
+        })
+        //console.log('test::', test)
+        let total = 0;
+        for (let i = 0; i < test.length; i++) {
+            total += test[i]
+        }
+        organizationAvg = total / test.length
+        console.log('organizationAvg::', organizationAvg);
+    }
+
+    if (retrievedRatings) {
+        retrievedRatings.map((elem, idx) => {
+            test.push(elem.food)
+        })
+        //console.log('test::', test)
+        let total = 0;
+        for (let i = 0; i < test.length; i++) {
+            total += test[i]
+        }
+        foodAvg = total / test.length
+        console.log('foodAvg::', foodAvg);
+    }
+
+    if (retrievedRatings) {
+        retrievedRatings.map((elem, idx) => {
+            test.push(elem.food)
+        })
+        //console.log('test::', test)
+        let total = 0;
+        for (let i = 0; i < test.length; i++) {
+            total += test[i]
+        }
+        toiletesShowersAvg = total / test.length
+        console.log('toiletesShowersAvg::', toiletesShowersAvg);
+    }
     // const retrievedRatings = useSelector(state => state && state.ratings.map((elem, idx) => {
     //     test = elem.location
     // }))
@@ -54,11 +111,29 @@ function Festival({ match }) {
         console.log(url);
         dispatch(getSelectedFestival(url));
         dispatch(getRatings(url));
+
     }, [])
 
     return (
         <div className="festival-page">
             <div className="selected-festival-container">
+
+                <div className="weather-container">
+                    <h3>Weather for the next days in {city}</h3>
+                    {
+                        weatherData &&
+                        weatherData.map((elem, idx) => {
+                            return (
+                                <div className="weather-info" key={idx}>
+                                    <p>{elem.day}</p>
+                                    <p>{elem.high}</p>
+                                    <p>{elem.low}</p>
+                                    <p>{elem.skytextday}</p>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
 
                 {/* <div className="info-container"> */}
                 {
@@ -88,16 +163,22 @@ function Festival({ match }) {
                                     <Link to={`/ratings/${match.params.id}`} >
                                         <h3>Give your ratings to {elem.name}</h3>
                                     </Link>
-
                                 </div>
-
                             </div>
                         )
                     })
                 }
 
-                <h1>Ratings</h1>
+
                 <div className="all-stars-results">
+                    <h1>Ratings</h1>
+                    <div className="average-ratings">
+                        <h3>Average Ratings</h3>
+                        <p>Location: {locationAvg}</p>
+                        <p>Organization: {organizationAvg}</p>
+                        <p>Food: {foodAvg}</p>
+                        <p>Toilets and Showers: {toiletesShowersAvg}</p>
+                    </div>
 
                     {
                         retrievedRatings &&
@@ -114,7 +195,6 @@ function Festival({ match }) {
                             )
                         })
                     }
-
 
                     {
                         justAddedRatings &&

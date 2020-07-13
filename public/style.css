@@ -2,7 +2,7 @@ body{
     background-color: #ffff;
     margin: 0;
     min-height: 100vh;
-    font-family: 'Roboto', sans-serif; 
+    font-family: 'Varela Round', sans-serif;; 
        
 }
 
@@ -122,7 +122,7 @@ nav{
   border: none;
   border-bottom: 1px solid #3f3f3f;
   background-color: transparent;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Varela Round', sans-serif;
   font-weight: 400;
   font-size: 15px;
   transition: 0.2s ease;
@@ -162,7 +162,7 @@ nav{
   border: none;
   border-bottom: 1px solid #3f3f3f;
   background-color: transparent;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Varela Round', sans-serif;
   font-weight: 400;
   font-size: 15px;
   transition: 0.2s ease;
@@ -248,7 +248,7 @@ nav{
   border: none;
   border-bottom: 1px solid #3f3f3f;
   background-color: transparent;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Varela Round', sans-serif;
   font-weight: 400;
   font-size: 15px;
   transition: 0.2s ease;
@@ -348,7 +348,7 @@ nav{
   border: none;
   border-bottom: 1px solid #3f3f3f;
   background-color: transparent;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Varela Round', sans-serif;
   font-weight: 400;
   font-size: 15px;
   transition: 0.2s ease;
@@ -569,6 +569,7 @@ nav{
     background-color: #e7e7e7; 
     width: 90%;
     border-radius: 20px;
+    padding: 20px;
 }
 
 .info-container h1,
@@ -665,8 +666,15 @@ nav{
 
 /*--------------Stars Results------------*/
 .all-stars-results{
+    position: relative;
     height: auto;
     width: 90%;
+    background-color: #e7e7e7;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px;
+    margin-top: 50px;
+    border-radius: 10px;
 }
 .each-stars-results{
     display: flex;
@@ -715,3 +723,22 @@ nav{
     color: #c59b08;
 }
  */
+
+ .average-ratings{
+     position: relative;
+     width: 60%;
+     left: 50%;
+     transform: translateX(-50%);
+     background-color: rgb(183, 206, 253);
+     border-radius: 10px;
+     padding: 10px;
+
+ }
+
+  .average-ratings h3 {
+      text-align: center;
+  }
+
+   .average-ratings p {
+    margin-left: 10px;
+}

@@ -5,6 +5,8 @@ const io = require('socket.io')(server, {
     origins: 'localhost:8080'
 });
 const compression = require('compression');
+
+const weather = require('./weather');
 const db = require('./db');
 const cookieSession = require('cookie-session');
 const csurf = require('csurf');
@@ -12,6 +14,10 @@ const cryptoRandomString = require('crypto-random-string');
 const ses = require('./ses');
 const { hash, compare } = require('./bc');
 app.use(compression());
+
+
+
+
 
 //////////////----for uploading image----///////////////
 
@@ -75,7 +81,19 @@ if (process.env.NODE_ENV != 'production') {
     app.use('/bundle.js', (req, res) => res.sendFile(`${__dirname}/bundle.js`));
 }
 
-////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////
+
+app.get('/get-weather:id', (req, res) => {
+    console.log('req.body.city::::::: ', req.params.id);
+    weather.getWeather(req.params.id).then(results => {
+        console.log('results from weather: ', JSON.parse(results))
+        let test = JSON.parse(results);
+        console.log('::::::::.', test[0].forecast.slice(2));
+        res.json(test[0].forecast.slice(2));
+
+    }).catch(err => { console.log('error in weather: ', err) })
+})
+
 
 app.post('/organizer', (req, res) => {
     console.log('req.body: ', req.body);
@@ -255,7 +273,7 @@ app.post('/addRatings', (req, res) => {
 app.get(`/get-ratings/:id`, (req, res) => {
     console.log('req.params: ', req.params)
     db.getRatings(req.params.id).then(results => {
-        console.log('results fromgetRatings: ', results.rows);
+        //console.log('results fromgetRatings: ', results.rows);
         res.json(results.rows);
 
     }).catch(err => { console.log('err: ', err) });

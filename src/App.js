@@ -15,7 +15,7 @@ import Home from './home';
 import Festival from './festival';
 import Ratings from './ratings';
 
-import Weather from './weather';
+// import Weather from '../weather';
 //const API_KEY
 
 
