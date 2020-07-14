@@ -6,6 +6,8 @@ import { withRouter } from "react-router";
 import { getSelectedFestival, getRatings } from './actions';
 import { Link } from 'react-router-dom';
 
+import Average from './average';
+
 
 import MapContainer from './map';
 import ReactWeather from 'react-open-weather';
@@ -17,86 +19,83 @@ import { BsPeopleFill, BsMusicNoteBeamed, BsStar, BsStarFill } from 'react-icons
 
 
 function Festival({ match }) {
-
-
     const dispatch = useDispatch();
 
     const selectedFestival = useSelector(state => state.selectedFestival);
     //console.log('data in Festival Component: ', selectedFestival);
+
     var city;
-    var weatherData;
+    var weatherData, success;
     if (selectedFestival) {
         //console.log('selectedFestival', selectedFestival[0].location)
         city = selectedFestival[0].location;
-
         axios.get(`/get-weather${city}`).then(({ data }) => {
             console.log('data from server: ', data)
             weatherData = data;
-
+            if (data.length != 0) {
+                success = true;
+            }
         }).catch(err => console.log('error ', err))
     }
 
-
-
-
     const retrievedRatings = useSelector(state => state && state.ratings);
-    console.log('retrievedRatings ', retrievedRatings);
+    // console.log('retrievedRatings ', retrievedRatings);
 
 
-    var test = [];
-    var locationAvg, organizationAvg, foodAvg, toiletesShowersAvg;
+    // var test = [];
+    // var locationAvg, organizationAvg, foodAvg, toiletesShowersAvg;
 
-    if (retrievedRatings) {
-        retrievedRatings.map((elem, idx) => {
-            test.push(elem.location)
-        })
-        //console.log('test::', test)
-        let total = 0;
-        for (let i = 0; i < test.length; i++) {
-            total += test[i]
-        }
-        locationAvg = total / test.length
-        console.log('locationAvg::', locationAvg);
-    }
+    // if (retrievedRatings) {
+    //     retrievedRatings.map((elem, idx) => {
+    //         test.push(elem.location)
+    //     })
+    //     //console.log('test::', test)
+    //     let total = 0;
+    //     for (let i = 0; i < test.length; i++) {
+    //         total += test[i]
+    //     }
+    //     locationAvg = Math.round(total / test.length);
+    //     console.log('locationAvg::', Math.round(locationAvg));
+    // }
 
-    if (retrievedRatings) {
-        retrievedRatings.map((elem, idx) => {
-            test.push(elem.organization)
-        })
-        //console.log('test::', test)
-        let total = 0;
-        for (let i = 0; i < test.length; i++) {
-            total += test[i]
-        }
-        organizationAvg = total / test.length
-        console.log('organizationAvg::', organizationAvg);
-    }
+    // if (retrievedRatings) {
+    //     retrievedRatings.map((elem, idx) => {
+    //         test.push(elem.organization)
+    //     })
+    //     //console.log('test::', test)
+    //     let total = 0;
+    //     for (let i = 0; i < test.length; i++) {
+    //         total += test[i]
+    //     }
+    //     organizationAvg = Math.round(total / test.length)
+    //     console.log('organizationAvg::', organizationAvg);
+    // }
 
-    if (retrievedRatings) {
-        retrievedRatings.map((elem, idx) => {
-            test.push(elem.food)
-        })
-        //console.log('test::', test)
-        let total = 0;
-        for (let i = 0; i < test.length; i++) {
-            total += test[i]
-        }
-        foodAvg = total / test.length
-        console.log('foodAvg::', foodAvg);
-    }
+    // if (retrievedRatings) {
+    //     retrievedRatings.map((elem, idx) => {
+    //         test.push(elem.food)
+    //     })
+    //     //console.log('test::', test)
+    //     let total = 0;
+    //     for (let i = 0; i < test.length; i++) {
+    //         total += test[i]
+    //     }
+    //     foodAvg = Math.round(total / test.length)
+    //     console.log('foodAvg::', foodAvg);
+    // }
 
-    if (retrievedRatings) {
-        retrievedRatings.map((elem, idx) => {
-            test.push(elem.food)
-        })
-        //console.log('test::', test)
-        let total = 0;
-        for (let i = 0; i < test.length; i++) {
-            total += test[i]
-        }
-        toiletesShowersAvg = total / test.length
-        console.log('toiletesShowersAvg::', toiletesShowersAvg);
-    }
+    // if (retrievedRatings) {
+    //     retrievedRatings.map((elem, idx) => {
+    //         test.push(elem.food)
+    //     })
+    //     //console.log('test::', test)
+    //     let total = 0;
+    //     for (let i = 0; i < test.length; i++) {
+    //         total += test[i]
+    //     }
+    //     toiletesShowersAvg = Math.round(total / test.length)
+    //     console.log('toiletesShowersAvg::', toiletesShowersAvg);
+    // }
     // const retrievedRatings = useSelector(state => state && state.ratings.map((elem, idx) => {
     //     test = elem.location
     // }))
@@ -106,9 +105,9 @@ function Festival({ match }) {
 
     console.log('ratings in festival: ', justAddedRatings);
     useEffect(() => {
-        console.log(':::::', match.params.id);
+        //console.log(':::::', match.params.id);
         let url = match.params.id;
-        console.log(url);
+        //console.log(url);
         dispatch(getSelectedFestival(url));
         dispatch(getRatings(url));
 
@@ -116,12 +115,12 @@ function Festival({ match }) {
 
     return (
         <div className="festival-page">
-            <div className="selected-festival-container">
-
-                <div className="weather-container">
-                    <h3>Weather for the next days in {city}</h3>
-                    {
-                        weatherData &&
+            <div className="weather-container">
+                <h4>Weather in {city}</h4>
+                {
+                    success != true ?
+                        <div><p>Information not available</p></div>
+                        :
                         weatherData.map((elem, idx) => {
                             return (
                                 <div className="weather-info" key={idx}>
@@ -132,9 +131,9 @@ function Festival({ match }) {
                                 </div>
                             )
                         })
-                    }
-                </div>
-
+                }
+            </div>
+            <div className="selected-festival-container">
                 {/* <div className="info-container"> */}
                 {
                     selectedFestival &&
@@ -145,7 +144,7 @@ function Festival({ match }) {
                                     <img src={elem.imageurl} alt="image" />
                                 </div>
                                 <h1>{elem.name}</h1>
-                                <h2>({elem.location})</h2>
+                                <h2>{elem.location}</h2>
                                 <h3>{elem.startingdate} - {elem.finishingdate}</h3>
                                 <div className="description">
                                     <h4>What is {elem.name}?</h4>
@@ -172,13 +171,14 @@ function Festival({ match }) {
 
                 <div className="all-stars-results">
                     <h1>Ratings</h1>
-                    <div className="average-ratings">
+                    <Average />
+                    {/* <div className="average-ratings">
                         <h3>Average Ratings</h3>
                         <p>Location: {locationAvg}</p>
                         <p>Organization: {organizationAvg}</p>
                         <p>Food: {foodAvg}</p>
                         <p>Toilets and Showers: {toiletesShowersAvg}</p>
-                    </div>
+                    </div> */}
 
                     {
                         retrievedRatings &&
@@ -187,10 +187,11 @@ function Festival({ match }) {
                                 <div className="each-stars-results" key={idx}>
                                     <p>Location</p>
                                     <p >{elem.location}</p>
-                                    <div className="stars-results">
+                                    {/* <div className="stars-results">
                                         <input type="radio" id="1-star1" name="location" value="1" />
                                         <label htmlFor="1-star1" title="text">{elem.location}</label>
-                                    </div>
+                                    </div> */}
+                                    <i className="fa fa-star checked la-lg"></i>
                                 </div>
                             )
                         })
@@ -210,6 +211,7 @@ function Festival({ match }) {
                                         <input type="radio" id="1-star1" name="location" value="1" />
                                         <label htmlFor="1-star1" title="text">{elem.location}</label>
                                     </div>
+
 
                                     {/* <p>Organization</p>
                                 <p>{elem.organization}</p>

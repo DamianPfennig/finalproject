@@ -86,7 +86,7 @@ if (process.env.NODE_ENV != 'production') {
 app.get('/get-weather:id', (req, res) => {
     console.log('req.body.city::::::: ', req.params.id);
     weather.getWeather(req.params.id).then(results => {
-        console.log('results from weather: ', JSON.parse(results))
+        //console.log('results from weather: ', JSON.parse(results))
         let test = JSON.parse(results);
         console.log('::::::::.', test[0].forecast.slice(2));
         res.json(test[0].forecast.slice(2));

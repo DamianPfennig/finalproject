@@ -588,11 +588,23 @@ nav{
     margin-top: 5px;
 }
 
+/*---------------------Weather-------------------*/
 
-.weather{
-    height: 100px;
-    width: auto;
+.festival-page .weather-container{
+    position: relative;
+    height: auto;
+    width: 200px;
+    background-color: #e7e7e7;
+    border-radius: 6px;
+    padding: 5px 10px;
+    margin-top: 20px;
 }
+
+.weather-container h4{
+    margin-top: 5px;
+}
+
+
 
 .map{
     position: relative;
@@ -676,6 +688,11 @@ nav{
     margin-top: 50px;
     border-radius: 10px;
 }
+
+.all-stars-results h1{
+    text-align: center;
+}
+
 .each-stars-results{
     display: flex;
 }
@@ -704,8 +721,12 @@ nav{
     color:#ccc;
 }
 .stars-results:not(:checked) > label:before {
-    content: '★ ';
-    color: #ffc700; 
+    /* content: '★ ';
+    color: #ffc700;  */
+     content: "\f005";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: #f5cf29;
 }
 /* 
 .stars-results > input:checked ~ label {
@@ -724,9 +745,17 @@ nav{
 }
  */
 
+ .fa{
+     color: #f5cf29;
+     margin-top: 15px;
+     margin-left: 10px;
+ }
+
+ /*----------------------Average-------------------*/
+
  .average-ratings{
      position: relative;
-     width: 60%;
+     width: 40%;
      left: 50%;
      transform: translateX(-50%);
      background-color: rgb(183, 206, 253);
@@ -737,8 +766,39 @@ nav{
 
   .average-ratings h3 {
       text-align: center;
+      margin-top: 0;
   }
 
    .average-ratings p {
     margin-left: 10px;
 }
+
+.stars-outer {
+  position: relative;
+  display: inline-block;
+}
+
+.stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+}
+
+.stars-outer::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: #ccc;
+}
+
+.stars-inner::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: #f5cf29;
+}
+
+
