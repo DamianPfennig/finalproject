@@ -279,6 +279,13 @@ app.get(`/get-ratings/:id`, (req, res) => {
     }).catch(err => { console.log('err: ', err) });
 })
 
+app.get('/getUser/:id', (req, res) => {
+    db.getUser(req.params.id).then(results => {
+        console.log('results fromgetUser: ', results.rows);
+        res.json(results.rows)
+    }).catch(err => { console.log('err: ', err) });
+})
+
 
 
 
@@ -332,4 +339,3 @@ app.get('*', function (req, res) {
 server.listen(8080, function () {
     console.log("Server 8080 listening.");
 });
-

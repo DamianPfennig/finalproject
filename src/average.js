@@ -10,7 +10,7 @@ function Average({ match }) {
     const dispatch = useDispatch();
 
     const retrievedRatings = useSelector(state => state && state.ratings);
-    console.log('retrievedRatings ', retrievedRatings);
+    //console.log('retrievedRatings ', retrievedRatings);
 
 
     var test = [];
@@ -29,7 +29,7 @@ function Average({ match }) {
         locationAvg = total / test.length;
         //locationAvg.toFixed(1);
         ratings['location'] = locationAvg.toFixed(1);
-        console.log('locationAvg::', locationAvg);
+        //console.log('locationAvg::', locationAvg);
     }
 
     if (retrievedRatings) {
@@ -43,7 +43,7 @@ function Average({ match }) {
         }
         organizationAvg = total / test.length;
         ratings['organization'] = organizationAvg.toFixed(1);
-        console.log('organizationAvg::', organizationAvg);
+        //console.log('organizationAvg::', organizationAvg);
     }
 
     if (retrievedRatings) {
@@ -57,7 +57,7 @@ function Average({ match }) {
         }
         foodAvg = total / test.length
         ratings['food'] = foodAvg.toFixed(1);
-        console.log('foodAvg::', foodAvg.toFixed(1));
+        //console.log('foodAvg::', foodAvg.toFixed(1));
     }
 
     if (retrievedRatings) {
@@ -71,25 +71,26 @@ function Average({ match }) {
         }
         toiletesShowersAvg = total / test.length;
         ratings['toiletesShowers'] = toiletesShowersAvg.toFixed(1);
-        console.log('toiletesShowersAvg::', toiletesShowersAvg.toFixed(1));
+        //console.log('toiletesShowersAvg::', toiletesShowersAvg.toFixed(1));
     }
 
     ////////////
-    var arr = []
-    arr.push(ratings)
-    console.log('rating Object: ', ratings)
-    console.log('ARRAY: ', arr);
+    //var arr = []
+    //arr.push(ratings)
+    //console.log('rating Object: ', ratings)
+    //console.log('ARRAY: ', arr);
 
     useEffect(() => {
         console.log(':::::', match.params.id);
         let url = match.params.id;
         console.log(url);
         dispatch(getRatings(url));
-
     }, [])
+
     const starTotal = 5;
 
     for (const key in ratings) {
+        console.log('KEYYYYYYY!!!!', key)
         const starPercentage = (ratings[key] / starTotal) * 100;
         const starPercentageRounded = `${(Math.round(starPercentage / 10) * 10)}%`;
         document.querySelector(`.${key} .stars-inner`).style.width = starPercentageRounded;

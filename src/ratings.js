@@ -1,7 +1,6 @@
-
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useState, useEffect } from "react";
-import { addRatings } from './actions';
+import { addRatings, getUser } from './actions';
 import { withRouter } from "react-router";
 import { Link } from 'react-router-dom';
 
@@ -10,6 +9,11 @@ import { Link } from 'react-router-dom';
 function Ratings({ match }) {
     const dispatch = useDispatch();
     const [rating, setRating] = useState();
+    const retrievedRatings = useSelector(state => state && state.ratings);
+
+
+    const userInfo = useSelector(state => state && state.user);
+    console.log('userInfo ', userInfo);
 
 
     useEffect(() => {
@@ -17,24 +21,30 @@ function Ratings({ match }) {
         // console.log(':::::', match.params.id);
         // let url = match.params.id;
         // console.log(url)
+        dispatch(getUser(match.params.id));
     }, [])
 
     let input = {}
     input['festivalId'] = match.params.id;
     function handleChange(e) {
         input[e.target.name] = e.target.value;
-        console.log('input: ', input)
+        console.log('input in handleChange: ', input)
         // console.log('rating location::', arr);
     }
 
-    function handleClick() {
-        dispatch(addRatings(input));
+    async function handleClick() {
+        await dispatch(addRatings(input));
+        location.replace(`/festival/${match.params.id}`)
+
     }
+
+    function handleText() { }
 
     return (
         <div className="ratings-page">
             <div className="ratings-container">
                 <div className="item">
+                    {/* <h2>Hello {userInfo.first}</h2> */}
                     <h3>Location</h3>
                     <div className="stars">
                         <input type="radio" id="1-star5" name="location" value="5" onClick={handleChange} />
@@ -94,9 +104,12 @@ function Ratings({ match }) {
                         <label htmlFor="4-star1" title="text">1 star</label>
                     </div>
                 </div>
-                <Link to={`/festival/${match.params.id}`} >
-                    <button className="btn-ratings" onClick={handleClick}>Send Ratings</button>
-                </Link>
+
+                <textarea id="text" name="text" spellCheck="false" rows="12" cols="55" wrap="hard" onChange={handleText} value=""></textarea>
+
+                {/* <Link to={`/festival/${match.params.id}`} > */}
+                <button className="btn-ratings" onClick={handleClick}>Send Ratings</button>
+                {/* </Link> */}
 
             </div>
         </div>

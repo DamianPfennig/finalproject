@@ -1,4 +1,3 @@
-// import React, { Component } from 'react';
 import axios from './axios';
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useState, useEffect } from "react";
@@ -30,80 +29,22 @@ function Festival({ match }) {
         //console.log('selectedFestival', selectedFestival[0].location)
         city = selectedFestival[0].location;
         axios.get(`/get-weather${city}`).then(({ data }) => {
-            console.log('data from server: ', data)
+
             weatherData = data;
+            //console.log('data from server:::::::::::::::::: ', weatherData)
             if (data.length != 0) {
                 success = true;
             }
         }).catch(err => console.log('error ', err))
     }
+    //console.log('!!!!!!!!!: ', weatherData)
 
     const retrievedRatings = useSelector(state => state && state.ratings);
-    // console.log('retrievedRatings ', retrievedRatings);
 
 
-    // var test = [];
-    // var locationAvg, organizationAvg, foodAvg, toiletesShowersAvg;
-
-    // if (retrievedRatings) {
-    //     retrievedRatings.map((elem, idx) => {
-    //         test.push(elem.location)
-    //     })
-    //     //console.log('test::', test)
-    //     let total = 0;
-    //     for (let i = 0; i < test.length; i++) {
-    //         total += test[i]
-    //     }
-    //     locationAvg = Math.round(total / test.length);
-    //     console.log('locationAvg::', Math.round(locationAvg));
-    // }
-
-    // if (retrievedRatings) {
-    //     retrievedRatings.map((elem, idx) => {
-    //         test.push(elem.organization)
-    //     })
-    //     //console.log('test::', test)
-    //     let total = 0;
-    //     for (let i = 0; i < test.length; i++) {
-    //         total += test[i]
-    //     }
-    //     organizationAvg = Math.round(total / test.length)
-    //     console.log('organizationAvg::', organizationAvg);
-    // }
-
-    // if (retrievedRatings) {
-    //     retrievedRatings.map((elem, idx) => {
-    //         test.push(elem.food)
-    //     })
-    //     //console.log('test::', test)
-    //     let total = 0;
-    //     for (let i = 0; i < test.length; i++) {
-    //         total += test[i]
-    //     }
-    //     foodAvg = Math.round(total / test.length)
-    //     console.log('foodAvg::', foodAvg);
-    // }
-
-    // if (retrievedRatings) {
-    //     retrievedRatings.map((elem, idx) => {
-    //         test.push(elem.food)
-    //     })
-    //     //console.log('test::', test)
-    //     let total = 0;
-    //     for (let i = 0; i < test.length; i++) {
-    //         total += test[i]
-    //     }
-    //     toiletesShowersAvg = Math.round(total / test.length)
-    //     console.log('toiletesShowersAvg::', toiletesShowersAvg);
-    // }
-    // const retrievedRatings = useSelector(state => state && state.ratings.map((elem, idx) => {
-    //     test = elem.location
-    // }))
-    //console.log('test::', test)
     const justAddedRatings = useSelector(state => state && state.addRatings);
 
-
-    console.log('ratings in festival: ', justAddedRatings);
+    //console.log('ratings in festival: ', justAddedRatings);
     useEffect(() => {
         //console.log(':::::', match.params.id);
         let url = match.params.id;
@@ -111,7 +52,10 @@ function Festival({ match }) {
         dispatch(getSelectedFestival(url));
         dispatch(getRatings(url));
 
-    }, [])
+    }, []);
+    //console.log('retrievedRatings ', retrievedRatings);
+
+    //document.querySelector('test').innerHTML = retrievedRatings;
 
     return (
         <div className="festival-page">
@@ -172,13 +116,6 @@ function Festival({ match }) {
                 <div className="all-stars-results">
                     <h1>Ratings</h1>
                     <Average />
-                    {/* <div className="average-ratings">
-                        <h3>Average Ratings</h3>
-                        <p>Location: {locationAvg}</p>
-                        <p>Organization: {organizationAvg}</p>
-                        <p>Food: {foodAvg}</p>
-                        <p>Toilets and Showers: {toiletesShowersAvg}</p>
-                    </div> */}
 
                     {
                         retrievedRatings &&
@@ -187,17 +124,17 @@ function Festival({ match }) {
                                 <div className="each-stars-results" key={idx}>
                                     <p>Location</p>
                                     <p >{elem.location}</p>
-                                    {/* <div className="stars-results">
-                                        <input type="radio" id="1-star1" name="location" value="1" />
-                                        <label htmlFor="1-star1" title="text">{elem.location}</label>
-                                    </div> */}
-                                    <i className="fa fa-star checked la-lg"></i>
+                                    <div className="stars-results">
+                                        <input type="radio" id="test" name="location" value="1" />
+                                        <label htmlFor="test" title="text">{elem.location}</label>
+                                    </div>
+                                    {/* <i className="fa fa-star checked la-lg"></i> */}
                                 </div>
                             )
                         })
                     }
 
-                    {
+                    {/* {
                         justAddedRatings &&
                         justAddedRatings.map((elem, idx) => {
                             return (
@@ -213,28 +150,48 @@ function Festival({ match }) {
                                     </div>
 
 
-                                    {/* <p>Organization</p>
+                                    <p>Organization</p>
                                 <p>{elem.organization}</p>
                                 <p>Food</p>
                                 <p>{elem.food}</p>
                                 <p>Toilets and Showers</p>
-                                <p> {elem.toilets_showers}</p> */}
+                                <p> {elem.toilets_showers}</p> 
 
-                                </div>
+                </div>
 
                             )
                         })
-                    }
+                    } */}
                 </div>
 
 
                 {/* </div> */}
             </div>
-        </div>
+        </div >
     )
 
 }
 export default withRouter(Festival);
+
+/////////////////////////////////
+
+{/* <div className="average-ratings">
+                        <h3>Average Ratings</h3>
+                        <p>Location: {locationAvg}</p>
+                        <p>Organization: {organizationAvg}</p>
+                        <p>Food: {foodAvg}</p>
+                        <p>Toilets and Showers: {toiletesShowersAvg}</p>
+                    </div> */}
+
+//////////////////////////////////
+
+{/* <div className="average-ratings">
+                        <h3>Average Ratings</h3>
+                        <p>Location: {locationAvg}</p>
+                        <p>Organization: {organizationAvg}</p>
+                        <p>Food: {foodAvg}</p>
+                        <p>Toilets and Showers: {toiletesShowersAvg}</p>
+                    </div> */}
 
 
 
@@ -361,6 +318,6 @@ export default withRouter(Festival);
 //await JSON.parse(api_call);
 {/* <ReactWeather
                         forecast="5days"
-                        apikey="b74c34775e1a7ccb972c3eb120e57e32"
+                        apikey=""
                         type="city"
                         city="Berlin" /> */}

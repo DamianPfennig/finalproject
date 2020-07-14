@@ -16,14 +16,6 @@ export function reducer(state = {}, action) {
         return state
     }
 
-    if (action.type == 'ADD_RATINGS') {
-        state = {
-            ...state,
-            addRatings: action.data
-        }
-        return state
-    }
-
     if (action.type == 'GET_RATINGS') {
         state = {
             ...state,
@@ -31,6 +23,33 @@ export function reducer(state = {}, action) {
         }
         return state
     }
+
+    if (action.type == 'ADD_RATINGS') {
+        state = {
+            ...state,
+            ratings: [...state.ratings, ...action.data]
+        }
+        return state
+    }
+
+    if (action.type == 'GET_USER') {
+        state = {
+            ...state,
+            user: action.data
+        }
+    }
+
+
+    return state;
+
+}
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////
 
 
     // if (action.type == 'RECEIVE_FRIENDS_REQUESTS') {
@@ -115,10 +134,9 @@ export function reducer(state = {}, action) {
     //     }
     //     return state
     // }
-    return state;
 
 
 
 
 
-}
+

@@ -72,16 +72,13 @@ export default App;
 
 
 {/* <BrowserRouter>
-
     <div>
         <Root />
         <Route exact path='/festival-registration' component={FestivalRegistration} />
         <Route exact path='/atendees-registration' component={AttendeesRegistration} />
         <Route exact path='/login' component={Login} />
        
-
     </div>
-
 </BrowserRouter> */}
 
 {/* <div className="welcome-container">
@@ -89,9 +86,6 @@ export default App;
                         <div className="welcome-input">
                             <Route exact path='/festival-registration' component={Registration} />
                             <Route exact path='/login' component={Login} />
-
-
                         </div>
                     </HashRouter>
-
                 </div> */}

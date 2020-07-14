@@ -119,4 +119,10 @@ module.exports.getRatings = (url) => {
     `)
 }
 
-
+module.exports.getUser = url => {
+    return db.query(`
+    SELECT *
+    from users
+    WHERE id = ${url}
+    `)
+}
