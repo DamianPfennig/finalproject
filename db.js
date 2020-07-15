@@ -101,12 +101,12 @@ module.exports.getPass = (emailInput) => {
     `);
 };
 
-module.exports.addRatings = (festivalId, location, organization, food, toilets_showers) => {
+module.exports.addRatings = (festivalId, location, organization, food, toilets_showers, text) => {
     return db.query(`
-    INSERT INTO ratings (festival_id, location, organization, food, toilets_showers)
-    VALUES ($1, $2, $3, $4, $5)
+    INSERT INTO ratings (festival_id, location, organization, food, toilets_showers, text)
+    VALUES ($1, $2, $3, $4, $5, $6)
     RETURNING *`,
-        [festivalId, location, organization, food, toilets_showers]
+        [festivalId, location, organization, food, toilets_showers, text]
     )
 }
 

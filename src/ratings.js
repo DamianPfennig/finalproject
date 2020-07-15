@@ -6,9 +6,10 @@ import { Link } from 'react-router-dom';
 
 
 
+
 function Ratings({ match }) {
     const dispatch = useDispatch();
-    const [rating, setRating] = useState();
+    const [textInput, setTextInput] = useState('');
     const retrievedRatings = useSelector(state => state && state.ratings);
 
 
@@ -28,17 +29,30 @@ function Ratings({ match }) {
     input['festivalId'] = match.params.id;
     function handleChange(e) {
         input[e.target.name] = e.target.value;
-        console.log('input in handleChange: ', input)
+        console.log('input in handleChange: ', input);
         // console.log('rating location::', arr);
     }
 
-    async function handleClick() {
-        await dispatch(addRatings(input));
-        location.replace(`/festival/${match.params.id}`)
+    function handleClick() {
+        dispatch(addRatings(input));
+        location.replace(`/festival/${match.params.id}`);
 
     }
 
-    function handleText() { }
+    function handleText(e) {
+        console.log('e.target.value:: ', e.target.value);
+        setTextInput(e.target.value);
+        console.log('textInput ', textInput)
+    }
+
+    function keyCheck(e) {
+        if (e.key == 'Enter') {
+            //preventDefault don't go to next line in extarea
+            e.preventDefault();
+            console.log('input Text:', e.target.value);
+            //e.target.value = '';
+        }
+    }
 
     return (
         <div className="ratings-page">
@@ -105,7 +119,7 @@ function Ratings({ match }) {
                     </div>
                 </div>
 
-                <textarea id="text" name="text" spellCheck="false" rows="12" cols="55" wrap="hard" onChange={handleText} value=""></textarea>
+                <textarea id="text" name="text" spellCheck="false" rows="12" cols="55" wrap="hard" onChange={handleChange} onKeyDown={keyCheck} ></textarea>
 
                 {/* <Link to={`/festival/${match.params.id}`} > */}
                 <button className="btn-ratings" onClick={handleClick}>Send Ratings</button>

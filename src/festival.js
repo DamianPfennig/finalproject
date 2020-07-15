@@ -6,14 +6,7 @@ import { getSelectedFestival, getRatings } from './actions';
 import { Link } from 'react-router-dom';
 
 import Average from './average';
-
-
 import MapContainer from './map';
-import ReactWeather from 'react-open-weather';
-import { FaBeer, FaCarAlt, FaDonate } from 'react-icons/fa';
-import { FiLogIn, FiLogOut } from 'react-icons/fi';
-import { BsPeopleFill, BsMusicNoteBeamed, BsStar, BsStarFill } from 'react-icons/bs';
-
 // import Weather from './weather';
 
 
@@ -22,27 +15,43 @@ function Festival({ match }) {
 
     const selectedFestival = useSelector(state => state.selectedFestival);
     //console.log('data in Festival Component: ', selectedFestival);
+    const retrievedRatings = useSelector(state => state && state.ratings);
+    console.log('retrievedRatings: ', retrievedRatings)
+    const justAddedRatings = useSelector(state => state && state.addRatings);
 
     var city;
-    var weatherData, success;
-    if (selectedFestival) {
-        //console.log('selectedFestival', selectedFestival[0].location)
-        city = selectedFestival[0].location;
-        axios.get(`/get-weather${city}`).then(({ data }) => {
 
+    if (selectedFestival) {
+        city = selectedFestival[0].location;
+        console.log('city::', city)
+        axios.get(`/get-weather${city}`).then(({ data }) => {
             weatherData = data;
-            //console.log('data from server:::::::::::::::::: ', weatherData)
+            console.log('data from server:::::::::::::::::: ', weatherData)
             if (data.length != 0) {
                 success = true;
             }
         }).catch(err => console.log('error ', err))
+
     }
-    //console.log('!!!!!!!!!: ', weatherData)
 
-    const retrievedRatings = useSelector(state => state && state.ratings);
+    ///////////////////////////////////////////////////////////////////
+    // var city;
+    // var weatherData, success;
+    // if (selectedFestival) {
+    //     //console.log('selectedFestival', selectedFestival[0].location)
+    //     city = selectedFestival[0].location;
+    //     axios.get(`/get-weather${city}`).then(({ data }) => {
 
+    //         weatherData = data;
+    //         //console.log('data from server:::::::::::::::::: ', weatherData)
+    //         if (data.length != 0) {
+    //             success = true;
+    //         }
+    //     }).catch(err => console.log('error ', err))
+    // }
+    // //console.log('!!!!!!!!!: ', weatherData)
+    //////////////////////////////////////////////////////////////////////
 
-    const justAddedRatings = useSelector(state => state && state.addRatings);
 
     //console.log('ratings in festival: ', justAddedRatings);
     useEffect(() => {
@@ -51,6 +60,7 @@ function Festival({ match }) {
         //console.log(url);
         dispatch(getSelectedFestival(url));
         dispatch(getRatings(url));
+
 
     }, []);
     //console.log('retrievedRatings ', retrievedRatings);
@@ -61,7 +71,7 @@ function Festival({ match }) {
         <div className="festival-page">
             <div className="weather-container">
                 <h4>Weather in {city}</h4>
-                {
+                {/* {
                     success != true ?
                         <div><p>Information not available</p></div>
                         :
@@ -75,7 +85,7 @@ function Festival({ match }) {
                                 </div>
                             )
                         })
-                }
+                } */}
             </div>
             <div className="selected-festival-container">
                 {/* <div className="info-container"> */}
@@ -115,26 +125,72 @@ function Festival({ match }) {
 
                 <div className="all-stars-results">
                     <h1>Ratings</h1>
+
                     <Average />
 
                     {
                         retrievedRatings &&
                         retrievedRatings.map((elem, idx) => {
                             return (
-                                <div className="each-stars-results" key={idx}>
-                                    <p>Location</p>
-                                    <p >{elem.location}</p>
-                                    <div className="stars-results">
-                                        <input type="radio" id="test" name="location" value="1" />
-                                        <label htmlFor="test" title="text">{elem.location}</label>
+                                <div className="stars-results-container" key={idx}>
+                                    <div className="each-stars-results">
+                                        <p>Location</p>
+                                        <p >{elem.location}</p>
+                                        <div className="stars-results">
+                                            {/* <input type="radio" id="test" name="location" value="1" />
+                                            <label htmlFor="test" title="text">{elem.location}</label> */}
+                                            <i className="fa fa-star checked fa-lg"></i>
+                                        </div>
                                     </div>
-                                    {/* <i className="fa fa-star checked la-lg"></i> */}
+                                    <div className="each-stars-results" >
+                                        <p>Organization</p>
+                                        <p >{elem.organization}</p>
+                                        <div className="stars-results">
+                                            <i className="fa fa-star checked fa-lg"></i>
+                                        </div>
+                                    </div>
+                                    <div className="each-stars-results">
+                                        <p>Food</p>
+                                        <p >{elem.food}</p>
+                                        <div className="stars-results">
+                                            <i className="fa fa-star checked fa-lg"></i>
+                                        </div>
+                                    </div>
+                                    <div className="each-stars-results">
+                                        <p>Toilets and Showers</p>
+                                        <p >{elem.toilets_showers}</p>
+                                        <div className="stars-results">
+                                            <i className="fa fa-star checked fa-lg"></i>
+                                        </div>
+                                    </div>
+                                    <div className="each-text-result">
+                                        <p>User wrote</p>
+                                        <p >{elem.text}</p>
+                                    </div>
                                 </div>
+
                             )
                         })
                     }
+                </div>
+            </div>
+        </div >
+    )
 
-                    {/* {
+}
+export default withRouter(Festival);
+
+
+
+
+
+
+
+
+///////////////////////////////
+
+
+{/* {
                         justAddedRatings &&
                         justAddedRatings.map((elem, idx) => {
                             return (
@@ -162,16 +218,16 @@ function Festival({ match }) {
                             )
                         })
                     } */}
-                </div>
 
 
-                {/* </div> */}
-            </div>
-        </div >
-    )
+////////////////////
 
-}
-export default withRouter(Festival);
+
+// import ReactWeather from 'react-open-weather';
+// import { FaBeer, FaCarAlt, FaDonate } from 'react-icons/fa';
+// import { FiLogIn, FiLogOut } from 'react-icons/fi';
+// import { BsPeopleFill, BsMusicNoteBeamed, BsStar, BsStarFill } from 'react-icons/bs';
+
 
 /////////////////////////////////
 

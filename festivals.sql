@@ -7,6 +7,7 @@ CREATE TABLE festivals
     starting_date DATE,
     finishing_date DATE,
     location VARCHAR,
+    country VARCHAR,
     price INT,
     image_url VARCHAR,
     url VARCHAR,
@@ -18,13 +19,14 @@ CREATE TABLE festivals
 
 
 INSERT INTO festivals
-    (name, starting_date, finishing_date, location, price, style, image_url, url, artists, description)
+    (name, starting_date, finishing_date, location, country, price, style, image_url, url, artists, description)
 VALUES
     (
         'Fusion Festival',
         '2021-06-30',
         '2021-07-04',
-        'Lärz, Germany',
+        'Mirow',
+        'Germany',
         '145',
         'Different music styles, theater, workshops and more',
         'https://s3.amazonaws.com/spicedling/-x5LA_zPzx1w233T6Oe7zoLj-zaDTqbm.jpg',
@@ -35,13 +37,14 @@ VALUES
 
 
 INSERT INTO festivals
-    (name, starting_date, finishing_date, location, price, style, image_url, url, artists, description)
+    (name, starting_date, finishing_date, location, country, price, style, image_url, url, artists, description)
 VALUES
     (
         'Nation of Gondwana',
         '2021-07-23',
         '2021-07-25',
-        'Berlin, Germany',
+        'Berlin',
+        'Germany',
         '120',
         'Electro',
         'https://s3.amazonaws.com/spicedling/raDYuCJw7dr_9dbuQ-z0qs6OtT6s-MiD.jpg',
@@ -52,13 +55,14 @@ VALUES
 
 
 INSERT INTO festivals
-    (name, starting_date, finishing_date, location, price, style, image_url, url, artists, description)
+    (name, starting_date, finishing_date, location, country, price, style, image_url, url, artists, description)
 VALUES
     (
         'Summerjam',
         '2021-07-02',
         '2021-07-04',
-        'Köln, Germany',
+        'Köln',
+        'Germany',
         '90',
         'Reggae',
         'https://s3.amazonaws.com/spicedling/wfDv6O6nB3aCUgOy9Mxd3CK5HlB6_bLC.jpg',
@@ -69,13 +73,14 @@ VALUES
 
 
 INSERT INTO festivals
-    (name, starting_date, finishing_date, location, price, style, image_url, url, artists, description)
+    (name, starting_date, finishing_date, location, country, price, style, image_url, url, artists, description)
 VALUES
     (
         'Primavera Sound',
         '2021-06-21',
         '2021-06-25',
-        'Barcelona, Spain',
+        'Barcelona',
+        'Spain',
         '150',
         'Rock, Pop, Alternative, Native',
         'https://s3.amazonaws.com/spicedling/nKCL0_zhAxXdW3XlWwm4obqBde6jvXQO.jpg',

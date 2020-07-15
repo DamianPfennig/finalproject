@@ -699,6 +699,14 @@ nav{
     text-align: center;
 }
 
+.stars-results-container{
+    width: 90%;
+     background-color: rgb(183, 206, 253);
+     border-radius: 10px;
+     padding: 20px;
+     margin: 20px;
+}
+
 .each-stars-results{
     display: flex;
 }

@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server, {
-    origins: 'localhost:8080'
+    origins: 'localhost:3030'
 });
 const compression = require('compression');
 
@@ -81,18 +81,65 @@ if (process.env.NODE_ENV != 'production') {
     app.use('/bundle.js', (req, res) => res.sendFile(`${__dirname}/bundle.js`));
 }
 
-///////////////////////////////////////////////////////////////
+const fetch = require("node-fetch");
 
+let secrets = require("./secrets");
+//API: secrets.Weather
+
+let weatherUrl;
+
+
+
+let arrWeather = [];
+let finalWeather = [];
+
+function empty() {
+    finalWeather.length = 0
+}
+
+let valueWeather;
 app.get('/get-weather:id', (req, res) => {
     console.log('req.body.city::::::: ', req.params.id);
-    weather.getWeather(req.params.id).then(results => {
-        //console.log('results from weather: ', JSON.parse(results))
-        let test = JSON.parse(results);
-        console.log('::::::::.', test[0].forecast.slice(2));
-        res.json(test[0].forecast.slice(2));
+    weatherUrl = `http://api.openweathermap.org/data/2.5/forecast?q=${req.params.id}&appid=${secrets.Weather}&units=metric`;
+    fetch(weatherUrl).then(res =>
+        res.json()).then(data => {
+            //console.log("Data List Loaded", data.list)
 
-    }).catch(err => { console.log('error in weather: ', err) })
+            data.list.map(elem => {
+                //console.log('temp: ', elem.main.temp)
+                //arr.push(elem.rain);
+                valueWeather = Math.round(elem.main.temp)
+                //console.log('ValueWeather.:', valueWeather);
+                arrWeather.push(valueWeather)
+            })
+            //console.log('arrWeather', arrWeather)
+
+            finalWeather.push(arrWeather[0]);
+            finalWeather.push(arrWeather[8]);
+            finalWeather.push(arrWeather[16]);
+            finalWeather.push(arrWeather[24]);
+            console.log('finalWeather: ', finalWeather);
+            empty();
+        }
+
+        ).catch(err => console.log('error in weather: ', err))
 })
+
+
+///////////////////////////////////////////////////////////////
+
+// app.get('/get-weather:id', (req, res) => {
+//     console.log('req.body.city::::::: ', req.params.id);
+//     weather.getWeather(req.params.id).then(results => {
+//         //console.log('results from weather: ', JSON.parse(results))
+//         let test = JSON.parse(results);
+//         console.log('::::::::.', test[0].forecast.slice(2));
+//         res.json(test[0].forecast.slice(2));
+
+//     }).catch(err => { console.log('error in weather: ', err) })
+// })
+
+/////////////////////////////////////////////////////////////////////////
 
 
 app.post('/organizer', (req, res) => {
@@ -264,9 +311,9 @@ app.get(`/selectedFestival/:id`, (req, res) => {
 app.post('/addRatings', (req, res) => {
     console.log('axios addRatings')
     console.log('req.body: ', req.body);
-    db.addRatings(req.body.festivalId, req.body.location, req.body.organization, req.body.food, req.body.toilets_showers).then(results => {
-        console.log('results addRatings: ', results.rows);
-        res.json(results.rows);
+    db.addRatings(req.body.festivalId, req.body.location, req.body.organization, req.body.food, req.body.toilets_showers, req.body.text).then(results => {
+        console.log('results addRatings: ', results.rows[0]);
+        res.json(results.rows[0]);
     }).catch(err => { console.log('err: ', err) });
 })
 
@@ -336,6 +383,6 @@ app.get('*', function (req, res) {
 
 
 
-server.listen(8080, function () {
-    console.log("Server 8080 listening.");
+server.listen(3030, function () {
+    console.log("Server 3030 listening.");
 });
