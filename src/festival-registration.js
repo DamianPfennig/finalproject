@@ -26,7 +26,7 @@ class FestivalRegistration extends Component {
         console.log('event:::::.', event.target.files[0])
         this.setState({
             file: event.target.files[0],
-            name: event.target.files[0].imageName,
+            imageName: event.target.files[0].imageName,
             selectedImage: true
         })
         //console.log('upload image running')
@@ -35,7 +35,7 @@ class FestivalRegistration extends Component {
     submitImage() {
         var formData = new FormData();
         formData.append('file', this.state.file);
-        formData.append('name', this.state.imageName);
+        formData.append('imageName', this.state.imageName);
         console.log('submit')
         axios.post('/uploadImage', formData).then(({ data }) => {
             console.log('upload image: ', data)
@@ -50,10 +50,10 @@ class FestivalRegistration extends Component {
     handleClick() {
         var formData = new FormData();
         formData.append('file', this.state.file);
-        formData.append('fileName', this.state.imageName);
+        formData.append('imageName', this.state.imageName);
         formData.append('name', this.state.name);
         formData.append('homepage', this.state.homepage);
-        formData.append('startignDate', this.state.startingDate);
+        formData.append('startingDate', this.state.startingDate);
         formData.append('finishingDate', this.state.finishingDate);
         formData.append('location', this.state.location);
         formData.append('price', this.state.price);

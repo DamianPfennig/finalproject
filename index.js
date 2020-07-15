@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server, {
-    origins: 'localhost:8060'
+    origins: 'localhost:8033'
 });
 const compression = require('compression');
 
@@ -101,26 +101,31 @@ let valueWeather;
 app.get('/get-weather:id', (req, res) => {
     console.log('req.body.city::::::: ', req.params.id);
     weatherUrl = `http://api.openweathermap.org/data/2.5/forecast?q=${req.params.id}&appid=${secrets.Weather}&units=metric`;
-    fetch(weatherUrl).then(res =>
-        res.json()).then(data => {
-            //console.log("Data List Loaded", data.list)
-            data.list.map(elem => {
-                //console.log('temp: ', elem.main.temp)
-                //arr.push(elem.rain);
-                valueWeather = Math.round(elem.main.temp)
-                //console.log('ValueWeather.:', valueWeather);
-                arrWeather.push(valueWeather)
-            })
-            //console.log('arrWeather', arrWeather)
-            finalWeather.push(arrWeather[0]);
-            finalWeather.push(arrWeather[8]);
-            finalWeather.push(arrWeather[16]);
-            finalWeather.push(arrWeather[24]);
-            console.log('finalWeather: ', finalWeather);
-            empty();
-        }
+    fetch(weatherUrl).then(apiRes => {
+        console.log('res: ', apiRes)
+        return apiRes.json()
+    }).then(data => {
+        //console.log("Data List Loaded", data.list)
+        data.list.map(elem => {
+            //console.log('temp: ', elem.main.temp)
+            //arr.push(elem.rain);
+            valueWeather = Math.round(elem.main.temp)
+            //console.log('ValueWeather.:', valueWeather);
+            arrWeather.push(valueWeather)
+        })
+        //console.log('arrWeather', arrWeather)
+        finalWeather.push(arrWeather[0]);
+        finalWeather.push(arrWeather[8]);
+        finalWeather.push(arrWeather[16]);
+        finalWeather.push(arrWeather[24]);
+        console.log('finalWeather: ', finalWeather);
 
-        ).catch(err => console.log('error in weather: ', err))
+        res.json(finalWeather)
+        empty();
+
+    }
+
+    ).catch(err => console.log('error in weather: ', err))
 })
 
 
@@ -277,8 +282,9 @@ app.post('/attendees-registration', (req, res) => {
 });
 
 app.get(`/selectedFestival/:id`, (req, res) => {
+    console.log('selectedFestival');
     db.getSelectedFestival(req.params.id).then(results => {
-        //console.log('results selected festival: ', results.rows[0]);
+        console.log('results selected festival: ', results.rows[0]);
         res.json(results.rows);
     }).catch(err => { console.log('err: ', err) });
 
@@ -360,8 +366,8 @@ app.get('*', function (req, res) {
 
 
 
-server.listen(8060, function () {
-    console.log("Server 8060 listening.");
+server.listen(8033, function () {
+    console.log("Server 8033 listening.");
 });
 
 

@@ -77,12 +77,6 @@ module.exports.getSelectedFestival = id => {
 }
 
 
-
-
-
-
-
-
 module.exports.addUser = (first, last, email, pass) => {
     return db.query(`
         INSERT INTO users (first, last, email, password)

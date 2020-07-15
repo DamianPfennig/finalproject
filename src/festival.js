@@ -12,6 +12,7 @@ import MapContainer from './map';
 
 function Festival({ match }) {
     const dispatch = useDispatch();
+    const [weatherFinal, setWeatherFinal] = useState([]);
 
     const selectedFestival = useSelector(state => state.selectedFestival);
     //console.log('data in Festival Component: ', selectedFestival);
@@ -19,20 +20,7 @@ function Festival({ match }) {
     console.log('retrievedRatings: ', retrievedRatings)
     const justAddedRatings = useSelector(state => state && state.addRatings);
 
-    var city;
 
-    if (selectedFestival) {
-        city = selectedFestival[0].location;
-        console.log('city::', city)
-        axios.get(`/get-weather${city}`).then(({ data }) => {
-            weatherData = data;
-            console.log('data from server:::::::::::::::::: ', weatherData)
-            if (data.length != 0) {
-                success = true;
-            }
-        }).catch(err => console.log('error ', err))
-
-    }
 
     ///////////////////////////////////////////////////////////////////
     // var city;
@@ -52,18 +40,33 @@ function Festival({ match }) {
     // //console.log('!!!!!!!!!: ', weatherData)
     //////////////////////////////////////////////////////////////////////
 
-
-    //console.log('ratings in festival: ', justAddedRatings);
     useEffect(() => {
-        //console.log(':::::', match.params.id);
         let url = match.params.id;
-        //console.log(url);
         dispatch(getSelectedFestival(url));
         dispatch(getRatings(url));
+    }, [])
+
+    var city;
+    var objWeather = {};
+    useEffect(() => {
+        if (selectedFestival) {
+            city = selectedFestival[0].location;
+            console.log('city::', city)
+            axios.get(`/get-weather${city}`).then((data) => {
+                console.log('data:', data)
+                setWeatherFinal(data.data);
+                // console.log('data from server:::::::::::::::::: ', weatherData)
+            }).catch(err => console.log('error ', err))
+        }
 
 
-    }, []);
-    //console.log('retrievedRatings ', retrievedRatings);
+    }, [selectedFestival]);
+    for (let i = 0; weatherFinal.length; i++) {
+        objWeather['temp'] = weatherFinal;
+    }
+    console.log('objWeather: ', objWeather);
+
+
 
     //document.querySelector('test').innerHTML = retrievedRatings;
 
@@ -71,21 +74,18 @@ function Festival({ match }) {
         <div className="festival-page">
             <div className="weather-container">
                 <h4>Weather in {city}</h4>
-                {/* {
-                    success != true ?
+                {
+                    !weatherFinal ?
                         <div><p>Information not available</p></div>
                         :
-                        weatherData.map((elem, idx) => {
+                        weatherFinal.map((elem, idx) => {
                             return (
                                 <div className="weather-info" key={idx}>
-                                    <p>{elem.day}</p>
-                                    <p>{elem.high}</p>
-                                    <p>{elem.low}</p>
-                                    <p>{elem.skytextday}</p>
+                                    <p>{elem[idx]}</p>
                                 </div>
                             )
                         })
-                } */}
+                }
             </div>
             <div className="selected-festival-container">
                 {/* <div className="info-container"> */}
