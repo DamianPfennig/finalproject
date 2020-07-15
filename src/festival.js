@@ -6,7 +6,9 @@ import { getSelectedFestival, getRatings } from './actions';
 import { Link } from 'react-router-dom';
 
 import Average from './average';
-import MapContainer from './map';
+import Stars from './stars';
+
+//import MapContainer from './map';
 // import Weather from './weather';
 
 
@@ -52,27 +54,32 @@ function Festival({ match }) {
         if (selectedFestival) {
             city = selectedFestival[0].location;
             console.log('city::', city)
-            axios.get(`/get-weather${city}`).then((data) => {
-                console.log('data:', data)
-                setWeatherFinal(data.data);
-                // console.log('data from server:::::::::::::::::: ', weatherData)
-            }).catch(err => console.log('error ', err))
+            // axios.get(`/get-weather${city}`).then((data) => {
+            //     console.log('data:', data)
+            //     setWeatherFinal(data.data);
+            //     // console.log('data from server:::::::::::::::::: ', weatherData)
+            // }).catch(err => console.log('error ', err))
         }
-
-
     }, [selectedFestival]);
-    for (let i = 0; weatherFinal.length; i++) {
-        objWeather['temp'] = weatherFinal;
-    }
-    console.log('objWeather: ', objWeather);
+
+    // for (let i = 0; weatherFinal.length; i++) {
+    //     objWeather['temp'] = weatherFinal;
+    // }
+    // console.log('objWeather: ', objWeather);
 
 
 
     //document.querySelector('test').innerHTML = retrievedRatings;
 
+    console.log('retrievedRatings: ', retrievedRatings);
+
+
+
+
+
     return (
         <div className="festival-page">
-            <div className="weather-container">
+            {/* <div className="weather-container">
                 <h4>Weather in {city}</h4>
                 {
                     !weatherFinal ?
@@ -86,7 +93,7 @@ function Festival({ match }) {
                             )
                         })
                 }
-            </div>
+            </div> */}
             <div className="selected-festival-container">
                 {/* <div className="info-container"> */}
                 {
@@ -98,7 +105,7 @@ function Festival({ match }) {
                                     <img src={elem.imageurl} alt="image" />
                                 </div>
                                 <h1>{elem.name}</h1>
-                                <h2>{elem.location}</h2>
+                                <h2>{elem.location}, {elem.country}</h2>
                                 <h3>{elem.startingdate} - {elem.finishingdate}</h3>
                                 <div className="description">
                                     <h4>What is {elem.name}?</h4>
@@ -121,13 +128,9 @@ function Festival({ match }) {
                         )
                     })
                 }
-
-
                 <div className="all-stars-results">
                     <h1>Ratings</h1>
-
                     <Average />
-
                     {
                         retrievedRatings &&
                         retrievedRatings.map((elem, idx) => {
@@ -139,7 +142,7 @@ function Festival({ match }) {
                                         <div className="stars-results">
                                             {/* <input type="radio" id="test" name="location" value="1" />
                                             <label htmlFor="test" title="text">{elem.location}</label> */}
-                                            <i className="fa fa-star checked fa-lg"></i>
+                                            <Stars />
                                         </div>
                                     </div>
                                     <div className="each-stars-results" >
@@ -179,6 +182,42 @@ function Festival({ match }) {
 
 }
 export default withRouter(Festival);
+
+////////////////////////////////////////
+
+// {
+//     if ({ elem.location } = 1) {
+//         <div className="stars-results">
+//             <i className="fa fa-star checked fa-lg"></i>
+//         </div>
+//     } else if ({ elem.location } = 2) {
+//         <div className="stars-results">
+//             <i className="fa fa-star checked fa-lg"></i>
+//             <i className="fa fa-star checked fa-lg"></i>
+//         </div>
+//     } else if ({ elem.location } = 3) {
+//         <div className="stars-results">
+//             <i className="fa fa-star checked fa-lg"></i>
+//             <i className="fa fa-star checked fa-lg"></i>
+//             <i className="fa fa-star checked fa-lg"></i>
+//         </div>
+//     } else if ({ elem.location } = 4) {
+//         <div className="stars-results">
+//             <i className="fa fa-star checked fa-lg"></i>
+//             <i className="fa fa-star checked fa-lg"></i>
+//             <i className="fa fa-star checked fa-lg"></i>
+//             <i className="fa fa-star checked fa-lg"></i>
+//         </div>
+//     } else if ({ elem.location } = 5) {
+//         <div className="stars-results">
+//             <i className="fa fa-star checked fa-lg"></i>
+//             <i className="fa fa-star checked fa-lg"></i>
+//             <i className="fa fa-star checked fa-lg"></i>
+//             <i className="fa fa-star checked fa-lg"></i>
+//             <i className="fa fa-star checked fa-lg"></i>
+//         </div>
+//     }
+// }
 
 
 

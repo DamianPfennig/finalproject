@@ -12,7 +12,7 @@ class AttendeesRegistration extends Component {
     }
 
     handleChange(e) {
-        console.log('e.target: ', e.target.value)
+        // console.log('e.target: ', e.target.value)
         this.setState({
             [e.target.name]: e.target.value
         })
@@ -24,23 +24,6 @@ class AttendeesRegistration extends Component {
             console.log('data from server: ', data)
             if (data.length != 0) {
                 //log user into app
-                location.replace('/')
-            } else {
-                //div pop-up 'something went wrong'
-                this.setState({
-                    error: true
-                });
-            }
-        }).catch(err => console.log('error ', err))
-    }
-
-    submit() {
-        console.log('about to submit!!!!')
-        //get this.state info and send it to server with axios
-        axios.post('/attendees-registration', this.state).then(({ data }) => {
-            console.log('data from server: ', data.success)
-            if (data.success) {
-                //log user into app
                 location.replace('/home')
             } else {
                 //div pop-up 'something went wrong'
@@ -50,6 +33,23 @@ class AttendeesRegistration extends Component {
             }
         }).catch(err => console.log('error ', err))
     }
+
+    // submit() {
+    //     console.log('about to submit!!!!')
+    //     //get this.state info and send it to server with axios
+    //     axios.post('/attendees-registration', this.state).then(({ data }) => {
+    //         console.log('data from server: ', data)
+    //         if (data.success) {
+    //             //log user into app
+    //             location.replace('/home')
+    //         } else {
+    //             //div pop-up 'something went wrong'
+    //             this.setState({
+    //                 error: true
+    //             });
+    //         }
+    //     }).catch(err => console.log('error ', err))
+    // }
 
 
     render() {
@@ -63,7 +63,7 @@ class AttendeesRegistration extends Component {
                     <input id="last" name="last" placeholder="Enter Last Name" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
                     <input id="email" name="email" placeholder="Enter Email" type="email" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
                     <input id="password" name="password" placeholder="Enter Password" type="password" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
-                    <button className="btn-attendees-registration" onClick={() => this.submit()}>Register</button>
+                    <button className="btn-attendees-registration" onClick={() => this.handleClick()}>Register</button>
                 </div>
                 <br></br>
                 <p>Are you already registered?</p>

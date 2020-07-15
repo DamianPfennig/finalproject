@@ -38,13 +38,13 @@ module.exports.getFestivals = () => {
     `)
 }
 
-module.exports.addFestival = (imageUrl, name, homepage, startingDay, finishingDay, location, price, style, description) => {
+module.exports.addFestival = (imageUrl, name, homepage, startingDay, finishingDay, location, country, price, style, description) => {
     return db.query(
         `
-        INSERT INTO festivals (image_url, name, url, starting_date,finishing_date, location, price, style, description)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+        INSERT INTO festivals (image_url, name, url, starting_date,finishing_date, location, country, price, style, description)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, 10$)
         RETURNING *`,
-        [imageUrl, name, homepage, startingDay, finishingDay, location, price, style, description]
+        [imageUrl, name, homepage, startingDay, finishingDay, location, country, price, style, description]
     );
 };
 

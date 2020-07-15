@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server, {
-    origins: 'localhost:8033'
+    origins: 'localhost:3010'
 });
 const compression = require('compression');
 
@@ -223,13 +223,14 @@ app.post('/festival-registration', uploader.single('file'), ses.upload, (req, re
     let startingDate = req.body.startingDate;
     let finishingDate = req.body.finishingDate;
     let location = req.body.location;
+    let country = req.body.country;
     let price = req.body.price;
     let style = req.body.style;
     let description = req.body.description;
     let filename = req.file.filename;
     let imageUrl = `https://s3.amazonaws.com/spicedling/${filename}`;
     if (req.file) {
-        db.addFestival(imageUrl, name, homepage, startingDate, finishingDate, location, price, style, description).then(results => {
+        db.addFestival(imageUrl, name, homepage, startingDate, finishingDate, location, counrty, price, style, description).then(results => {
             req.session.userId = results.rows[0].id;
             console.log('results from addFestivals: ', results.rows);
             res.json(results.rows[0]);
@@ -338,12 +339,12 @@ app.get('/', (req, res) => {
 
 
 app.get('/home', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
-    // if (!req.session.userId) {
-    //     res.redirect('/home');
-    // } else {
-    //     res.sendFile(__dirname + '/index.html');
-    // }
+    //res.sendFile(__dirname + '/index.html');
+    if (!req.session.userId) {
+        res.redirect('/home');
+    } else {
+        res.sendFile(__dirname + '/index.html');
+    }
 })
 
 
@@ -366,8 +367,8 @@ app.get('*', function (req, res) {
 
 
 
-server.listen(8033, function () {
-    console.log("Server 8033 listening.");
+server.listen(3010, function () {
+    console.log("Server 3010 listening.");
 });
 
 

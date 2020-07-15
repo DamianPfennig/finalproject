@@ -9,6 +9,7 @@ class FestivalRegistration extends Component {
         super(props);
         this.state = {
             error: false,
+            selectedImage: false
 
         }
         this.selectedImage = this.selectedImage.bind(this);
@@ -56,6 +57,7 @@ class FestivalRegistration extends Component {
         formData.append('startingDate', this.state.startingDate);
         formData.append('finishingDate', this.state.finishingDate);
         formData.append('location', this.state.location);
+        formData.append('country', this.state.country);
         formData.append('price', this.state.price);
         formData.append('style', this.state.style);
         formData.append('confirmed_artists', this.state.confirmed_artists);
@@ -101,6 +103,8 @@ class FestivalRegistration extends Component {
 
                     <input id="location" name="location" placeholder="Location" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
 
+                    <input id="country" name="country" placeholder="Country" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
+
                     <input id="price" name="price" placeholder="Price" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
 
                     <input id="style" name="style" placeholder="Style" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
@@ -108,6 +112,14 @@ class FestivalRegistration extends Component {
                     <input id="confirmed_artists" name="confirmed_artists" placeholder="Confirmed Artists" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
 
                     <input type="file" id="url" className="upload-image" name="url" accept="image/*" multiple onChange={() => this.selectedImage(event)} />
+                    {/* {
+                        this.state.selectedImage ?
+                            <label className="image-label" htmlFor="file">{this.state.name}</label>
+
+                            :
+                            <label className="image-label" htmlFor="file">Choose an image</label>
+                    } */}
+
                     <br></br>
                     <textarea id="description" name="description" placeholder="Write some lines describing your festival" spellCheck="false" rows="12" cols="55" wrap="hard" onChange={e => this.handleChange(e)}></textarea>
 

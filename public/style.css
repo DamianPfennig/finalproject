@@ -18,8 +18,11 @@ body{
 .main-section{
     position: relative;
     grid-row: 2/3;
-    grid-column: 2/3;
-    
+    grid-column: 2/3; 
+}
+#main{
+    height: 100vh;
+    width: 100%;
 }
 /*----------------------header---------------------*/
 
@@ -48,14 +51,17 @@ nav{
     list-style: none;
 }
 
-.nav-links a li{
+.nav-links a{
     color: #f3f3f3;
     font-family: 'Varela Round', sans-serif;
-        text-decoration: none;
-
-    
-
+    text-decoration: none;
+    padding: 30px;
+    transition: 0.3s;
 }
+.nav-links a:hover{
+    background-color: rgb(70, 81, 87) ;
+}
+
 
 .nav-links a li:visited{
     color: #f3f3f3;
@@ -193,7 +199,8 @@ nav{
 
 .btn-registration:hover{
     /* background-color: #b4b4b4; */
-    background-color: rgba(54, 54, 54, 0.4);
+    background-color: rgb(99, 113, 121);
+    color: #f3f3f3;
 }
 
 .registration-container p{
@@ -222,14 +229,18 @@ nav{
     position: relative;
     grid-row: 2/3;
     grid-column: 2/4;
-    height: 400px;
+    margin-top: 40px;
+    height: 100%;
     width: 60%;
     left: 50%;
     transform: translateX(-50%);
 }
+.festival-registration{
+    height: 100%;
+}
 
 .festival-registration-container h2{
-    margin-top: 0;
+    margin-bottom: 30px;
     text-align: center;
     color: #3f3f3f;
 }
@@ -243,13 +254,13 @@ nav{
   margin-bottom: 20px;
   padding: 4px;
   width: 70%;
-  
+   outline: none;
   height: 32px;
   border: none;
   border-bottom: 1px solid #3f3f3f;
   background-color: transparent;
   font-family: 'Varela Round', sans-serif;
-  font-weight: 400;
+  font-weight: 600;
   font-size: 15px;
   transition: 0.2s ease;
   color: #3f3f3f;
@@ -261,6 +272,58 @@ nav{
 .festival-registration .upload-image{
     border-bottom: none;
 }
+
+/* .upload-image{
+    
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: 1;
+} */
+
+/* .image-label {
+    position: relative; 
+    font-size: 15px;
+    font-weight: 600;
+    color: #3f3f3f;
+     background-color: rgb(17, 17, 17); 
+    border: #3f3f3f;
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+   
+}
+
+.image-label{
+    height: 20px;
+    width:   100px;
+    color: #3f3f3f;
+}
+
+
+ .upload-image + .image-label
+{
+    position: relative;
+    left: 40%;
+    transform: translateX(-50%);
+} 
+
+
+.image-label {
+	outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+    color: #f3f3f3;
+} */
+
+/* .image-label{
+    background-color: rgb(99, 113, 121);
+    color: #f3f3f3;
+} */
+
 
 .btn-submit-image{
     margin-bottom: 40px;
@@ -276,9 +339,14 @@ nav{
 
 
 .btn-festival-registration{
+    position: relative;
+    bottom: -50px;
+    left: -50%;
+    transform: translateX(-50%);
     border: transparent;
     background: transparent;
     border-radius: 6px;
+    border: #3f3f3f solid 1px;
     padding: 10px 15px;
     cursor: pointer;
     color: #3f3f3f;
@@ -288,7 +356,8 @@ nav{
 
 .btn-festival-registration:hover{
     /* background-color: #b4b4b4; */
-    background-color: rgba(78, 78, 78, 0.4);
+    background-color: rgb(99, 113, 121);
+    color: #f3f3f3;
 }
 
 .festival-registration-container p{
@@ -310,8 +379,13 @@ nav{
     background-color: rgba(78, 78, 78, 0.4);
 }
 
-.upload-image{
-
+.festival-registration textarea{
+font-size: 15px; 
+    position: relative;
+    border: #3f3f3f solid 1px;
+    color: #3f3f3f;
+    padding: 10px;
+    font-family: 'Varela Round', sans-serif;
 }
 
 /*---------------------Login----------------------*/
@@ -369,13 +443,15 @@ nav{
     cursor: pointer;
     margin: 30px 0px ;
     color: #3f3f3f;
+    border: #3f3f3f solid 1px;
     transition: 0.3s;
     margin-top: 0;
 }
 
 .btn-login:hover{
-    background-color: rgba(78, 78, 78, 0.5);
-
+    /* background-color: rgba(78, 78, 78, 0.5); */
+background-color: rgb(99, 113, 121);
+    color: #f3f3f3;
 }
 
 .login-password-error,
@@ -437,11 +513,15 @@ nav{
     height: auto;
     width: 100%;
     object-fit: content; 
+   
 }
 
 .festival-info img{
     height: auto;
     width: 100%;
+    border-radius: 10px;
+    box-shadow: 10px 10px 5px grey;
+
 }
 
 .festival-info .overlay{
@@ -457,6 +537,8 @@ nav{
     transition: 0.2s opacity;
     -webkit-transition-delay: 0.2s;
     transition-delay: 0.2s;
+    border-radius: 10px;
+
 }
 
 .festival-info:hover .overlay {
@@ -570,6 +652,7 @@ nav{
     width: 90%;
     border-radius: 20px;
     padding: 20px;
+    box-shadow: 10px 10px 5px grey;
 }
 
 .info-container h1,
@@ -626,13 +709,14 @@ nav{
     position: absolute;
     grid-row: 2/3;
     grid-column: 2/3;
-    height: 100%;
+    height: 100vh;
     width: 100%;
 }
 
 .ratings-container{
     position: relative;
     width: 80%;
+    height: 100%;
     top: 50px;
     left: 50%;
     transform: translateX(-50%);
@@ -693,6 +777,7 @@ nav{
     padding: 20px;
     margin-top: 50px;
     border-radius: 10px;
+    box-shadow: 10px 10px 5px grey;
 }
 
 .all-stars-results h1{
@@ -817,3 +902,68 @@ nav{
   color: #f5cf29;
 }
 
+
+/*----------------table-------------------*/
+
+.ratings-container table{
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    /* border-collapse: collapse;*/
+    width: 50%; 
+    position: relative;
+   
+    left: 50%;
+    transform: translateX(-50%); 
+    margin-bottom: 40px;
+}
+
+.ratings-container textarea{
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size: 15px; 
+    position: relative;
+   
+    left: 50%;
+    transform: translateX(-50%);
+    /* background-color: transparent; */
+    border: #3f3f3f solid 1px;
+    color: #3f3f3f;
+    padding: 10px;
+}
+
+.btn-ratings{
+    position: absolute;
+    bottom: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: transparent;
+    background: transparent;
+    border-radius: 6px;
+    border: solid #3f3f3f 1px;
+    padding: 10px 15px;
+    cursor: pointer;
+    color: #3f3f3f;
+    transition: 0.3s;
+    font-size: 15px;
+}
+
+.btn-ratings:hover{
+    /* background-color: rgba(78, 78, 78, 0.4); */
+background-color: rgb(99, 113, 121);
+    color: #f3f3f3;
+}
+
+table tbody .item .stars{
+    position: absolute;
+    right: 5%;
+}
+ 
+
+.ratings-container table tr{
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.ratings-container table tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+.ratings-container table tr:hover {background-color: #ddd;}
