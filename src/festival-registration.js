@@ -16,7 +16,7 @@ class FestivalRegistration extends Component {
     }
 
     handleChange(e) {
-        console.log('e.target: ', e.target.value)
+        // console.log('e.target: ', e.target.value)
         this.setState({
             [e.target.name]: e.target.value
         })
@@ -48,8 +48,19 @@ class FestivalRegistration extends Component {
 
 
     handleClick() {
+        var formData = new FormData();
+        formData.append('file', this.state.file);
+        formData.append('fileName', this.state.imageName);
+        formData.append('name', this.state.name);
+        formData.append('homepage', this.state.homepage);
+        formData.append('startignDate', this.state.startingDate);
+        formData.append('finishingDate', this.state.finishingDate);
+        formData.append('location', this.state.location);
+        formData.append('price', this.state.price);
+        formData.append('style', this.state.style);
+        formData.append('confirmed_artists', this.state.confirmed_artists);
         console.log('this.state in handleClick: ', this.state)
-        axios.post('/festival-registration', this.state).then(({ data }) => {
+        axios.post('/festival-registration', formData).then(({ data }) => {
             console.log('data from server: ', data)
             if (data.length != 0) {
                 //log user into app
@@ -72,11 +83,14 @@ class FestivalRegistration extends Component {
                 <div className="festival-registration">
                     {/* onChange={e => this.handleChange(e)} */}
 
-                    <input type="file" id="url" className="upload-image" name="url" accept="image/*" multiple onChange={() => this.selectedImage(event)} />
+                    {/* <input type="file" id="url" className="upload-image" name="url" accept="image/*" multiple onChange={() => this.selectedImage(event)} />
 
                     <button className="btn-submit-image" onClick={() => this.submitImage()}>Upload Image</button>
-                    <br></br>
+                    <br></br> */}
 
+                    {/* <input id="email" name="email" placeholder="Enter Email" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
+                    <input id="password" name="password" placeholder="Enter Password" type="password" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
+                    <br></br> */}
                     <input id="name" name="name" placeholder="Name of the Festival" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
 
                     <input id="homepage" name="homepage" placeholder="Homepage " spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
@@ -93,6 +107,8 @@ class FestivalRegistration extends Component {
 
                     <input id="confirmed_artists" name="confirmed_artists" placeholder="Confirmed Artists" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
 
+                    <input type="file" id="url" className="upload-image" name="url" accept="image/*" multiple onChange={() => this.selectedImage(event)} />
+                    <br></br>
                     <textarea id="description" name="description" placeholder="Write some lines describing your festival" spellCheck="false" rows="12" cols="55" wrap="hard" onChange={e => this.handleChange(e)}></textarea>
 
                     <button className="btn-festival-registration" onClick={() => this.handleClick()}>Register Festival</button>

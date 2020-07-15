@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server, {
-    origins: 'localhost:3030'
+    origins: 'localhost:8060'
 });
 const compression = require('compression');
 
@@ -104,7 +104,6 @@ app.get('/get-weather:id', (req, res) => {
     fetch(weatherUrl).then(res =>
         res.json()).then(data => {
             //console.log("Data List Loaded", data.list)
-
             data.list.map(elem => {
                 //console.log('temp: ', elem.main.temp)
                 //arr.push(elem.rain);
@@ -113,7 +112,6 @@ app.get('/get-weather:id', (req, res) => {
                 arrWeather.push(valueWeather)
             })
             //console.log('arrWeather', arrWeather)
-
             finalWeather.push(arrWeather[0]);
             finalWeather.push(arrWeather[8]);
             finalWeather.push(arrWeather[16]);
@@ -149,6 +147,7 @@ app.post('/organizer', (req, res) => {
     hash(pass).then(hashedPass => {
         db.addOrganizer(email, hashedPass).then(results => {
             req.session.userId = results.rows[0].id;
+            req.session.organizer = true;
             console.log('cookie after register addOrganizer: ', req.session.userId);
             results.rows[0].success = true;
             console.log('results: ', results.rows[0]);
@@ -212,24 +211,30 @@ app.get('/festivals', (req, res) => {
     });
 })
 
-// app.post('/festival-registration', (req, res) => {
-//     console.log('req.body', req.body);
-//     let name = req.body.name;
-//     let homepage = req.body.homepage;
-//     let startingDate = req.body.startingDate;
-//     let finishingDate = req.body.finishingDate;
-//     let location = req.body.location;
-//     let price = req.body.price;
-//     let style = req.body.style;
-//     let description = req.body.description;
-//     db.addFestival(name, homepage, startingDate, finishingDate, location, price, style, description).then(results => {
-//         req.session.userId = results.rows[0].id;
-//         console.log('results from addFestivals: ', results.rows);
-//         res.json(results.rows[0]);
-//     }).catch(err => {
-//         console.log('err: ', err);
-//     });
-// })
+app.post('/festival-registration', uploader.single('file'), ses.upload, (req, res) => {
+    console.log('req.body festival registration', req.body);
+    let name = req.body.name;
+    let homepage = req.body.homepage;
+    let startingDate = req.body.startingDate;
+    let finishingDate = req.body.finishingDate;
+    let location = req.body.location;
+    let price = req.body.price;
+    let style = req.body.style;
+    let description = req.body.description;
+    let filename = req.file.filename;
+    let imageUrl = `https://s3.amazonaws.com/spicedling/${filename}`;
+    if (req.file) {
+        db.addFestival(imageUrl, name, homepage, startingDate, finishingDate, location, price, style, description).then(results => {
+            req.session.userId = results.rows[0].id;
+            console.log('results from addFestivals: ', results.rows);
+            res.json(results.rows[0]);
+        }).catch(err => {
+            console.log('err: ', err);
+        });
+    } else {
+        res.json({ success: false });
+    }
+})
 
 app.post('/uploadImage', uploader.single('file'), (req, res) => {
     console.log('axios in /upload')
@@ -250,36 +255,7 @@ app.post('/uploadImage', uploader.single('file'), (req, res) => {
     }
 })
 
-app.post('/festival-registration', (req, res) => {
-    console.log('req.body uploadimage::: ', req.body)
-    let name = req.body.name;
-    let homepage = req.body.homepage;
-    let startingDate = req.body.startingDate;
-    let finishingDate = req.body.finishingDate;
-    let location = req.body.location;
-    let price = req.body.price;
-    let style = req.body.style;
-    let description = req.body.description;
-    if (req.file) {
-        db.addFestival(name, image, homepage, startingDate, finishingDate, location, price, style, description).then(results => {
-            //req.session.userId = results.rows[0].id;
-            console.log('results from addFestivals: ', results.rows);
-            res.json(results.rows[0]);
-        }).catch(err => {
-            console.log('err: ', err);
-        });
 
-
-        //     db.addImage(url).then(results => {
-        //         console.log('results from addImages: ', results.rows);
-        //         res.json(results.rows[0]);
-        //     }).catch(err => {
-        //         console.log('err: ', err);
-        //     });
-        // } else {
-        //     res.json({ success: false });
-    }
-})
 
 app.post('/attendees-registration', (req, res) => {
     console.log('req.body', req.body);
@@ -290,9 +266,10 @@ app.post('/attendees-registration', (req, res) => {
     hash(pass).then(hashedPass => {
         db.addUser(first, last, email, hashedPass).then(results => {
             req.session.userId = results.rows[0].id;
+            req.session.user = true;
             console.log('cookie after register addUser: ', req.session.userId);
             //console.log('hashedPass: ', hashedPass);
-            results.rows[0].success = true;
+
             console.log('results: ', results.rows[0]);
             res.json(results.rows[0]);
         }).catch(err => console.log('error in registration', err));
@@ -310,7 +287,7 @@ app.get(`/selectedFestival/:id`, (req, res) => {
 
 app.post('/addRatings', (req, res) => {
     console.log('axios addRatings')
-    console.log('req.body: ', req.body);
+    //console.log('req.body: ', req.body);
     db.addRatings(req.body.festivalId, req.body.location, req.body.organization, req.body.food, req.body.toilets_showers, req.body.text).then(results => {
         console.log('results addRatings: ', results.rows[0]);
         res.json(results.rows[0]);
@@ -383,6 +360,44 @@ app.get('*', function (req, res) {
 
 
 
-server.listen(3030, function () {
-    console.log("Server 3030 listening.");
+server.listen(8060, function () {
+    console.log("Server 8060 listening.");
 });
+
+
+
+
+
+
+///////////////////////////////////////
+//
+//app.post('/festival-registration', (req, res) => {
+//     console.log('req.body uploadimage::: ', req.body)
+//     let name = req.body.name;
+//     let homepage = req.body.homepage;
+//     let startingDate = req.body.startingDate;
+//     let finishingDate = req.body.finishingDate;
+//     let location = req.body.location;
+//     let price = req.body.price;
+//     let style = req.body.style;
+//     let description = req.body.description;
+//     if (req.file) {
+//         db.addFestival(name, image, homepage, startingDate, finishingDate, location, price, style, description).then(results => {
+//             //req.session.userId = results.rows[0].id;
+//             console.log('results from addFestivals: ', results.rows);
+//             res.json(results.rows[0]);
+//         }).catch(err => {
+//             console.log('err: ', err);
+//         });
+
+
+//         //     db.addImage(url).then(results => {
+//         //         console.log('results from addImages: ', results.rows);
+//         //         res.json(results.rows[0]);
+//         //     }).catch(err => {
+//         //         console.log('err: ', err);
+//         //     });
+//         // } else {
+//         //     res.json({ success: false });
+//     }
+// })

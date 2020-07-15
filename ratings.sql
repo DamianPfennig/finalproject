@@ -1,3 +1,4 @@
+
 DROP TABLE IF EXISTS ratings;
 
 CREATE TABLE ratings
@@ -11,4 +12,3 @@ CREATE TABLE ratings
     text VARCHAR,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-

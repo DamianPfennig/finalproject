@@ -42,6 +42,7 @@ const s3 = new aws.S3({
 
 exports.upload = (req, res, next) => {
     if (!req.file) {
+        console.log('!!!!!!!!!!!!!!!!!')
         return res.sendStatus(500);
     }
 

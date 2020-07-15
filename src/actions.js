@@ -11,8 +11,18 @@ export async function getFestivals() {
     }
 }
 
+export async function getImages() {
+    const { data } = await axios.get('/get-image');
+    //console.log('getImage data in action: ', data);
+    return {
+        type: 'GET_IMAGE',
+        data: data
+
+    }
+}
+
 export async function getSelectedFestival(url) {
-    //console.log('action SelectedFestival');
+    console.log('action SelectedFestival');
     const { data } = await axios.get(`/selectedFestival/${url}`);
     //console.log('data in festival:: ', data);
     return {

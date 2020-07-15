@@ -12,7 +12,8 @@ class Login extends Component {
 
         this.setState({
             [e.target.name]: e.target.value
-        }, () => console.log('this.state in loggedIn: ', this.state));
+        });
+        //, () => console.log('this.state in loggedIn: ', this.state)
     }
 
     errorMessage() {
@@ -24,7 +25,7 @@ class Login extends Component {
 
     submit() {
         console.log('about to submit!!!!')
-        console.log(this.state)
+        console.log(':::::::::', this.state)
         axios.post('/login', this.state).then(({ data }) => {
             console.log('data from server: ', data.success);
             if (data.length == 0) {

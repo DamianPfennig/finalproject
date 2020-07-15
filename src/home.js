@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useState, useEffect } from "react";
-import { getFestivals } from './actions';
+import { getFestivals, getImage } from './actions';
 import axios from './axios';
 
 export default function Home() {
@@ -11,6 +11,9 @@ export default function Home() {
 
     console.log('festivals: ', festivals)
 
+    // useEffect(() => {
+    //     dispatch(getImages());
+    // }, [festivals])
 
     useEffect(() => {
         console.log('mounting')

@@ -195,26 +195,19 @@ export default withRouter(Festival);
                         justAddedRatings.map((elem, idx) => {
                             return (
                                 <div className="each-stars-results" key={idx}>
-
                                     <p>Location</p>
-
                                     <p >{elem.location}</p>
-
                                     <div className="stars-results">
                                         <input type="radio" id="1-star1" name="location" value="1" />
                                         <label htmlFor="1-star1" title="text">{elem.location}</label>
                                     </div>
-
-
                                     <p>Organization</p>
                                 <p>{elem.organization}</p>
                                 <p>Food</p>
                                 <p>{elem.food}</p>
                                 <p>Toilets and Showers</p>
                                 <p> {elem.toilets_showers}</p> 
-
                 </div>
-
                             )
                         })
                     } */}
