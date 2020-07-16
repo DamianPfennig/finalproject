@@ -61,6 +61,7 @@ class FestivalRegistration extends Component {
         formData.append('price', this.state.price);
         formData.append('style', this.state.style);
         formData.append('confirmed_artists', this.state.confirmed_artists);
+        formData.append('description', this.state.description);
         console.log('this.state in handleClick: ', this.state)
         axios.post('/festival-registration', formData).then(({ data }) => {
             console.log('data from server: ', data)
