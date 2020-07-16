@@ -93,23 +93,23 @@ class FestivalRegistration extends Component {
                     {/* <input id="email" name="email" placeholder="Enter Email" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
                     <input id="password" name="password" placeholder="Enter Password" type="password" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
                     <br></br> */}
-                    <input id="name" name="name" placeholder="Name of the Festival" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
+                    <input id="name" name="name" placeholder="Name of the Festival" spellCheck="false" onChange={e => this.handleChange(e)} />
 
-                    <input id="homepage" name="homepage" placeholder="Homepage " spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
+                    <input id="homepage" name="homepage" placeholder="Homepage " spellCheck="false" onChange={e => this.handleChange(e)} />
 
-                    <input id="startingDate" name="startingDate" placeholder="Starting Day ('YYYY-MM-DD')" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
+                    <input id="startingDate" name="startingDate" placeholder="Starting Day ('YYYY-MM-DD')" spellCheck="false" onChange={e => this.handleChange(e)} />
 
-                    <input id="finishingDate" name="finishingDate" placeholder="Finishing Day ('YYYY-MM-DD')" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
+                    <input id="finishingDate" name="finishingDate" placeholder="Finishing Day ('YYYY-MM-DD')" spellCheck="false" onChange={e => this.handleChange(e)} />
 
-                    <input id="location" name="location" placeholder="Location" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
+                    <input id="location" name="location" placeholder="Location" spellCheck="false" onChange={e => this.handleChange(e)} />
 
-                    <input id="country" name="country" placeholder="Country" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
+                    <input id="country" name="country" placeholder="Country" spellCheck="false" onChange={e => this.handleChange(e)} />
 
-                    <input id="price" name="price" placeholder="Price" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
+                    <input id="price" name="price" placeholder="Price" spellCheck="false" onChange={e => this.handleChange(e)} />
 
-                    <input id="style" name="style" placeholder="Style" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
+                    <input id="style" name="style" placeholder="Style" spellCheck="false" onChange={e => this.handleChange(e)} />
 
-                    <input id="confirmed_artists" name="confirmed_artists" placeholder="Confirmed Artists" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
+                    <input id="confirmed_artists" name="confirmed_artists" placeholder="Confirmed Artists" spellCheck="false" onChange={e => this.handleChange(e)} />
 
                     <input type="file" id="url" className="upload-image" name="url" accept="image/*" multiple onChange={() => this.selectedImage(event)} />
                     {/* {

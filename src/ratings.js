@@ -5,8 +5,6 @@ import { withRouter } from "react-router";
 import { Link } from 'react-router-dom';
 
 
-
-
 function Ratings({ match }) {
     const dispatch = useDispatch();
     const [textInput, setTextInput] = useState('');
@@ -131,7 +129,9 @@ function Ratings({ match }) {
                     </tbody>
                 </table>
 
-                <textarea id="text" name="text" spellCheck="false" rows="8" cols="55" wrap="hard" onChange={handleChange} onKeyDown={keyCheck} ></textarea>
+                <textarea id="text" name="text" spellCheck="false" rows="8" cols="55" wrap="hard" placeholder="Write some comments about the festival" onChange={handleChange} onKeyDown={keyCheck} ></textarea>
+
+
 
                 {/* <Link to={`/festival/${match.params.id}`} > */}
                 <button className="btn-ratings" onClick={handleClick}>Send Ratings</button>

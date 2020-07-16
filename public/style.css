@@ -180,7 +180,7 @@ nav{
 
 .registration input:focus{
     /* background-color: #ddd; */
-    width: 80%;
+    
     outline: none;
     font-weight: normal;
 }
@@ -508,8 +508,8 @@ background-color: rgb(99, 113, 121);
 
 .festival-info .image-container{
     position: relative;
-    /* left: 50%;
-    transform: translateX(-50%); */
+    left: 50%;
+    transform: translateX(-50%); 
     height: auto;
     width: 100%;
     object-fit: content; 
@@ -793,7 +793,7 @@ background-color: rgb(99, 113, 121);
 }
 
 .each-stars-results{
-    display: flex;
+    /* display: flex; */
 }
 
 .each-stars-results p{
@@ -931,7 +931,7 @@ background-color: rgb(99, 113, 121);
 
 .btn-ratings{
     position: absolute;
-    bottom: 150px;
+    bottom: 100px;
     left: 50%;
     transform: translateX(-50%);
     border: transparent;
@@ -966,4 +966,4 @@ table tbody .item .stars{
     background-color: #f2f2f2;
 }
 
-.ratings-container table tr:hover {background-color: #ddd;}
+/* .ratings-container table tr:hover {background-color: rgb(241, 241, 241);} */

@@ -230,7 +230,7 @@ app.post('/festival-registration', uploader.single('file'), ses.upload, (req, re
     let filename = req.file.filename;
     let imageUrl = `https://s3.amazonaws.com/spicedling/${filename}`;
     if (req.file) {
-        db.addFestival(imageUrl, name, homepage, startingDate, finishingDate, location, counrty, price, style, description).then(results => {
+        db.addFestival(imageUrl, name, homepage, startingDate, finishingDate, location, country, price, style, description).then(results => {
             req.session.userId = results.rows[0].id;
             console.log('results from addFestivals: ', results.rows);
             res.json(results.rows[0]);

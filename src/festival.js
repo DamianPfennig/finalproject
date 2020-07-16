@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 
 import Average from './average';
 import Stars from './stars';
+import Likes from './likes';
 
 //import MapContainer from './map';
 // import Weather from './weather';
@@ -19,7 +20,7 @@ function Festival({ match }) {
     const selectedFestival = useSelector(state => state.selectedFestival);
     //console.log('data in Festival Component: ', selectedFestival);
     const retrievedRatings = useSelector(state => state && state.ratings);
-    console.log('retrievedRatings: ', retrievedRatings)
+    //console.log('retrievedRatings: ', retrievedRatings)
     const justAddedRatings = useSelector(state => state && state.addRatings);
 
 
@@ -66,12 +67,30 @@ function Festival({ match }) {
     //     objWeather['temp'] = weatherFinal;
     // }
     // console.log('objWeather: ', objWeather);
-
-
-
     //document.querySelector('test').innerHTML = retrievedRatings;
 
-    console.log('retrievedRatings: ', retrievedRatings);
+
+    useEffect(() => {
+        async function fn() {
+            const { data } = await retrievedRatings.map(elem => {
+                //console.log('elem.location: ', elem.location);
+            })
+        }
+        fn();
+        //     const starTotal = 5;
+
+        // for (const key in ratings) {
+        //     //console.log('KEYYYYYYY!!!!', key)
+        //     const starPercentage = (ratings[key] / starTotal) * 100;
+        //     const starPercentageRounded = `${(Math.round(starPercentage / 10) * 10)}%`;
+        //     document.querySelector(`.${key} .stars-inner`).style.width = starPercentageRounded;
+        //     document.querySelector(`.${key} .number-rating`).innerHTML = ratings[key];
+        // }
+    }, [retrievedRatings]);
+
+    //console.log('retrievedRatings: ', retrievedRatings);
+
+
 
 
 
@@ -120,9 +139,9 @@ function Festival({ match }) {
                                 </div>
                                 <br></br>
                                 <div>
-                                    <Link to={`/ratings/${match.params.id}`} >
-                                        <h3>Give your ratings to {elem.name}</h3>
-                                    </Link>
+
+                                    <h3>Have you already been to {elem.name}? Give the festival your ratings <Link to={`/ratings/${match.params.id}`} >here</Link></h3>
+
                                 </div>
                             </div>
                         )
@@ -131,17 +150,20 @@ function Festival({ match }) {
                 <div className="all-stars-results">
                     <h1>Ratings</h1>
                     <Average />
-                    {
+                    <Stars />
+
+                    {/* {
                         retrievedRatings &&
                         retrievedRatings.map((elem, idx) => {
                             return (
                                 <div className="stars-results-container" key={idx}>
+                                    <Likes />
                                     <div className="each-stars-results">
                                         <p>Location</p>
                                         <p >{elem.location}</p>
                                         <div className="stars-results">
-                                            {/* <input type="radio" id="test" name="location" value="1" />
-                                            <label htmlFor="test" title="text">{elem.location}</label> */}
+                                             <input type="radio" id="test" name="location" value="1" />
+                                            <label htmlFor="test" title="text">{elem.location}</label> 
                                             <Stars />
                                         </div>
                                     </div>
@@ -174,7 +196,7 @@ function Festival({ match }) {
 
                             )
                         })
-                    }
+                    } */}
                 </div>
             </div>
         </div >
@@ -182,6 +204,10 @@ function Festival({ match }) {
 
 }
 export default withRouter(Festival);
+
+
+
+
 
 ////////////////////////////////////////
 

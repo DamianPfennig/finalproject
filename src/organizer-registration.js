@@ -35,7 +35,7 @@ class OrganizerRegistration extends Component {
                 <h2>Please enter Email and Password</h2>
                 {this.state.error && <div className="registration-error">Oops something went wrong!</div>}
                 <div className="registration">
-                    <input id="email" name="email" placeholder="Enter Email" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
+                    <input id="email" name="email" placeholder="Enter Email" spellCheck="false" onChange={e => this.handleChange(e)} />
                     <input id="password" name="password" placeholder="Enter Password" type="password" spellCheck="false" autoComplete="off" onChange={e => this.handleChange(e)} />
                     <button className="btn-registration" onClick={() => this.submit()}>Register</button>
                 </div>
