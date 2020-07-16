@@ -107,34 +107,90 @@ nav{
 /*---------------------Attendees Registration----------------*/
 
 .attendees-registration-container{
-
-       position: absolute;
+    position: relative;
     grid-row: 2/3;
-    grid-column: 2/3;
-    width: 600px;
+    grid-column: 2/4;
+    margin-top: 40px;
+    height: 70%;
+    width: 40%;
     left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%) ;
+    transform: translateX(-50%);
+          background-color: rgb(159, 177, 189);
+      border-radius: 10px;
+    box-shadow: 10px 10px 5px grey;
+    padding: 20px;
+    
 }
 
 .attendees-registration input{
-      display: block;
+   display: block;
   box-sizing: border-box;
   margin-bottom: 20px;
   padding: 4px;
-  width: 70%;
-  
+  width: 100%;
+   outline: none;
   height: 32px;
   border: none;
   border-bottom: 1px solid #3f3f3f;
   background-color: transparent;
   font-family: 'Varela Round', sans-serif;
-  font-weight: 400;
+  font-weight: 600;
   font-size: 15px;
   transition: 0.2s ease;
   color: #3f3f3f;
-
 }
+
+
+
+.attendees-registration-container h2{
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+
+.attendees-registration{
+    height: 100%;
+    width: 60%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+
+/* 
+.festival-registration-container .registration{
+    margin-top: 40px;
+    width: 90%;
+} */
+
+
+.btn-attendees-registration{
+    
+    border: transparent;
+    background: transparent;
+    border-radius: 6px;
+    padding: 10px 15px;
+    cursor: pointer;
+    color: #3f3f3f;
+    transition: 0.3s;
+    font-size: 15px;
+}
+
+.btn-attendees-registration:hover{
+    /* background-color: #b4b4b4; */
+    background-color: rgb(99, 113, 121);
+    color: #f3f3f3;
+}
+
+.login-btn{
+    width: 200px;
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 /*----------------------Registration Container--------------*/
 
 .registration-container{
@@ -145,6 +201,10 @@ nav{
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%) ;
+    background-color: rgb(159, 177, 189);
+    border-radius: 10px;
+    box-shadow: 10px 10px 5px grey;
+    padding: 20px; 
 }
 
 
@@ -234,9 +294,20 @@ nav{
     width: 60%;
     left: 50%;
     transform: translateX(-50%);
+          background-color: rgb(159, 177, 189);
+      border-radius: 10px;
+    box-shadow: 10px 10px 5px grey;
+    padding: 20px;
+    
 }
 .festival-registration{
     height: 100%;
+    width: 60%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+
+
 }
 
 .festival-registration-container h2{
@@ -253,7 +324,7 @@ nav{
   box-sizing: border-box;
   margin-bottom: 20px;
   padding: 4px;
-  width: 70%;
+  width: 100%;
    outline: none;
   height: 32px;
   border: none;
@@ -341,7 +412,7 @@ nav{
 .btn-festival-registration{
     position: relative;
     bottom: -50px;
-    left: -50%;
+    left: 50%;
     transform: translateX(-50%);
     border: transparent;
     background: transparent;
@@ -628,19 +699,21 @@ background-color: rgb(99, 113, 121);
     position: relative;
     height: 300px;
     width: 450px;
-    border: #3f3f3f solid 2px;
+     border: none;
     left: 50%;
     transform: translateX(-50%);
+    
 }
 
 .selected-festival-container .image-container{
-    border: none;
+   
 }
 
 .selected-festival-container .image-container img{
     height: 100%;
     width: auto;
     margin-top: 20px;
+    
 }
 
 .selected-festival-container .info-container{
@@ -649,7 +722,7 @@ background-color: rgb(99, 113, 121);
     left: 50%;
     transform: translateX(-50%);
     background-color: #e7e7e7; 
-    width: 90%;
+    width: 70%;
     border-radius: 20px;
     padding: 20px;
     box-shadow: 10px 10px 5px grey;
@@ -669,6 +742,21 @@ background-color: rgb(99, 113, 121);
 }
 .info-container p{
     margin-top: 5px;
+}
+
+.info-container .description{
+      background-color: rgb(159, 177, 189);
+      border-radius: 10px;
+    box-shadow: 10px 10px 5px grey;
+    padding: 20px;
+    width: 80%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.description p{
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
 
 /*---------------------Weather-------------------*/
@@ -720,6 +808,11 @@ background-color: rgb(99, 113, 121);
     top: 50px;
     left: 50%;
     transform: translateX(-50%);
+      background-color: rgb(159, 177, 189);
+      border-radius: 10px;
+    box-shadow: 10px 10px 5px grey;
+    padding: 20px;
+      
 }
 
 .stars {
@@ -766,11 +859,16 @@ background-color: rgb(99, 113, 121);
     display: flex;
 }
 
+.recommendation{
+    height: 50px;
+    width: 100px;
+}
+
 /*--------------Stars Results------------*/
 .all-stars-results{
     position: relative;
     height: auto;
-    width: 90%;
+    width: 70%;
     background-color: #e7e7e7;
     left: 50%;
     transform: translateX(-50%);
@@ -785,19 +883,33 @@ background-color: rgb(99, 113, 121);
 }
 
 .stars-results-container{
-    width: 90%;
-     background-color: rgb(183, 206, 253);
+    width: 85%;
+     background-color: rgb(159, 177, 189);
      border-radius: 10px;
-     padding: 20px;
+     padding: 40px;
      margin: 20px;
+     display: flex;
 }
 
 .each-stars-results{
     /* display: flex; */
 }
+.each-text-result{
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    position: relative;
+    top: 0;
+    right: 0;
+    width: 50%;
+    border: #3f3f3f solid 1px;
+    border-radius: 6px;
+    box-shadow: 10px 10px 5px grey;
+    padding: 10px;
+
+}
 
 .each-stars-results p{
     margin-right: 10px;
+    
 }
 .stars-results {
     position: relative;
@@ -850,6 +962,11 @@ background-color: rgb(99, 113, 121);
      margin-left: 10px;
  }
 
+ .only-stars-container{
+     position: relative;
+     width: 45%;
+ }
+
  /*----------------------Average-------------------*/
 
  .average-ratings{
@@ -857,9 +974,9 @@ background-color: rgb(99, 113, 121);
      width: 40%;
      left: 50%;
      transform: translateX(-50%);
-     background-color: rgb(183, 206, 253);
+     background-color: rgb(159, 177, 189);
      border-radius: 10px;
-     padding: 10px;
+     padding: 20px;
 
  }
 
@@ -910,10 +1027,13 @@ background-color: rgb(99, 113, 121);
     /* border-collapse: collapse;*/
     width: 50%; 
     position: relative;
-   
+    margin-top: 20px;
     left: 50%;
     transform: translateX(-50%); 
     margin-bottom: 40px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 5px grey;
+     background-color: #f2f2f2;
 }
 
 .ratings-container textarea{
@@ -927,6 +1047,8 @@ background-color: rgb(99, 113, 121);
     border: #3f3f3f solid 1px;
     color: #3f3f3f;
     padding: 10px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 5px grey;
 }
 
 .btn-ratings{
@@ -937,7 +1059,8 @@ background-color: rgb(99, 113, 121);
     border: transparent;
     background: transparent;
     border-radius: 6px;
-    border: solid #3f3f3f 1px;
+    /* border: solid #f3f3f3 2px; */
+    background-color: #f2f2f2;
     padding: 10px 15px;
     cursor: pointer;
     color: #3f3f3f;
@@ -963,7 +1086,7 @@ table tbody .item .stars{
 }
 
 .ratings-container table tr:nth-child(even){
-    background-color: #f2f2f2;
+    /* background-color: #f2f2f2; */
 }
 
 /* .ratings-container table tr:hover {background-color: rgb(241, 241, 241);} */

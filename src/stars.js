@@ -40,26 +40,32 @@ function Stars({ match }) {
                 retrievedRatings.map((elem, idx) => {
                     return (
                         <div className="stars-results-container" key={idx}>
-
-                            <div className="each-stars-results">
-                                <Typography component="legend">Location</Typography>
-                                <Rating value={elem.location} readOnly />
+                            <div className="only-stars-container">
+                                <div className="each-stars-results">
+                                    <Typography component="legend">Location</Typography>
+                                    <Rating value={elem.location} readOnly />
+                                </div>
+                                <br></br>
+                                <div className="each-stars-results">
+                                    <Typography component="legend">Organization</Typography>
+                                    <Rating value={elem.organization} readOnly />
+                                </div>
+                                <br></br>
+                                <div className="each-stars-results">
+                                    <Typography component="legend">Food</Typography>
+                                    <Rating value={elem.food} readOnly />
+                                </div>
+                                <br></br>
+                                <div className="each-stars-results">
+                                    <Typography component="legend">Toilets and Showers</Typography>
+                                    <Rating value={elem.toilets_showers} readOnly />
+                                </div>
                             </div>
-                            <br></br>
-                            <div className="each-stars-results">
-                                <Typography component="legend">Organization</Typography>
-                                <Rating value={elem.organization} readOnly />
-                            </div>
-                            <br></br>
-                            <div className="each-stars-results">
-                                <Typography component="legend">Food</Typography>
-                                <Rating value={elem.food} readOnly />
-                            </div>
-                            <br></br>
-                            <div className="each-stars-results">
-                                <Typography component="legend">Toilets and Showers</Typography>
-                                <Rating value={elem.toilets_showers} readOnly />
-                            </div>
+                            {/* <br></br>
+                            <div className="each-text-result">
+                                <h4>User wrote</h4>
+                                <p >{elem.recommendation}</p>
+                            </div> */}
                             <br></br>
                             <div className="each-text-result">
                                 <h4>User wrote</h4>

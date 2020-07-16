@@ -95,12 +95,12 @@ module.exports.getPass = (emailInput) => {
     `);
 };
 
-module.exports.addRatings = (festivalId, location, organization, food, toilets_showers, text) => {
+module.exports.addRatings = (festivalId, location, organization, food, toilets_showers, recommendation, text) => {
     return db.query(`
-    INSERT INTO ratings (festival_id, location, organization, food, toilets_showers, text)
-    VALUES ($1, $2, $3, $4, $5, $6)
+    INSERT INTO ratings (festival_id, location, organization, food, toilets_showers, recommendation, text)
+    VALUES ($1, $2, $3, $4, $5, $6, $7)
     RETURNING *`,
-        [festivalId, location, organization, food, toilets_showers, text]
+        [festivalId, location, organization, food, toilets_showers, text, recommendation]
     )
 }
 

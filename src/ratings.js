@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { addRatings, getUser } from './actions';
 import { withRouter } from "react-router";
 import { Link } from 'react-router-dom';
+import Overall from './overall';
 
 
 function Ratings({ match }) {
@@ -128,6 +129,12 @@ function Ratings({ match }) {
                         </tr>
                     </tbody>
                 </table>
+
+
+
+                {/* <textarea className="recommendation" id="recommendation" name="recommendation" spellCheck="false" rows="4" cols="40" wrap="hard" placeholder="Recommendations" onChange={handleChange}></textarea> */}
+
+
 
                 <textarea id="text" name="text" spellCheck="false" rows="8" cols="55" wrap="hard" placeholder="Write some comments about the festival" onChange={handleChange} onKeyDown={keyCheck} ></textarea>
 

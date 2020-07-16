@@ -66,8 +66,11 @@ class AttendeesRegistration extends Component {
                     <button className="btn-attendees-registration" onClick={() => this.handleClick()}>Register</button>
                 </div>
                 <br></br>
-                <p>Are you already registered?</p>
-                <Link to="/login">Login</Link>
+                <div className="login-btn">
+                    <p>Are you already registered?</p>
+                    <Link to="/login">Login</Link>
+                </div>
+
             </div>
 
             //short for Fragments---doesn't add another div

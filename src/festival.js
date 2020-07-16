@@ -124,7 +124,7 @@ function Festival({ match }) {
                                     <img src={elem.imageurl} alt="image" />
                                 </div>
                                 <h1>{elem.name}</h1>
-                                <h2>{elem.location}, {elem.country}</h2>
+                                <h2>{elem.location} {elem.country}</h2>
                                 <h3>{elem.startingdate} - {elem.finishingdate}</h3>
                                 <div className="description">
                                     <h4>What is {elem.name}?</h4>
@@ -140,7 +140,7 @@ function Festival({ match }) {
                                 <br></br>
                                 <div>
 
-                                    <h3>Have you already been to {elem.name}? Give the festival your ratings <Link to={`/ratings/${match.params.id}`} >here</Link></h3>
+                                    <h3> Give this festival your ratings <Link to={`/ratings/${match.params.id}`} >here</Link></h3>
 
                                 </div>
                             </div>

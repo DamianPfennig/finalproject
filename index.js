@@ -295,7 +295,7 @@ app.get(`/selectedFestival/:id`, (req, res) => {
 app.post('/addRatings', (req, res) => {
     console.log('axios addRatings')
     //console.log('req.body: ', req.body);
-    db.addRatings(req.body.festivalId, req.body.location, req.body.organization, req.body.food, req.body.toilets_showers, req.body.text).then(results => {
+    db.addRatings(req.body.festivalId, req.body.location, req.body.organization, req.body.food, req.body.toilets_showers, req.body.recommendation, req.body.text).then(results => {
         console.log('results addRatings: ', results.rows[0]);
         res.json(results.rows[0]);
     }).catch(err => { console.log('err: ', err) });
