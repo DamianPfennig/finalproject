@@ -9,7 +9,8 @@ CREATE TABLE ratings
     organization INT,
     food INT,
     toilets_showers INT,
-    recommendation VARCHAR,
     text VARCHAR,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+--  recommendation VARCHAR,

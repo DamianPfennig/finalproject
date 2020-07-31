@@ -130,19 +130,10 @@ function Ratings({ match }) {
                     </tbody>
                 </table>
 
-
-
                 {/* <textarea className="recommendation" id="recommendation" name="recommendation" spellCheck="false" rows="4" cols="40" wrap="hard" placeholder="Recommendations" onChange={handleChange}></textarea> */}
 
-
-
                 <textarea id="text" name="text" spellCheck="false" rows="8" cols="55" wrap="hard" placeholder="Write some comments about the festival" onChange={handleChange} onKeyDown={keyCheck} ></textarea>
-
-
-
-                {/* <Link to={`/festival/${match.params.id}`} > */}
                 <button className="btn-ratings" onClick={handleClick}>Send Ratings</button>
-                {/* </Link> */}
 
             </div>
         </div>

@@ -49,7 +49,7 @@ const uploader = multer({
 
 const cookieSessionMiddleware = cookieSession({
     secret: `I'm always angry.`,
-    maxAge: 1000 * 60 * 60 * 24 * 90
+    maxAge: 1000 * 60 * 60 * 24 * 180
 });
 
 app.use(cookieSessionMiddleware);
@@ -295,7 +295,7 @@ app.get(`/selectedFestival/:id`, (req, res) => {
 app.post('/addRatings', (req, res) => {
     console.log('axios addRatings')
     //console.log('req.body: ', req.body);
-    db.addRatings(req.body.festivalId, req.body.location, req.body.organization, req.body.food, req.body.toilets_showers, req.body.recommendation, req.body.text).then(results => {
+    db.addRatings(req.body.festivalId, req.body.location, req.body.organization, req.body.food, req.body.toilets_showers, req.body.text).then(results => {
         console.log('results addRatings: ', results.rows[0]);
         res.json(results.rows[0]);
     }).catch(err => { console.log('err: ', err) });
@@ -339,12 +339,12 @@ app.get('/', (req, res) => {
 
 
 app.get('/home', (req, res) => {
-    //res.sendFile(__dirname + '/index.html');
-    if (!req.session.userId) {
-        res.redirect('/home');
-    } else {
-        res.sendFile(__dirname + '/index.html');
-    }
+    res.sendFile(__dirname + '/index.html');
+    // if (!req.session.userId) {
+    //     res.redirect('/home');
+    // } else {
+    //     res.sendFile(__dirname + '/index.html');
+    // }
 })
 
 

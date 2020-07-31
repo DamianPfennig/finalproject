@@ -111,7 +111,7 @@ class FestivalRegistration extends Component {
                     <input id="style" name="style" placeholder="Style" spellCheck="false" onChange={e => this.handleChange(e)} />
 
                     <input id="confirmed_artists" name="confirmed_artists" placeholder="Confirmed Artists" spellCheck="false" onChange={e => this.handleChange(e)} />
-
+                    <p>Select an image</p>
                     <input type="file" id="url" className="upload-image" name="url" accept="image/*" multiple onChange={() => this.selectedImage(event)} />
                     {/* {
                         this.state.selectedImage ?

@@ -22,7 +22,7 @@ function Stars({ match }) {
         dispatch(getRatings(url));
     }, [])
 
-    console.log('retrievedRatings in Stars', retrievedRatings)
+    console.log('retrievedRatings in Stars::', retrievedRatings)
 
 
 
